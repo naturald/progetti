@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1568971959 source:c:\users\marsc\desktop\code\oke\main.cpp
+	<iostream>
+	<stdlib.h>
+	"prova.h"
+	<time.h>
+
+1568819621 c:\users\marsc\desktop\code\oke\prova.h
+	<string>
+	<fstream>
+	<iostream>
+
+1568844595 source:c:\users\marsc\desktop\code\oke\prova.cpp
+	"prova.h"
+
