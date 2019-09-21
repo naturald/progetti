@@ -13,7 +13,7 @@ int main()
     int n;
     int risposta;
     srand (time(NULL));
-    cout<<"benvenuto nel gioco indivino del numero "<<endl;
+    cout<<"|benvenuto nel gioco indivino del numero| "<<endl;
     cout<<"devi indovinare il numero nel intervallo che verra prestabilito dalla difficolta"<<endl;
     do
     {
