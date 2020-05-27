@@ -16,7 +16,7 @@ void prova()
         punti="0";
     }
     else
-    getline(q,punti);
+        getline(q,punti);
 
     p=atoi(punti.c_str());
 

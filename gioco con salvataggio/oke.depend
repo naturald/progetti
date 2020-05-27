@@ -21,3 +21,17 @@
 	<fstream>
 	<iostream>
 
+1590016027 source:c:\users\marco\desktop\gioco con salvataggio\main.cpp
+	<iostream>
+	<stdlib.h>
+	"prova.h"
+	<time.h>
+
+1585053541 c:\users\marco\desktop\gioco con salvataggio\prova.h
+	<string>
+	<fstream>
+	<iostream>
+
+1590016245 source:c:\users\marco\desktop\gioco con salvataggio\prova.cpp
+	"prova.h"
+
