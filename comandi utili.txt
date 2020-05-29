@@ -41,3 +41,21 @@ select iduser from users where email ="citta";
 TRUNCATE nome_tabella
 atoi(Plet.c_str())
 Student[] studentArray = new Student[7];
+
+//___________________hacker rank______________________//
+    int A_home=0;
+    int O_home=0;
+    for(int i=0;i<apples.size();i++) 
+    {
+        if(apples[i]>=0)
+            if(s<=(a+apples[i])&&(a+apples[i])<=t)
+                A_home++;
+    }
+    for(int j=0;j<oranges.size();j++)
+    {
+        if(oranges[j]<=0)
+            if(s<=(b+oranges[j])&&(b+oranges[j])<=t)
+                O_home++;
+    }
+    cout<<A_home<<endl<<O_home;
+//______________________________________________________//
