@@ -41,3 +41,118 @@ select iduser from users where email ="citta";
 TRUNCATE nome_tabella
 atoi(Plet.c_str())
 Student[] studentArray = new Student[7];
+Denial of service = dos
+Distributed Denial of Services = ddos
+
+def TCP = In telecomunicazioni e informatica il Transmission Control Protocol (TCP)
+ è un protocollo di rete a pacchetto di livello di trasporto, appartenente alla suite di protocolli Internet,
+che si occupa di controllo della trasmissione ovvero rendere affidabile la comunicazione dati in rete tra mittente e
+ destinatario. Definito nella RFC 793, su di esso si appoggia gran parte delle applicazioni della rete Internet, 
+è presente solo sui terminali di rete (host) e non sui nodi interni di commutazione della rete di trasporto, implementato 
+come strato software di rete all'interno del sistema operativo di un host, e il terminale in trasmissione o in ricezione vi
+ accede attraverso l'uso di opportune chiamate di sistema definite nelle API di sistema.
+
+
+
+//___________________hacker rank______________________//
+    int A_home=0;
+    int O_home=0;
+    for(int i=0;i<apples.size();i++) 
+    {
+        if(apples[i]>=0)
+            if(s<=(a+apples[i])&&(a+apples[i])<=t)
+                A_home++;
+    }
+    for(int j=0;j<oranges.size();j++)
+    {
+        if(oranges[j]<=0)
+            if(s<=(b+oranges[j])&&(b+oranges[j])<=t)
+                O_home++;
+    }
+    cout<<A_home<<endl<<O_home;
+ 
+------------------------------------------------------   
+    
+    
+    /*long x3_1;
+    long x3_2; 
+    bool flag=false;
+    if(x1!=x2)
+    {
+        x3_1=x1+v1;
+        x3_2=x2+v2;
+        for(int i=0;i<1000;i++) 
+        {
+            if(x3_2==x3_1)
+            {
+                flag=true;
+                break;
+            }
+            else
+            {
+                x3_1+=v1;
+                x3_2+=v2;
+            }   
+        }
+   
+    }
+    else
+        flag=true;
+   
+   if(flag==true)
+        return "YES";
+    else
+        return "NO";*/
+    
+    float x =(float)(x2 - x1)/(v1 - v2);
+    int trn=int(trunc(x*100));
+    if( trn % 100 != 0 || x < 0)
+            return "NO";
+        else
+            return "YES";
+            
+--------------------------------------------------------            
+            
+            
+    
+    int div=0;
+    if(a[a.size()-1]>b[b.size()-1])
+    {
+        for(int i=b[b.size()-1];i<(a[0]+1);i++)
+        {
+            int trov=0;
+            for(int j=0;j<a.size();j++)
+            {
+                if((i%a[j])==0)
+                    trov++;
+            }
+            for(int x=0;x<b.size();x++)
+            {
+                if((b[x]%i)==0)
+                    trov++;
+            }
+            if(trov==(a.size()+b.size()))
+                div++;
+        }
+    }
+    else
+    {
+        for(int i=a[a.size()-1];i<(b[0]+1);i++)
+        {
+            int trov=0;
+            for(int j=0;j<a.size();j++)
+            {
+                if((i%a[j])==0)
+                    trov++;
+            }
+            for(int x=0;x<b.size();x++)
+            {
+                if((b[x]%i)==0)
+                    trov++;
+            }
+            if(trov==(a.size()+b.size()))
+                div++;
+        }
+    }
+    return div;
+//______________________________________________________//
