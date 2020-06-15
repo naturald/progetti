@@ -12,24 +12,6 @@
     <link rel="stylesheet" href="css/classi.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
 
-    <div id="login_cms" class="login_cms">
-        <div id="login_cms_form" class="login_cms_form">
-            <img src="img/logo_cms.png" alt=""  style="height: 75px;
-                                                        width: 190px;
-                                                        margin: auto;
-                                                        margin-bottom: 30px;">                                                                  
-            <h1 style="text-align:center;" class="space">LOGIN</h1>
-            <input type="text" placeholder="Nome" id="nome_cms" class="dati_cms space">
-            <input type="password" class="dati_cms space" id="pass_cms" placeholder="Password">
-            <button class="bottoni space" id="btn_cms" onclick="contr_cms()" style="width: fit-content; 
-                                                                                    margin: auto;
-                                                                                    margin-bottom: 20px;">
-                Login
-            </button>
-            <h6 class="hide allert_cms" id="cms_alt">nome o password sbagliato</h6>
-        </div>
-    </div>
-
     <header class="nav_page_editor">
     
         <div style="display: block;
@@ -41,11 +23,12 @@
     
                 <li><a href="index.php" style="text-decoration:none;"><h2 class="voci">pag iniziale</h2></a></li>
                 <li><a href="page_editor.php" style="text-decoration:none;"><h2 class="voci">crea banner</h2></a></li>
-                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">modifica banner</h2></a> </li>
-                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">elimina banner</h2></a> </li>
+                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">modifica banner</h2></a></li>
+                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">elimina banner</h2></a></li>
+                <li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>
     
             </ul>
-        
+
         </div>
 
             <img src="img/logo_cms.png" alt="" class="img_logo_cms">
@@ -93,6 +76,16 @@
                                                 color: red;
                                                 margin: auto;">completa tutti i campi</h6>
     </div>
+<?php 
+    if(isset($_SESSION['acess_cms']))
+    {
+        //header("location: login_page_editor.php"); 
+    }
+    else
+        header("location: login_page_editor.php"); 
+    
+
+?>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/libreria.js"></script>
     <script type="text/javascript" src="js/codice.js"></script>
@@ -110,6 +103,6 @@
 
 
     </script>
- 
+
 </body>
 </html>

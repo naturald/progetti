@@ -41,7 +41,7 @@ select iduser from users where email ="citta";
 TRUNCATE nome_tabella
 atoi(Plet.c_str())
 Student[] studentArray = new Student[7];
-<<<<<<< HEAD
+UNIQUE KEY (`Employee_Code`),
 Denial of service = dos
 Distributed Denial of Services = ddos
 

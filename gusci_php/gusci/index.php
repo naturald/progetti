@@ -16,37 +16,37 @@
     <header class="nav">
     <?php 
 
-if(isset($_SESSION['acess']))
-{
-    echo "<a href='carrello.php'> ";
-    echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
-    echo "<div style='position:absolute;top: 20px;right:30px;'> ";
-    echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
-    echo "</div>";
-    echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-    echo "<ul class='menu' style='display: table-cell;'> ";
-    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-    echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
-    echo "<li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
-                            
-}
-else
-{
-    echo "<div style='position:absolute;top: 20px;right:30px;'>";
-    echo "<button class='bottoni' id='btn'onclick='login()' > ";
-    echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
-    echo "</button> ";
-    echo "</div> ";
-    echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-    echo "<ul class='menu' style='display: table-cell;'> ";
-    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-    echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
-}
+    if(isset($_SESSION['acess']))
+    {
+        echo "<a href='carrello.php'> ";
+        echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
+        echo "<div style='position:absolute;top: 20px;right:30px;'> ";
+        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
+        echo "</div>";
+        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+        echo "<ul class='menu' style='display: table-cell;'> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
+        echo "<li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
+                                
+    }
+    else
+    {
+        echo "<div style='position:absolute;top: 20px;right:30px;'>";
+        echo "<button class='bottoni' id='btn'onclick='login()' > ";
+        echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
+        echo "</button> ";
+        echo "</div> ";
+        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+        echo "<ul class='menu' style='display: table-cell;'> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
+    }
 
 
-?>
+    ?>
         </div>
         <a href="index.php">
             <img src="img/logo_sito.png" alt="" class="img_logo">
@@ -223,9 +223,6 @@ else
 
     </div>
         
-        
-  
-    
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/libreria.js"></script>
     <script type="text/javascript" src="js/codice.js"></script>

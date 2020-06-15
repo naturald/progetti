@@ -14,35 +14,39 @@
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
 
     <header class="nav">
-        <a href="carrello.php">
-            <img src="img/carrello.png" id="carrello" class="carrello">
-        </a>
+    <?php 
 
-    <div style="position:absolute;top: 20px;right:30px;">
-        <button class="bottoni"id="btn" onclick='login()' >
-            <h2 style="font-size: 18px;">
-                Login
-            </h2>        
-         </button>
-         <h2 class="hide" id="hide" style="font-size: 15px;
-                                           width: 150px;">
-              benvenuto
-         </h2>
-        
-    </div>  
-    <div style="display: block;
-                width: fit-content;
-                margin-left: auto; 
-                margin-right: auto;">
+    if(isset($_SESSION['acess']))
+    {
+        echo "<a href='carrello.php'> ";
+        echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
+        echo "<div style='position:absolute;top: 20px;right:30px;'> ";
+        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
+        echo "</div>";
+        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+        echo "<ul class='menu' style='display: table-cell;'> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
+        echo "<li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
+                                
+    }
+    else
+    {
+        echo "<div style='position:absolute;top: 20px;right:30px;'>";
+        echo "<button class='bottoni' id='btn'onclick='login()' > ";
+        echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
+        echo "</button> ";
+        echo "</div> ";
+        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+        echo "<ul class='menu' style='display: table-cell;'> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
+        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
+    }
 
-        <ul class="menu" style="display: table-cell;">
 
-            <li><a href="index.php" style="text-decoration:none;"><h2 class="voci">pag iniziale</h2></a></li>
-            <li><a href="index.php" style="text-decoration:none;"><h2 class="voci">sconti</h2></a></li>
-            <li><a href="info.php" style="text-decoration:none;" ><h2 class="voci">info</h2></a> </li>
-            <li><a href="session_destroy.php" style="text-decoration:none;"><h2 class="voci_hide" id="hide2">logout</h2></a></li>
-
-        </ul>
+    ?>
     
     </div>
     <a href="index.php">

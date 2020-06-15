@@ -522,6 +522,11 @@ textarea
 	color: red;
 	margin: auto;
 }
+.login_cms
+{
+	display: flex;
+    flex-direction: column;
+}
 /*--------MEDIA----------*/                                            
 @media only screen and (max-width: 1560px)
 {
