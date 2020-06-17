@@ -89,6 +89,7 @@
     <script type="text/javascript" src="js/libreria.js"></script>
     <script type="text/javascript" src="js/codice.js"></script>
     <script>
+        var modal=document.getElementById("login");
         document.getElementById("sign_up").onclick=function()
         {
             document.getElementById("con_login").style.display="none";
@@ -98,6 +99,11 @@
 
         }
         $( "#prova" ).load( "info.html" );
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     </script>
 </body>
 </html>

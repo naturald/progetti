@@ -15,7 +15,7 @@
    
    if((isset($_POST['sign_nome']) && isset($_POST['sign_cognome']) && isset($_POST['pass']) && isset($_POST['mail'])) || (isset($_POST['psw']) && isset($_POST['nome'])))
    {
-       if(strlen($_POST['sign_nome'])>0 || strlen($_POST['sign_nome'])>0 || strlen($_POST['sign_nome'])>0 || strlen($_POST['sign_nome'])>0)
+       if((strlen($_POST['sign_nome'])>0 && strlen($_POST['sign_cognome'])>0 && strlen($_POST['pass'])>0 && strlen($_POST['mail'])>0) || (strlen($_POST['psw'])>0 && strlen($_POST['nome'])>0))
        {
             $conn=mysqli_connect("localhost","visitor","casa","gusci");
 

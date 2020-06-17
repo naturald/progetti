@@ -66,12 +66,12 @@ textarea
 }
 .nav_page_editor
 {
+	display: flex;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 100%;
 	background-color: white;
 	box-shadow :0px 5px 12px -5px  blue;
-	display: block;
 	z-index: 999;
 	display: inline-block;
 	height: 75px;
@@ -156,7 +156,7 @@ textarea
 	position: absolute; 
 	top: 94px;
 	width: 100%;
-	height: 30%;
+	height: 300px;
 	background-image: url("https://i.pinimg.com/originals/c6/22/46/c62246425d2c45d07ff2ad24ecd620cc.jpg");
 	background-size: cover;
 	background-position: center center;
@@ -192,17 +192,19 @@ textarea
 /*-------MODAL-----------*/
 .modal
 {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	z-index: 1000;
 	height: 100%;
+	width: 100%;
 	left: 0;
 	top: 0;
-	width: 100%;
 	position: fixed;
-	padding-top: 100px;
 	overflow-y: auto; /* Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	
 	
 
 }
@@ -357,7 +359,7 @@ textarea
 .card
 {
 	position: relative;
-	top: 50%;
+	top: 500px;
 	width: 1450px;
 	margin-left: auto;
 	margin-right: auto;
@@ -376,7 +378,7 @@ textarea
     width: 150px;
     border: solid 2px black;
     position: absolute;
-    top: 43%;
+    top: 420px;
 	right: 50px;
 	border-radius: 50px;
 	padding-left: 15px;
@@ -419,6 +421,7 @@ textarea
 .dati_file
 {
 	width: 300px;
+	height: 360px;
 	background-color: white;
 	color: rgba(0,0,255,0.5);
 	font-size: 20px;
@@ -535,7 +538,7 @@ textarea
 		display: flex;
 		position: relative;
 		flex-direction: row;
-		top: 50%;
+		top: 500px;
 		width: 1200px;
 		flex-flow: wrap;
 		margin-left: auto;
@@ -549,7 +552,7 @@ textarea
 		display: flex;
 		position: relative;
 		flex-direction: row;
-		top: 50%;
+		top: 500px;
 		width: 870px;
 		flex-flow: wrap;
 		margin-left: auto;
@@ -563,7 +566,7 @@ textarea
 		display: flex;
 		position: relative;
 		flex-direction: row;
-		top: 50%;
+		top: 500px;
 		width: 580px;
 		flex-flow: wrap;
 		margin-left: auto;
@@ -601,7 +604,7 @@ textarea
 		display: flex;
 		position: relative;
 		flex-direction: row;
-		top: 50%;
+		top: 500px;
 		width: 580px;
 		flex-flow: wrap;
 		margin-left: auto;
@@ -626,7 +629,7 @@ textarea
 	    display: flex;
 		position: relative;
 		flex-direction: column;
-		top: 50%;
+		top: 500px;
 		width: 290px;
 		margin-left: auto;
 		margin-right: auto;
