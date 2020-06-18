@@ -1,6 +1,10 @@
-<?php 
+<?php
+    session_start();
     if(isset($_POST['submit']))
     {
+        
+        $conn=mysqli_connect("localhost","visitor","casa","gusci");
+        
         $file=$_FILES['img'];
 
         $fileName=$_FILES['img']['name'];
@@ -20,20 +24,31 @@
             {
                 if($fileSize<1000000)
                 {
-                    $fileNameNew= uniqid('', true ).'.'.$fileActualExt;
-                    $fileDestination= 'uploads/'.$fileNameNew;
-                    move_uploaded_file( $fileTmpName,$fileDestination );
-                    echo "fatto";
+                    //$get_idart="select idart from articoli where titolo ='".$_POST['titolo']."';";
+                    //$get_idart_Q=mysqli_query($conn,$get_idart);
+                    //$get_idart_A=mysqli_fetch_assoc($get_idart_Q);
+                    //$fileNameNew= $get_idart_A['idart'].'.'.$fileActualExt;
+                    
+                    //move_uploaded_file( $fileTmpName,$fileDestination );
+                    $imge=file_get_contents($fileTmpName);
+                    $imge=addslashes(base64_encode($imge));
+
+
+                    $new_banner="insert  articoli values(null,'".$_POST['titolo']."','".$_POST['descr']."','".$_POST['prezzo']."','".$imge."');";
+                    mysqli_query($conn,$new_banner);
+                
+                    header("location: page_editor.php?done=1");  
                 }
                 else
-                    echo "è troppo pesante ";
+                    header("location: page_editor.php?err=3");  
             }
             else
-                echo "c'è stato un errore";
+                header("location: page_editor.php?err=2");  
         }
         else
-            echo "tipo non supportato";
-        
+            header("location: page_editor.php?err=1");  
+
+            
 
     }
 ?>

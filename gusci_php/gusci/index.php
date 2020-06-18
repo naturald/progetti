@@ -79,143 +79,41 @@
 
     <div class="card">
         <ul class="cardList" id="lista">
+<?php
 
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/maglia.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Maglia 
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/scarpa.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Scarpa
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/tazza.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Tazza 
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/cappello.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Cappello 
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-                
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/berretto.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Berretto
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/cintura.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Cintura
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/san_pei.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                San Pei 
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
-            <li>
-                <div class="banner">
-                    <center>
-                        <a href="">
-                            <img src="img/felpa.png" class="img_banner">
-                        </a>
-                        <div>
-                            <h1 class="text_banner">
-                                Felpa 
-                            </h1><br>
-                            <h3 class="text_banner">
-                                200 &#x20ac
-                            </h3>
-                        </div>
-                    </center>
-                </div>
-            </li>
+    $conn=mysqli_connect("localhost","visitor","casa","gusci");
+
+    $articoli=mysqli_query($conn,"select * from articoli;");
+    $articoli_A=mysqli_fetch_assoc($articoli);
+
+    foreach($articoli as $articolo)
+    {
+        echo "<li>";
+            echo "<div class='banner'>";
+                echo " <center>";
+                    echo "  <a href=''>";
+                        echo "<img class='img_banner' src='data:image;base64,".$articolo['img']."'  >";
+                    echo "</a>";
+                    echo " <div>";
+                        echo " <h1 class='text_banner'>";
+                            echo $articolo['titolo'];
+                        echo "</h1><br>";
+                        echo "<h3 class='text_banner'>";
+                            echo $articolo['prezzo']." &#x20ac";
+                        echo "</h3>";
+                    echo " </div>";
+                echo "</center>";
+            echo "</div>";
+        echo "<li>";
+
+    
+    }
+
+    
+    
+
+?>            
+
         </ul>
     </div>
 

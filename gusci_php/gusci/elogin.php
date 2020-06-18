@@ -31,11 +31,16 @@
                     $_SESSION['nome']=$val['name'];
                     $_SESSION['cognome']=$val['surname'];  
                     $_SESSION['acess']=true;
+                    mysqli_close($conn);
                     header("location: index.php");
                     
                 }
                 else
-                    header("location: index.php?err=1");                   
+                {
+                    mysqli_close($conn);
+                    header("location: index.php?err=1");  
+                }
+                 
 
             }
 
@@ -50,12 +55,18 @@
                 $_SESSION['nome']=$_POST['sign_nome'];
                 $_SESSION['cognome']=$_POST['sign_cognome'];
                 $_SESSION['acess']=true;
+                mysqli_close($conn);
                 header("location: index.php");
                 
             }
             else
-                header("location: index.php");  
-
+            {
+                mysqli_close($conn);
+                header("location: index.php");     
+            }
+                
+            
+            mysqli_close($conn);
        } 
        else
          header("location: index.php");       

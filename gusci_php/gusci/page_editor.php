@@ -7,6 +7,9 @@
     }
     else
         header("location: login_page_editor.php");     
+
+
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +31,6 @@
 
             <ul class="menu" style="display: table-cell;">
     
-                <li><a href="index.php" style="text-decoration:none;"><h2 class="voci">pag iniziale</h2></a></li>
                 <li><a href="page_editor.php" style="text-decoration:none;"><h2 class="voci">crea banner</h2></a></li>
                 <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">modifica banner</h2></a></li>
                 <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">elimina banner</h2></a></li>
@@ -96,6 +98,8 @@
                                                     color: red;
                                                     margin: auto;">completa tutti i campi</h6>
     </div>
+
+    
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/libreria.js"></script>
