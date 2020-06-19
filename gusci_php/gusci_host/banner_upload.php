@@ -3,7 +3,7 @@
     if(isset($_POST['submit']))
     {
         
-        $conn=mysqli_connect("localhost","visitor","casa","gusci");
+        $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
         
         $file=$_FILES['img'];
 
@@ -34,7 +34,7 @@
                     $imge=addslashes(base64_encode($imge));
 
 
-                    $new_banner="insert  articoli values(null,'".$_POST['titolo']."','".$_POST['descr']."','".$_POST['prezzo']."','".$imge."');";
+                    $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."','".$imge."');";
                     mysqli_query($conn,$new_banner);
                 
                     header("location: page_editor.php?done=1");  

@@ -1,11 +1,11 @@
 <?php
     session_start();
     
-    $conn=mysqli_connect("localhost","visitor","casa","gusci");
+    $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
     
     $id=$_REQUEST['id'];
 
-    $_SESSION['foo']=$id;
+
 
     $img_q=mysqli_query($conn,"select * from articoli where idart=".$id.";");
     $img1=mysqli_fetch_assoc($img_q);

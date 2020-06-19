@@ -1,6 +1,5 @@
 CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-
-  <?php 
+<?php 
 
 if(isset($_GET['sign_up']))
 {

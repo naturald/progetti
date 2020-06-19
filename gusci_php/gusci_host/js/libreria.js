@@ -91,13 +91,16 @@ function trova_art()
     {
         nome = el_lista[i].getElementsByTagName("h1")[0];
         cont_nome= nome.textContent || nome.innerText;
-        if (cont_nome.toUpperCase().indexOf(caps) > -1) 
+        if(cont_nome)
         {
-            el_lista[i].style.display = "";
-        } 
-        else 
-        {
-            el_lista[i].style.display = "none";
+            if (cont_nome.toUpperCase().indexOf(caps) > -1) 
+            {
+                el_lista[i].style.display = "";
+            } 
+            else 
+            {
+                el_lista[i].style.display = "none";
+            }
         }
     }
 }

@@ -34,10 +34,10 @@
 <?php 
     if(isset($_GET['elab']))
     {
-        $conn=mysqli_connect("localhost","visitor","casa","gusci");
+        $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
 
         //mysqli_escape_string();
-        $login="select * from admin where nome='".$_POST['nome_cms']."' and psw='".$_POST['pass_cms']."';";
+        $login="select * from admin where nome='".addslashes($_POST['nome_cms'])."' and psw='".addslashes($_POST['pass_cms'])."';";
         $query=mysqli_query($conn,$login);
         $val=mysqli_fetch_assoc($query);
         if($val['idadmin'])

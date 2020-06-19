@@ -17,12 +17,12 @@
    {
        if((strlen($_POST['sign_nome'])>0 && strlen($_POST['sign_cognome'])>0 && strlen($_POST['pass'])>0 && strlen($_POST['mail'])>0) || (strlen($_POST['psw'])>0 && strlen($_POST['nome'])>0))
        {
-            $conn=mysqli_connect("localhost","visitor","casa","gusci");
+            $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
 
             if($_GET['auten']==1)
             {
                 //mysqli_escape_string();
-                $login="select * from users where name='".$_POST['nome']."' and psw='".$_POST['psw']."';";
+                $login="select * from users where name='".addslashes($_POST['nome'])."' and psw='".addslashes($_POST['psw'])."';";
                 $query=mysqli_query($conn,$login);
                 $val=mysqli_fetch_assoc($query);
                 if($val['iduser'])
@@ -46,9 +46,9 @@
 
             if($_GET['auten']==2)
             {
-                $sign_in="insert users values(null,'".$_POST['sign_nome']."','".$_POST['sign_cognome']."','".$_POST['pass']."','".$_POST['mail']."');";
+                $sign_in="insert users values(null,'".addslashes($_POST['sign_nome'])."','".addslashes($_POST['sign_cognome'])."','".addslashes($_POST['pass'])."','".addslashes($_POST['mail'])."');";
                 mysqli_query($conn,$sign_in);
-                $text_get_idUser="select iduser from users where email ='".$_POST['mail']."';";
+                $text_get_idUser="select iduser from users where email ='".addslashes($_POST['mail'])."';";
                 $get_idUser=mysqli_query($conn,$text_get_idUser);
                 $iduser=mysqli_fetch_array($get_idUser);
                 $_SESSION['iduser']=$iduser[0];

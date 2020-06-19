@@ -81,7 +81,7 @@
         <ul class="cardList" id="lista">
 <?php
 
-    $conn=mysqli_connect("localhost","visitor","casa","gusci");
+    $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
 
     $articoli=mysqli_query($conn,"select * from articoli;");
     $articoli_A=mysqli_fetch_assoc($articoli);
@@ -104,7 +104,7 @@
                     echo " </div>";
                 echo "</center>";
             echo "</div>";
-        echo "<li>";
+        echo "</li>";
 
     
     }
