@@ -9,7 +9,7 @@
         {
             $articoli=mysqli_query($conn,"delete from articoli  where idart=".addslashes($_GET['elimina']).";");
             $reset_id=mysqli_query($conn,"select idart from articoli");
-            $i=0;
+            $i=1;
             foreach($reset_id as $id)
             {
                 mysqli_query($conn,"update articoli set idart = ".addslashes($i)."  where idart=".addslashes($id['idart'])." ;");
