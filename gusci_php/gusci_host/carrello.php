@@ -5,13 +5,13 @@
 <html>
 <head>
     <title>Gusci Carrello</title>
-    <link rel="icon" href="img/logo_sito.png"/>
+    <link rel="icon" href="img/icon.png"/>
 </head>
 <body>
     
     <link rel="stylesheet" href="css/classi.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
-
+    
     <header class="nav">
          
     <div style="display: block;

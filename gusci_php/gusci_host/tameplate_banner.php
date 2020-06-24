@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Document</title>
-    <link rel="icon" href="img/logo_sito.png"/>
+    <link rel="icon" href="img/icon.png"/>
 </head>
 <body>
+    
     
 </body>
 </html>

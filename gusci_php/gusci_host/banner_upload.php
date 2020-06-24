@@ -3,7 +3,7 @@
     if(isset($_POST['submit']))
     {
         
-        $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
+        $conn=mysqli_connect("localhost"," gusci","","my_gusci");
         
         $file=$_FILES['img'];
 
@@ -24,31 +24,61 @@
             {
                 if($fileSize<1000000)
                 {
-                    //$get_idart="select idart from articoli where titolo ='".$_POST['titolo']."';";
-                    //$get_idart_Q=mysqli_query($conn,$get_idart);
-                    //$get_idart_A=mysqli_fetch_assoc($get_idart_Q);
-                    //$fileNameNew= $get_idart_A['idart'].'.'.$fileActualExt;
-                    
-                    //move_uploaded_file( $fileTmpName,$fileDestination );
+                
                     $imge=file_get_contents($fileTmpName);
                     $imge=addslashes(base64_encode($imge));
 
 
                     $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."','".$imge."');";
                     mysqli_query($conn,$new_banner);
-                
+                    mysqli_close($conn);
                     header("location: page_editor.php?done=1");  
                 }
                 else
+                {
+                    mysqli_close($conn);
                     header("location: page_editor.php?err=3");  
+                }
+                    
             }
             else
+            {
+                mysqli_close($conn);
                 header("location: page_editor.php?err=2");  
+            }
+                
         }
         else
+        {
+        
+            mysqli_close($conn);
             header("location: page_editor.php?err=1");  
+        }
+            
 
             
 
+    }
+
+    if(isset($_POST['submit_2']))
+    {
+        $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+
+        
+        $fileTmp=$_FILES['img']['tmp_name'];   
+        $imge=file_get_contents($fileTmp);
+        $img=(string) base64_encode($imge);
+        if(strlen($img)<=0)
+        {
+            $img=$_POST['img_old'];
+        }
+        
+      
+        
+
+        mysqli_query($conn,"update articoli set titolo='".addslashes($_POST['titolo'])."' , descrizione='".addslashes($_POST['descr'])."'  , prezzo='".addslashes($_POST['prezzo'])."' , img='".addslashes($img)."'  where idart=".addslashes($_GET['modifica']).";");
+        mysqli_close($conn);
+        header("location: page_editor_manage.php?done=1"); 
+            
     }
 ?>

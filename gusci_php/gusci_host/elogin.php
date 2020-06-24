@@ -17,7 +17,7 @@
    {
        if((strlen($_POST['sign_nome'])>0 && strlen($_POST['sign_cognome'])>0 && strlen($_POST['pass'])>0 && strlen($_POST['mail'])>0) || (strlen($_POST['psw'])>0 && strlen($_POST['nome'])>0))
        {
-            $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
+            $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
             if($_GET['auten']==1)
             {

@@ -3,7 +3,7 @@
  
     if(isset($_SESSION['acess_cms']))
     {
-        //header("location: login_page_editor.php"); 
+        //sistemare la logica
     }
     else
         header("location: login_page_editor.php");     
@@ -15,12 +15,13 @@
 <html>
 <head>
     <title>Gusci Page editor</title>
-    <link rel="icon" href="img/logo_sito.png"/>
+    <link rel="icon" href="img/icon.png"/>
 </head>
 <body>
     
     <link rel="stylesheet" href="css/classi.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
+    
 
     <div class="nav_page_editor">
     
@@ -32,8 +33,7 @@
             <ul class="menu" style="display: table-cell;">
     
                 <li><a href="page_editor.php" style="text-decoration:none;"><h2 class="voci">crea banner</h2></a></li>
-                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">modifica banner</h2></a></li>
-                <li><a href="page_editor.php" style="text-decoration:none;" ><h2 class="voci">elimina banner</h2></a></li>
+                <li><a href="page_editor_manage.php" style="text-decoration:none;" ><h2 class="voci">gestione banner</h2></a></li>
                 
             </ul>
 

@@ -6,12 +6,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gusci Shop</title>
-    <link rel="icon" href="img/logo_sito.png"/>
+    <title>Login Gusci Page editor</title>
+    <link rel="icon" href="img/icon.png"/>
 </head>
 <body>
 <link rel="stylesheet" href="css/classi.css">
 <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
+
 <div id="login_cms" class="login_cms">
     <div id="login_cms_form" class="login_cms_form">
         <img src="img/logo_cms.png" alt=""  style="height: 75px;
@@ -33,7 +34,7 @@
 <?php 
     if(isset($_GET['elab']))
     {
-        $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
+        $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
         //mysqli_escape_string();
         $login="select * from admin where nome='".addslashes($_POST['nome_cms'])."' and psw='".addslashes($_POST['pass_cms'])."';";
@@ -45,11 +46,16 @@
             $_SESSION['nome']=$val['nome'];
             $_SESSION['cognome']=$val['cognome'];  
             $_SESSION['acess_cms']=true;
+            mysqli_close($conn);
             header("location: page_editor.php");
             
         }
         else
-            header("location: login_page_editor.php?err=true elab=true");        
+        {
+            mysqli_close($conn);
+            header("location: login_page_editor.php?err=true elab=true");      
+        }
+              
                                    
     }
 ?>

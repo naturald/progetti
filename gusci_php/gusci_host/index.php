@@ -5,14 +5,14 @@
 <html>
 <head>
     <title>Gusci Shop</title>
-    <link rel="icon" href="img/logo_sito.png"/>
+    <link rel="icon" href="img/icon.png"/>
 </head>
 
 <body id="body">
 
     <link rel="stylesheet" href="css/classi.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
-
+    
     <header class="nav">
     <?php 
 
@@ -81,7 +81,7 @@
         <ul class="cardList" id="lista">
 <?php
 
-    $conn=mysqli_connect("sql304.epizy.com","epiz_26047184","OoRpFIA6OPJp4CU","epiz_26047184_gusci");
+    $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
     $articoli=mysqli_query($conn,"select * from articoli;");
     $articoli_A=mysqli_fetch_assoc($articoli);
@@ -110,7 +110,7 @@
     }
 
     
-    
+    mysqli_close($conn);
 
 ?>            
 
