@@ -91,7 +91,7 @@
         echo "<li>";
             echo "<div class='banner'>";
                 echo " <center>";
-                    echo "  <a href=''>";
+                    echo "  <a href='tameplate_banner.php?articolo=".$articolo['idart']."'>";
                         echo "<img class='img_banner' src='data:image;base64,".$articolo['img']."'  >";
                     echo "</a>";
                     echo " <div>";
