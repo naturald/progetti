@@ -18,32 +18,35 @@
     <title>Gusci - <?php echo $articolo['titolo'] ?></title>
     <link rel="icon" href="img/icon.png"/>
 </head>
-
 <body>
-    <link rel="stylesheet" href="./Document_files/classi.css">
-    <link href="./Document_files/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/classi.css">
+    <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
     <header class="nav">
          
-        <div style="display: block;
-                    width: fit-content;
-                    margin-left: auto; 
-                    margin-right: auto;">
-    
-            <ul class="menu" style="display: table-cell;">
-    
-                <li><a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/index.html" style="text-decoration:none;"><h2 class="voci">pag iniziale</h2></a></li>
-                <li><a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/index.html" style="text-decoration:none;"><h2 class="voci">sconti</h2></a></li>
-                <li><a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/info.html" style="text-decoration:none;"><h2 class="voci">info</h2></a> </li>
-                <li><a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/index.html" style="text-decoration:none;"><h2 class="voci_hide" id="hide2">logout</h2></a></li>
-    
-            </ul>
-        
-        </div>
-        <a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/index.html">
-            <img src="./Document_files/logo_sito.png" alt="" class="img_logo">
+<?php 
+
+    echo "<a href='carrello.php'> ";
+    echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
+    echo "<div style='position:absolute;top: 20px;right:30px;'> ";
+    echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
+    echo "</div>";
+    echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+    echo "<ul class='menu' style='display: table-cell;'> ";
+    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
+    echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+    echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
+    echo "<li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
+                            
+
+
+
+?>
+    </div>
+        <a href="index.php">
+            <img src="img/logo_sito.png" alt="" class="img_logo">
         </a>
         <center>
-            <a href="file:///C:/Users/marco/Desktop/progetti/gusci%20site/porva.html" style="position: absolute;top:27px;" id="tre_menu">
+            <a href="" style="position: absolute;top:27px;" id="tre_menu">
                 <span class="tre"></span>
                 <span class="tre"></span>
                 <span class="tre"></span>
@@ -51,7 +54,7 @@
         </center>
     </header>
     
-        <div style="height: 60%;display: flex;position: absolute;top: 50%;width: 100%;">
+        <div style="height: 60%;display: flex;position: absolute;top: 25%;width: 100%;">
             <?php
                 echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" style="position: relative;height: inherit;display: flex;margin: auto;margin-left: 0;margin-right: 0;flex-direction: column;justify-content: center;">';
             ?>   
