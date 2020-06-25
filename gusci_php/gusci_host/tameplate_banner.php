@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    //if(!(isset($_SESSION)))
+        //header("location: ")
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
