@@ -29,9 +29,11 @@
                     $imge=addslashes(base64_encode($imge));
 
 
-                    $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."','".$imge."');";
+                    $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."',null);";
                     mysqli_query($conn,$new_banner);
-                    mysqli_close($conn);
+                    $new_banner_2=" update articoli set img='".$imge."' where idart=LAST_INSERT_ID(); ";
+                    mysqli_query($conn,$new_banner_2);
+                    mysqli_close($conn);  
                     header("location: page_editor.php?done=1");  
                 }
                 else

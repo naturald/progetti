@@ -56,20 +56,20 @@
     
         <div style="height: 60%;display: flex;position: absolute;top: 25%;width: 100%;">
             <?php
-                echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" style="position: relative;height: inherit;display: flex;margin: auto;margin-left: 0;margin-right: 0;flex-direction: column;justify-content: center;">';
+                echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" style="position: relative;height: inherit;display: flex;margin-left: 0;margin-right: 0;flex-direction: column;justify-content: center;">';
             ?>   
             
-            <div style="position: relative;top: 20%;width: 600px;height: 100%;left: 11%;justify-content: center;">
+            <div style="position: relative;width: 600px;height: 100%;left: 11%;justify-content: center;overflow: hidden;">
                 <div>
                     <h1 style="margin-bottom: 15px;"><?php echo $articolo['titolo'] ?></h1>
                 </div>
                 <hr>
                 <div>
-                    <h4 style="margin-top: 15px;"><?php echo $articolo['descrizione'] ?></h4>
+                    <h4 style="margin-top: 15px;width: 600px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
                 </div>   
             </div>
 
-            <div style="height: fit-content;position: absolute;top: 45%;right: 7%;">
+            <div style="height: fit-content;position: absolute;top: 40%;right: 7%;">
                 <h1 style="position: relative;display: flex;margin-bottom: 10px;justify-content: center;">Prezzo: <?php echo $articolo['prezzo'] ?>$</h1>
                 <hr>
                 <button class="bottoni" style="margin-top: 15px;"> aggiungi al carrelo</button>
