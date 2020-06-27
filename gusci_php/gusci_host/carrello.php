@@ -75,7 +75,7 @@
 
            foreach($articoli_sel as $articolo_sel)
            {
-                $articolo=mysqli_query($conn,"select * from articoli where idart=".$articolo_sel['idart'].";");
+                $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($articolo_sel['idart']).";");
                 $articolo=mysqli_fetch_assoc( $articolo);
 
                 echo '<div class="banner_carrello">';
