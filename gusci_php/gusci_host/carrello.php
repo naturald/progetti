@@ -70,10 +70,14 @@
 <?php
            $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
-           $articoli=mysqli_query($conn,"select * from articoli;");
-       
-           foreach($articoli as $articolo)
-           {   
+
+           $articoli_sel=mysqli_query($conn,"select * from carrello where iduser=".addslashes($_SESSION['iduser']).";");
+
+           foreach($articoli_sel as $articolo_sel)
+           {
+                $articolo=mysqli_query($conn,"select * from articoli where idart=".$articolo_sel['idart'].";");
+                $articolo=mysqli_fetch_assoc( $articolo);
+
                 echo '<div class="banner_carrello">';
                 echo '<img src="data:image;base64,'.$articolo['img'].'"  style="height: 130px;">';
                 echo '<h1 style=" height: fit-content;
@@ -85,20 +89,22 @@
                                 position: absolute ;
                                 top: 56px;
                                 left: 60%;">
-                      Prezo: '.$articolo['prezzo'].' &#x20ac </h2>';
+                    Prezo: '.$articolo['prezzo'].' &#x20ac </h2>';
                 echo '<img src="img/cancella.png" alt="" style="position: absolute;
                                                                 right: 10px;
                                                                 height:40px;
                                                                 border-radius: 10px;">';
-                echo '<h3 style="position: absolute; width: fit-content;  right: 60px; top: 120px;">Quantità</h3>';
-                echo ' <input type="number" value="1" style="position: absolute; width: 30px; height: 30px;  right: 10px; padding-left: 10px; top: 110px; border-radius: 10px;" >';
+                echo '<h3 style="position: absolute; width: fit-content;  right: 60px; top: 120px;width: fit-content;">Quantità</h3>';
+                echo ' <input type="number" value="'.$articolo_sel['quantita'].'" style="position: absolute; width: 30px; height: 30px;  right: 10px; padding-left: 10px; top: 110px; border-radius: 10px;" >';
                 echo '</div>';
                 $prezzo_tot+=$articolo['prezzo'];
-           }
+                
+            }
+           mysqli_close($conn);
 ?> 
 
         </div>
-        <h1 style="position:relative;top:20px;left:10%">Prezzo totale: <?php echo $prezzo_tot ?> &#x20ac</h1>
+        <h1 style="position:relative;top:20px;left:10%;width: fit-content;">Prezzo totale: <?php echo $prezzo_tot ?> &#x20ac</h1>
         <button class="bottoni" style="position: absolute;
                                        right: 17%;
                                        top: 730px;">

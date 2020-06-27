@@ -56,7 +56,8 @@
     
         <div style="height: 60%;display: flex;position: absolute;top: 25%;width: 100%;">
             <?php
-                echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" style="position: relative;height: inherit;display: flex;margin-left: 20px;margin-right: 0;flex-direction: column;justify-content: center;">';
+                echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" 
+                        style="position: relative;height: inherit;display: flex;margin-left: 20px;margin-right: 0;flex-direction: column;justify-content: center;">';
             ?>   
             
             <div style="position: relative;width: 600px;height: 100%;left: 11%;justify-content: center;overflow: hidden;">
@@ -72,8 +73,32 @@
             <div style="height: fit-content;position: absolute;top: 40%;right: 7%;">
                 <h1 style="position: relative;display: flex;margin-bottom: 10px;justify-content: center;">Prezzo: <?php echo $articolo['prezzo'] ?> &#x20ac</h1>
                 <hr>
-                <button class="bottoni" style="margin-top: 15px;"> aggiungi al carrelo</button>
+                <?php echo '<form action="tameplate_banner.php?articolo='.$_GET['articolo'].'" method="POST">'?>
+                <input type="submit" class="bottoni" name="submit_add_cart" style="margin-top: 15px;" value="aggiungi al carrelo"> 
+                </form>
             </div>
         </div>
+<?php
+    if(isset($_POST['submit_add_cart']))
+    {
+        $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+        $carrello_art=mysqli_query($conn,"select idart from carrello where idart=".addslashes($articolo['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
+        $carrello_art=mysqli_fetch_assoc($carrello_art);
+        if(strlen($carrello_art['idart'])<=0)
+        {
+            mysqli_query($conn,"insert into carrello values(".$articolo['idart'].",".addslashes($_SESSION['iduser']).",1);");
+        }
+        else
+        {
+            $quantita=mysqli_query($conn,"select quantita from carrello where idart=".addslashes($articolo['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
+            $quantita=mysqli_fetch_array($quantita);
+            $i=$quantita[0]+1;
+            mysqli_query($conn,"update carrello set quantita=$i;");
+
+
+        }
+
+    }
+?>
 </body>
 </html>
