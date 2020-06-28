@@ -41,6 +41,7 @@ TRUNCATE nome_tabella
 atoi(Plet.c_str())
 Student[] studentArray = new Student[7];
 UNIQUE KEY (`Employee_Code`),
+ALTER TABLE table_name AUTO_INCREMENT = value;
 Denial of service = dos
 Distributed Denial of Services = ddos
 

@@ -108,6 +108,8 @@
         echo '</div>';
         if(strlen($quantita[0])<=0)
             $i=0;
+        else
+            $i=$quantita[0];
             
         echo '<h3 style="height: fit-content; top: 8px;margin-bottom: 20px; position: relative;">'.$i.' già nel tuo carrello </h3>';
         echo '<hr>';
