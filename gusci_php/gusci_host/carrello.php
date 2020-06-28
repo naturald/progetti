@@ -136,7 +136,8 @@
 
                 
             }
-
+            if(strlen($prezzo_tot)<=0)
+                $prezzo_tot=0;
 
             mysqli_close($conn);
 ?> 
