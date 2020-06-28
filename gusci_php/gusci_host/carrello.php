@@ -68,39 +68,77 @@
                     overflow: auto;
                     margin:auto;">
 <?php
-           $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+            $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
 
-           $articoli_sel=mysqli_query($conn,"select * from carrello where iduser=".addslashes($_SESSION['iduser']).";");
+            if(isset($_GET['camb_quant_su']))
+            {
+                $quantita=mysqli_query($conn,"select * from carrello where idart=".addslashes($_GET['camb_quant_su'])." and iduser=".addslashes($_SESSION['iduser']).";");
+                $quantita=mysqli_fetch_assoc($quantita);
+                if($quantita['quantita']<10)
+                {
+                    $i=$quantita['quantita']+1;
+                    mysqli_query($conn,"update carrello set quantita=$i where idart=".addslashes($_GET['camb_quant_su'])." and iduser=".addslashes($_SESSION['iduser']).";");  
+                }
+            }
 
-           foreach($articoli_sel as $articolo_sel)
-           {
-                $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($articolo_sel['idart']).";");
-                $articolo=mysqli_fetch_assoc( $articolo);
-
-                echo '<div class="banner_carrello">';
-                echo '<img src="data:image;base64,'.$articolo['img'].'"  style="height: 130px;">';
-                echo '<h1 style=" height: fit-content;
-                                position: relative;
-                                top: 40px;
-                                left: 10%;">';
-                echo $articolo['titolo'].'</h1>';
-                echo '<h2 style=" height: fit-content;
-                                position: absolute ;
-                                top: 56px;
-                                left: 60%;">
-                    Prezo: '.$articolo['prezzo'].' &#x20ac </h2>';
-                echo '<img src="img/cancella.png" alt="" style="position: absolute;
-                                                                right: 10px;
-                                                                height:40px;
-                                                                border-radius: 10px;">';
-                echo '<h3 style="position: absolute; width: fit-content;  right: 60px; top: 120px;width: fit-content;">Quantità</h3>';
-                echo ' <input type="number" value="'.$articolo_sel['quantita'].'" style="position: absolute; width: 30px; height: 30px;  right: 10px; padding-left: 10px; top: 110px; border-radius: 10px;" >';
-                echo '</div>';
-                $prezzo_tot+=$articolo['prezzo'];
+            if(isset($_GET['camb_quant_giu']))
+            {
+                $quantita=mysqli_query($conn,"select * from carrello where idart=".addslashes($_GET['camb_quant_giu'])." and iduser=".addslashes($_SESSION['iduser']).";");
+                $quantita=mysqli_fetch_assoc($quantita);
+                if($quantita['quantita']!=1)
+                {
+                    $i=$quantita['quantita']-1;
+                    mysqli_query($conn,"update carrello set quantita=$i where idart=".addslashes($_GET['camb_quant_giu'])." and iduser=".addslashes($_SESSION['iduser']).";");  
+                }
                 
             }
-           mysqli_close($conn);
+
+            if(isset($_GET['cart_elimina']))
+            {   
+                mysqli_query($conn,"delete from carrello where idart=".addslashes($_GET['cart_elimina'])." and iduser=".addslashes($_SESSION['iduser']).";");
+            }
+               
+
+            $articoli_sel=mysqli_query($conn,"select * from carrello where iduser=".addslashes($_SESSION['iduser']).";");
+
+            foreach($articoli_sel as $articolo_sel)
+            {    
+                $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($articolo_sel['idart']).";");
+                $articolo=mysqli_fetch_assoc( $articolo);
+                if(strlen($articolo['idart'])<=0)
+                    mysqli_query($conn,"delete from carrello where idart=".addslashes($articolo_sel['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
+                else
+                {
+                    echo '<div class="banner_carrello">';
+                    echo '<img src="data:image;base64,'.$articolo['img'].'"  style="height: 130px;">';
+                    echo '<h1 style=" height: fit-content;
+                                    position: relative;
+                                    top: 40px;
+                                    left: 10%;">';
+                    echo $articolo['titolo'].'</h1>';
+                    echo '<h2 style=" height: fit-content;
+                                    position: absolute ;
+                                    top: 56px;
+                                    left: 60%;">
+                        Prezo: '.$articolo['prezzo'].' &#x20ac </h2>';
+                    echo "<a href='carrello.php?cart_elimina=".$articolo_sel['idart']."' >";
+                    echo '<img src="img/cancella.png" alt="" style="position: absolute;right: 10px; height:40px; border-radius: 10px;">'. "</a>";
+                    echo '<h3 style="position: absolute; right: 70px; bottom: 30px; width: fit-content;">Quantità:</h3>';
+                    echo '<h3 style="position: absolute; bottom: 30px; right: 50px;">'.$articolo_sel['quantita'].'</h3> ';
+                    echo "<a href='carrello.php?camb_quant_su=".$articolo_sel['idart']."' >";
+                    echo '<img src="img/freccia_su.png" alt="" style="position: absolute;right: 10px; bottom: 45px ; height:30px; border-radius: 10px;">'. "</a>";
+                    echo "<a href='carrello.php?camb_quant_giu=".$articolo_sel['idart']."' >";
+                    echo '<img src="img/freccia_giu.png" alt="" style="position: absolute;right: 10px; bottom: 10px ; height:30px; border-radius: 10px;">'. "</a>";
+                    echo '</div>';
+                    $prezzo_tot=$prezzo_tot+($articolo['prezzo']*$articolo_sel['quantita']);
+                }
+
+                
+            }
+
+
+            mysqli_close($conn);
 ?> 
 
         </div>
@@ -113,8 +151,6 @@
             </h2>
         </button>
     </div>
-
-  
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/libreria.js"></script>
