@@ -301,6 +301,28 @@ textarea
 	background-color: blue;	
 	transition: 0.6s;
 }
+.bottoni_fake
+{
+	margin-top: 15px;
+	position: relative; 
+	left: 60px; 
+	padding: 12px;
+	background-color: white;
+	color: #7272ea;
+	font-size: 17px;
+	font-family: Circularstd, sans-serif;
+	font-style: none;
+	border: solid 2px;
+	border-color: #7272ea;
+	border-radius: 12px;
+	transition: 0.6s;
+}
+.bottoni_fake:hover
+{
+	color: white;
+	background-color: #7272ea;	
+	transition: 0.6s;
+}
 .bottoni_hide:hover
 {
 	color: white;
