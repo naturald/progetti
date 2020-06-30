@@ -21,11 +21,11 @@
 
             if($_GET['auten']==1)
             {
-                //mysqli_escape_string();
+            
                 $login="select * from users where name='".addslashes($_POST['nome'])."' and psw='".addslashes($_POST['psw'])."';";
                 $query=mysqli_query($conn,$login);
                 $val=mysqli_fetch_assoc($query);
-                if($val['iduser'])
+                if(strlen($val['iduser'])>0)
                 {
                     $_SESSION['iduser']=$val['iduser'];
                     $_SESSION['nome']=$val['name'];
@@ -43,36 +43,36 @@
                  
 
             }
-
-            if($_GET['auten']==2)
-            {
-                $sign_in="insert users values(null,'".addslashes($_POST['sign_nome'])."','".addslashes($_POST['sign_cognome'])."','".addslashes($_POST['pass'])."','".addslashes($_POST['mail'])."');";
-                mysqli_query($conn,$sign_in);
-                $text_get_idUser="select iduser from users where email ='".addslashes($_POST['mail'])."';";
-                $get_idUser=mysqli_query($conn,$text_get_idUser);
-                $iduser=mysqli_fetch_array($get_idUser);
-                $_SESSION['iduser']=$iduser[0];
-                $_SESSION['nome']=$_POST['sign_nome'];
-                $_SESSION['cognome']=$_POST['sign_cognome'];
-                $_SESSION['acess']=true;
-                mysqli_close($conn);
-                header("location: index.php");
-                
-            }
             else
             {
-                mysqli_close($conn);
-                header("location: index.php");     
+                if($_GET['auten']==2)
+                {
+                    $sign_in="insert users values(null,'".addslashes($_POST['sign_nome'])."','".addslashes($_POST['sign_cognome'])."','".addslashes($_POST['pass'])."','".addslashes($_POST['mail'])."');";
+                    mysqli_query($conn,$sign_in);
+                    $text_get_idUser="select iduser from users where email ='".addslashes($_POST['mail'])."';";
+                    $get_idUser=mysqli_query($conn,$text_get_idUser);
+                    $iduser=mysqli_fetch_array($get_idUser);
+                    $_SESSION['iduser']=$iduser[0];
+                    $_SESSION['nome']=$_POST['sign_nome'];
+                    $_SESSION['cognome']=$_POST['sign_cognome'];
+                    $_SESSION['acess']=true;
+                    mysqli_close($conn);
+                    header("location: index.php");
+                    
+                }
+                else
+                {
+                    mysqli_close($conn);
+                    header("location: index.php");       
+                }
             }
-                
-            
-            mysqli_close($conn);
+
        } 
        else
-         header("location: index.php");       
+        header("location: index.php?err=1");  
    }
    else
-    header("location: index.php"); 
+    header("location: index.php");   
 ?>
 </body>
 </html>

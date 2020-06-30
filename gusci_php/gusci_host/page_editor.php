@@ -117,6 +117,9 @@
         });
 
 
+        trova_art();   
+        document.getElementById("allert3").style.display="block";
+
     </script>
 
 </body>
