@@ -53,11 +53,19 @@
         else
         {
             mysqli_close($conn);
-            header("location: login_page_editor.php?err=true elab=true");      
+            header("location: login_page_editor.php?err=true");      
         }
               
                                    
     }
 ?>
+<script>
+<?php 
+    if($_GET['err'])
+    {
+        echo 'document.getElementById("cms_alt").style.display="block";';
+    }
+?>
+</script>
 </body>
 </html>

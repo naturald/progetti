@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!($_SESSION['acess']==true))
-        header("location: index.php");
+        header("location: index.php?to_be_logged=true");
 
     $conn=mysqli_connect("localhost"," gusci","","my_gusci");
     $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($_GET['articolo']).";");

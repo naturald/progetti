@@ -115,7 +115,7 @@ echo <<<'EOT'
                         </form> 
                     
                     
-                    <h6 class="hide" id="cms_alt_con" style="position: relative;
+                    <h6 class="hide" id="cms_alt_mod" style="position: relative;
                                                                 bottom: -15px;
                                                                 color: red;
                                                                 margin: auto;">completa tutti i campi</h6>
@@ -137,8 +137,13 @@ echo <<<'EOT'
                         document.getElementById("sele").style.display="none";
                         pre_img(this); 
                     });
-
-
+EOT;
+                    if($_GET['err']==1)
+                    {
+                        echo 'document.getElementById("cms_alt_mod").style.display="block";';
+                    }
+                    
+echo <<<'EOT'
                 </script>
 
             </body>

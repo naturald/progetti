@@ -93,7 +93,7 @@
 
     foreach($articoli as $articolo)
     {
-        echo "<li>";
+        echo "<li id='banner'>";
             echo "<div class='banner'>";
                 echo " <center>";
                     echo "  <a href='tameplate_banner.php?articolo=".$articolo['idart']."'>";
@@ -196,7 +196,7 @@
                 </form>
             </div>
         </div> 
-        
+    
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/libreria.js"></script>
     <script type="text/javascript" src="js/codice.js"></script>
@@ -204,39 +204,50 @@
     <script>
 <?php
     
-    if($_GET['err']==1)
-    {
-        echo 'document.getElementById("allert3").style.display="block";';
-        echo 'document.getElementById("login").style.display="flex";';
-       
-    }
-  
-?>
-    document.getElementById("btn").onclick=function()
-    {
-        document.getElementById("login").style.display="flex";
-    }
-    var modal=document.getElementById("login");
-    
-    document.getElementById("sign_up").onclick=function()
-    {
-        document.getElementById("con_login").style.display="none";
-        document.getElementById("con_sign_up").style.display="block";
-        document.getElementById("sign_up").style.display="none";
-        document.getElementById("allert3").style.display="none";
-        spazzino();
-
-    }
-        
-    window.onclick = function(event) 
-    {
-        if (event.target == modal)
+        if($_GET['err']==1)
         {
-            document.getElementById("allert3").style.display="none";
-            modal.style.display = "none";
-            
+            echo 'document.getElementById("allert3").style.display="block";';
+            echo 'document.getElementById("login").style.display="flex";';
+        
         }
-    }
+    
+?>
+        document.getElementById("btn").onclick=function()
+        {
+            document.getElementById("login").style.display="flex";
+        }
+        var modal=document.getElementById("login");
+        
+        document.getElementById("sign_up").onclick=function()
+        {
+            document.getElementById("con_login").style.display="none";
+            document.getElementById("con_sign_up").style.display="block";
+            document.getElementById("sign_up").style.display="none";
+            document.getElementById("allert3").style.display="none";
+            spazzino();
+
+        }
+            
+        window.onclick = function(event) 
+        {
+            if (event.target == modal)
+            {
+                document.getElementById("allert3").style.display="none";
+                modal.style.display = "none";
+                
+            }
+        }
+  
+<?php
+    
+            if($_GET['to_be_logged'])
+            {
+                echo 'modal.style.display = "flex";';
+            }
+
+?>  
+
+
 
     </script>
     

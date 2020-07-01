@@ -97,6 +97,11 @@
                                                     bottom: -15px;
                                                     color: red;
                                                     margin: auto;">completa tutti i campi</h6>
+
+        <h6 class="hide" id="cms_succ" style="position: relative;
+                                                    bottom: -15px;
+                                                    color: green;
+                                                    margin: auto;">operazione completata con successo</h6>
     </div>
 
     
@@ -115,11 +120,17 @@
             document.getElementById("sele").style.display="none";
             pre_img(this); 
         });
-
-
-        trova_art();   
-        document.getElementById("allert3").style.display="block";
-
+        
+<?php
+        if($_GET['err']==1)
+        {
+            echo 'document.getElementById("cms_alt_con").style.display="block";';
+        }
+        if($_GET['done']==1)
+        {
+            echo 'document.getElementById("cms_succ").style.display="block";';
+        }
+?>
     </script>
 
 </body>
