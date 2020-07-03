@@ -22,31 +22,6 @@ function reset_cogn()
     allert3.style.display="none";
 }
 
-function contr_lung()
-{
-    var nome=$("#nome").val();
-    var cognome=$("#cognome").val();
-
-    if(nome.length>10)
-    {
-        allert.innerHTML="troppo lungha";
-        allert.style.display="block";
-    }
-    else
-    {
-        allert.style.display="none";
-    }
-    if(cognome.length>10)
-    {
-        allert.innerHTML="troppo lungha";
-        allert2.style.display="block";
-    }
-    else
-    {
-        allert2.style.display="none";
-    }
-    
-}
 
 function primLetMaglNome()
 {
@@ -118,25 +93,38 @@ function contr_lung_sign()
     let nome= document.getElementById("sign_nome").value;
     let cognome= document.getElementById("sign_cognome").value;
     
-    if(nome.length>10)
+    if(nome.length>40)
     {
-        document.getElementById("allert_sign_up").innerHTML="troppo lungha";
+        document.getElementById("allert_sign_up").innerHTML="troppo lunga";
         document.getElementById("allert_sign_up").style.display="block";
     }
     else
     {
         document.getElementById("allert_sign_up").style.display="none";
     }
-    if(cognome.length>10)
+    if(cognome.length>40)
     {
-        document.getElementById("allert_sign_up2").innerHTML="troppo lungha";
+        document.getElementById("allert_sign_up2").innerHTML="troppo lunga";
         document.getElementById("allert_sign_up2").style.display="block";
     }
     else
     {
         document.getElementById("allert_sign_up2").style.display="none";
     }
+  
     
+}
+function contr_pass()
+{
+    if(document.getElementById("pass").value.length<5)
+    {
+        document.getElementById("allert_sign_up4").innerHTML="troppo corta";
+        document.getElementById("allert_sign_up4").style.display="block";
+    }
+    else
+    {
+        document.getElementById("allert_sign_up4").style.display="none";
+    }
 }
 function contr_mail()
 {
@@ -155,23 +143,7 @@ function contr_mail()
     }
    
 }
-function contr_pass()
-{
-    let pass=document.getElementById("pass").value;
-    if(!(pass.length <= 0))
-    {
-        if(pass.length <  5)
-        {
-            document.getElementById("allert_sign_up4").innerHTML="troppo corta";
-            document.getElementById("allert_sign_up4").style.display="block";
-        }
-        else
-        {
-            document.getElementById("allert_sign_up4").style.display="none";
-        }
-    }
-   
-}
+
 function salutaNuovoUtente(sign_nome,sign_cognome)
 {
     var sign_nome=String($("#sign_nome").val());
@@ -183,13 +155,13 @@ function salutaNuovoUtente(sign_nome,sign_cognome)
     hide.style.display="block";
     hide2.style.display="block";
 }
-function after_sign_up(sign_nome,sign_cognome)
+function after_sign_up()
 {
     let nome= document.getElementById("sign_nome").value;
     let cognome= document.getElementById("sign_cognome").value;
     let mail=document.getElementById("mail").value;
     let pass=document.getElementById("pass").value;
-    if(cognome.length<=0 || nome.length<=0 || nome.length>10 || cognome.length>10 || pass.length <  5 || mail.indexOf("@") <= -1 )
+    if(cognome.length<=0 || nome.length<=0 || pass.length <  5 || mail.indexOf("@") <= -1 )
     {
         //questa condizione fa schifo però non so come migliorarla
 
@@ -229,16 +201,7 @@ function after_sign_up(sign_nome,sign_cognome)
         {
             document.getElementById("allert_sign_up4").style.display="none";  
         }
-        if(nome.length>10)
-        {
-            document.getElementById("allert_sign_up").innerHTML="troppo lungha";
-            document.getElementById("allert_sign_up").style.display="block";
-        }
-        if(cognome.length>10)
-        {
-            document.getElementById("allert_sign_up2").innerHTML="troppo lungha";
-            document.getElementById("allert_sign_up2").style.display="block";
-        }
+
         if(pass.length <  5 && pass.length > 0 )
         {
             document.getElementById("allert_sign_up4").innerHTML="troppo corta";
@@ -250,7 +213,7 @@ function after_sign_up(sign_nome,sign_cognome)
             document.getElementById("allert_sign_up3").style.display="block";
         }
     }
-    else
+     /*else
     {
         salutaNuovoUtente(sign_nome,sign_cognome);
         document.getElementById("carrello").style.right="30px";
@@ -258,7 +221,7 @@ function after_sign_up(sign_nome,sign_cognome)
         hide.style.right="60px";
         hide.style.top="10px";
         carrello.style.display="block";
-    }
+    }*/
 }
 function pre_img(input) 
 {
@@ -352,6 +315,10 @@ function switch_modal()
     document.getElementById("con_sign_up").style.display="none"; 
     document.getElementById("con_login").style.display="block";
     document.getElementById("sign_up").style.display="block";
+    document.getElementById("allert_sign_up").style.display="none";
+    document.getElementById("allert_sign_up2").style.display="none";
+    document.getElementById("allert_sign_up3").style.display="none";
+    document.getElementById("allert_sign_up4").style.display="none";
 
 }
 function spazzino()
