@@ -36,8 +36,10 @@
     {
         $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
-        //mysqli_escape_string();
-        $login="select * from admin where nome='".addslashes($_POST['nome_cms'])."' and psw='".addslashes($_POST['pass_cms'])."';";
+        $pass=hash("sha512", $_POST['pass_cms']);
+        //mysqli_query($conn,"update admin set psw='".$pass."' where nome='".$_POST['nome_cms']."';");
+        
+        $login="select * from admin where nome='".addslashes($_POST['nome_cms'])."' and psw='".addslashes($pass)."';";
         $query=mysqli_query($conn,$login);
         $val=mysqli_fetch_assoc($query);
         if($val['idadmin'])
@@ -58,6 +60,7 @@
               
                                    
     }
+    
 ?>
 <script>
 <?php 
