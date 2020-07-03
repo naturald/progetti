@@ -91,7 +91,7 @@ function servizio()
 function contr_lung_sign()
 {
     let nome= document.getElementById("sign_nome").value;
-    let cognome= document.getElementById("sign_cognome").value;
+    
     
     if(nome.length>40)
     {
@@ -102,15 +102,7 @@ function contr_lung_sign()
     {
         document.getElementById("allert_sign_up").style.display="none";
     }
-    if(cognome.length>40)
-    {
-        document.getElementById("allert_sign_up2").innerHTML="troppo lunga";
-        document.getElementById("allert_sign_up2").style.display="block";
-    }
-    else
-    {
-        document.getElementById("allert_sign_up2").style.display="none";
-    }
+   
   
     
 }
@@ -142,6 +134,19 @@ function contr_mail()
         }
     }
    
+}
+function contr_lung_sign_cognome()
+{
+    let cognome= document.getElementById("sign_cognome").value;
+    if(cognome.length>40)
+    {
+        document.getElementById("allert_sign_up2").innerHTML="troppo lunga";
+        document.getElementById("allert_sign_up2").style.display="block";
+    }
+    else
+    {
+        document.getElementById("allert_sign_up2").style.display="none";
+    }
 }
 
 function salutaNuovoUtente(sign_nome,sign_cognome)

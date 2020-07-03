@@ -170,7 +170,7 @@
                     </center>
                     <h6 class="hide allert" id="allert_sign_up">troppo lunga</h6><br>
                     <center>
-                        <input type="text"  class="dati" style="margin-bottom: 20px;" id="sign_cognome" onkeyup="contr_lung_sign()"  name="sign_cognome"  placeholder="Cognome">
+                        <input type="text"  class="dati" style="margin-bottom: 20px;" id="sign_cognome" onkeyup="contr_lung_sign_cognome()"  name="sign_cognome"  placeholder="Cognome">
                     </center>
                     <h6 class="hide allert" id="allert_sign_up2">troppo lunga</h6><br>
                     <center>
