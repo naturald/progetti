@@ -3,7 +3,9 @@
  
     if(isset($_SESSION['acess_cms']))
     {
-        //header("location: login_page_editor.php"); 
+        echo "<div style='position:absolute;top: 20px;right:30px;'> ";
+        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nomeAdmin']."  ".$_SESSION['cognomeAdmin']."</h2> ";
+        echo "</div>";
     }
     else
         header("location: login_page_editor.php");     
@@ -67,7 +69,7 @@
     foreach($articoli as $articolo)
     {
         echo "<li>";
-            echo "<div class='banner'>";
+            echo "<div class='banner_manage'>";
                 echo"<a href='ebanner_manage.php?elimina=".$articolo['idart']."' >";
                 echo "<img src='img/cancella.png'  style='width: 40px; border-radius: 11px;' >". "</a>";
                 echo"<a href='ebanner_manage.php?modifica=".$articolo['idart']."' style='position: relative;left: 150px;'>";

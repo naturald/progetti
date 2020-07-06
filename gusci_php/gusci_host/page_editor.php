@@ -3,7 +3,9 @@
  
     if(isset($_SESSION['acess_cms']))
     {
-        //sistemare la logica
+        echo "<div style='position:absolute;top: 20px;right:30px;'> ";
+        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nomeAdmin']."  ".$_SESSION['cognomeAdmin']."</h2> ";
+        echo "</div>";
     }
     else
         header("location: login_page_editor.php");     
@@ -124,6 +126,16 @@
 <?php
         if($_GET['err']==1)
         {
+            echo 'document.getElementById("cms_alt_con").style.display="block";';
+        }
+        if($_GET['err']==2)
+        {
+            echo 'document.getElementById("cms_alt_con").innerHTML="titolo troppo lungho massimo 17 caratteri ";';
+            echo 'document.getElementById("cms_alt_con").style.display="block";';
+        }
+        if($_GET['err']==3)
+        {
+            echo 'document.getElementById("cms_alt_con").innerHTML=" massimo immagini da 300x300 px png,jpeg,jpg,pdf";';
             echo 'document.getElementById("cms_alt_con").style.display="block";';
         }
         if($_GET['done']==1)

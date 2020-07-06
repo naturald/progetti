@@ -454,6 +454,21 @@ textarea
 	border-radius: 12px;
 	
 }
+.banner_manage
+{
+	margin: 15px;
+	display: solid;
+	flex-direction: column;
+	padding: 15px;
+	padding-top: 5px;
+	background-color: white; 
+	box-shadow:0px 5px 12px -5px  black;
+	border-radius: 15px;
+	height: 400px;
+	width: 230px;
+	float: left;
+	transition: 0.4s;
+}
 .titolo_page_creator
 {
 	margin-top: 20px;

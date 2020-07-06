@@ -45,8 +45,8 @@
         if($val['idadmin'])
         {
             $_SESSION['idadmin']=$val['idadmin'];
-            $_SESSION['nome']=$val['nome'];
-            $_SESSION['cognome']=$val['cognome'];  
+            $_SESSION['nomeAdmin']=$val['nome'];
+            $_SESSION['cognomeAdmin']=$val['cognome'];  
             $_SESSION['acess_cms']=true;
             mysqli_close($conn);
             header("location: page_editor.php");

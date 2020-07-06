@@ -5,39 +5,49 @@
         if(isset($_FILES['img']) && isset($_POST['titolo']) && isset($_POST['descr']) && isset($_POST['prezzo']))
         {
             $fileTmpName=$_FILES['img']['tmp_name'];
-            $imge=file_get_contents($fileTmpName);
-            $imge=addslashes(base64_encode($imge));
-            
-            if(strlen($imge)>0 && strlen($_POST['titolo'])>0 && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0 )
+            $img_size= getimagesize($fileTmpName); 
+            if($img_size['0']<=300 || $img_size['1']<=300 )
             {
-                 
-                $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+                $imge=file_get_contents($fileTmpName);
+                $imge=addslashes(base64_encode($imge));
                 
-                $file=$_FILES['img'];
-
-                $fileName=$_FILES['img']['name'];
-                $fileSize=$_FILES['img']['size'];
-                $fileError=$_FILES['img']['error'];
-                $fileType=$_FILES['img']['type'];
-
-                $fileExt=explode('.',$fileName);
-                $fileActualExt=strtolower(end($fileExt));
-
-                $allowed= array('jpg','png','jpeg','pdf');
-
-                if(in_array($fileActualExt, $allowed ))
+                if(strlen($imge)>0 && (strlen($_POST['titolo'])>0 && strlen($_POST['titolo'])<18) && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0 )
                 {
-                    if($fileError === 0)
+                    
+                    $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+                    
+                    $file=$_FILES['img'];
+
+                    $fileName=$_FILES['img']['name'];
+                    $fileSize=$_FILES['img']['size'];
+                    $fileError=$_FILES['img']['error'];
+                    $fileType=$_FILES['img']['type'];
+
+                    $fileExt=explode('.',$fileName);
+                    $fileActualExt=strtolower(end($fileExt));
+                    
+                    $allowed= array('jpg','png','jpeg','pdf');
+
+                    if(in_array($fileActualExt, $allowed ))
                     {
-                        if($fileSize<1000000)
+                        if($fileError === 0)
                         {
-                        
-                            $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."',null);";
-                            mysqli_query($conn,$new_banner);
-                            $new_banner_2=" update articoli set img='".addslashes($imge)."' where idart=LAST_INSERT_ID(); ";
-                            mysqli_query($conn,$new_banner_2);
-                            mysqli_close($conn);  
-                            header("location: page_editor.php?done=1");  
+                            if($fileSize<1000000)
+                            {
+                            
+                                $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."',null);";
+                                mysqli_query($conn,$new_banner);
+                                $new_banner_2=" update articoli set img='".addslashes($imge)."' where idart=LAST_INSERT_ID(); ";
+                                mysqli_query($conn,$new_banner_2);
+                                mysqli_close($conn);  
+                                header("location: page_editor.php?done=1");  
+                            }
+                            else
+                            {
+                                mysqli_close($conn);
+                                header("location: page_editor.php?err=1");  
+                            }
+                                
                         }
                         else
                         {
@@ -52,21 +62,29 @@
                         header("location: page_editor.php?err=1");  
                     }
                         
+
+                        
+
                 }
                 else
                 {
-                    mysqli_close($conn);
-                    header("location: page_editor.php?err=1");  
+                    if(strlen($_POST['titolo'])>=18)
+                    {
+                        mysqli_close($conn);
+                        header("location: page_editor.php?err=2");  
+                    }
+                    else
+                    {
+                        mysqli_close($conn);
+                        header("location: page_editor.php?err=1");  
+                    }
+    
                 }
-                    
-
-                    
-
             }
             else
             {
                 mysqli_close($conn);
-                header("location: page_editor.php?err=1");  
+                header("location: page_editor.php?err=3");   
             }
 
         }
