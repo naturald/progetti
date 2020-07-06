@@ -32,11 +32,11 @@
             <html>
             <head>
                 <title>Gusci Page editor</title>
-                <link rel="icon" href="img/icon.png"/>
+                <link rel="icon" href="../img/icon.png"/>
             </head>
             <body>
                 
-                <link rel="stylesheet" href="css/classi.css">
+                <link rel="stylesheet" href="../css/classi.css">
                 <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
                 
 
@@ -123,9 +123,9 @@ echo <<<'EOT'
 
                 
 
-                <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-                <script type="text/javascript" src="js/libreria.js"></script>
-                <script type="text/javascript" src="js/codice.js"></script>
+                <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+                <script type="text/javascript" src="../js/libreria.js"></script>
+                <script type="text/javascript" src="../js/codice.js"></script>
                 <script>
                 
                     document.getElementById("fake_file").onclick=function()

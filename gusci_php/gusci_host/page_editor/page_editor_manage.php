@@ -17,12 +17,12 @@
 <html>
 <head>
     <title>Gusci Page editor</title>
-    <link rel="icon" href="img/icon.png"/>
+    <link rel="icon" href="../img/icon.png"/>
 </head>
 <body>
 
     
-    <link rel="stylesheet" href="css/classi.css">
+    <link rel="stylesheet" href="../css/classi.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
 
     <div class="nav_page_editor">
@@ -40,9 +40,9 @@
 
         </div>
 
-        <img src="img/logo_cms.png" alt="" style="display:block;" class="img_logo_cms">
+        <img src="../img/logo_cms.png" alt="" style="display:block;" class="img_logo_cms">
 
-        <a href='session_destroy.php'class='bottoni_hide' style='display: block; margin: 5px; text-decoration:none; position: absolute;right: 2%;top: 15px;' >
+        <a href='../session_destroy.php'class='bottoni_hide' style='display: block; margin: 5px; text-decoration:none; position: absolute;right: 2%;top: 15px;' >
             <h2  id='hide2' style="font-size: 19px;">logout</h2>
         </a>
 
@@ -71,9 +71,9 @@
         echo "<li>";
             echo "<div class='banner_manage'>";
                 echo"<a href='ebanner_manage.php?elimina=".$articolo['idart']."' >";
-                echo "<img src='img/cancella.png'  style='width: 40px; border-radius: 11px;' >". "</a>";
+                echo "<img src='../img/cancella.png'  style='width: 40px; border-radius: 11px;' >". "</a>";
                 echo"<a href='ebanner_manage.php?modifica=".$articolo['idart']."' style='position: relative;left: 150px;'>";
-                echo '<img src="img/modifica.png" alt="" style="width: 40px; border-radius: 11px;" >'."</a>";
+                echo '<img src="../img/modifica.png" alt="" style="width: 40px; border-radius: 11px;" >'."</a>";
                 echo " <center>";
                     echo "  <a href=''>";
                         echo "<img class='img_banner' src='data:image;base64,".$articolo['img']."'  >";
@@ -104,9 +104,9 @@
 
     
 
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/libreria.js"></script>
-    <script type="text/javascript" src="js/codice.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/libreria.js"></script>
+    <script type="text/javascript" src="../js/codice.js"></script>
     <script>
        
         document.getElementById("fake_file").onclick=function()

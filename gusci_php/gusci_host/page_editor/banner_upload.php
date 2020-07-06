@@ -59,7 +59,7 @@
                     else
                     {
                         mysqli_close($conn);
-                        header("location: page_editor.php?err=1");  
+                        header("location:   page_editor.php?err=1");  
                     }
                         
 

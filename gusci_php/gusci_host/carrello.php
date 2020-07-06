@@ -101,7 +101,7 @@
                
 
             $articoli_sel=mysqli_query($conn,"select * from carrello where iduser=".addslashes($_SESSION['iduser']).";");
-
+            $flag=false;
             foreach($articoli_sel as $articolo_sel)
             {    
                 $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($articolo_sel['idart']).";");
@@ -134,7 +134,7 @@
                     $prezzo_tot=$prezzo_tot+($articolo['prezzo']*$articolo_sel['quantita']);
                 }
 
-                
+                $flag=true;
             }
             if(strlen($prezzo_tot)<=0)
                 $prezzo_tot=0;
@@ -144,13 +144,16 @@
 
         </div>
         <h1 style="position:relative;top:20px;left:10%;width: fit-content;">Prezzo totale: <?php echo $prezzo_tot ?> &#x20ac</h1>
-        <button class="bottoni" style="position: absolute;
-                                       right: 17%;
-                                       top: 730px;">
-            <h2>
-                Paga
-            </h2>
-        </button>
+<?php    
+    if($flag)
+    {
+        echo '<a class="bottoni" style="position: absolute;right: 17%;top: 730px;text-decoration:none" href="paga.php"><h2>Paga</h2></a>';    
+
+    }
+    else
+        echo '<button class="bottoni" style="position: absolute;right: 17%;top: 730px;"><h2>Paga</h2></button>';
+    
+?>
     </div>
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>

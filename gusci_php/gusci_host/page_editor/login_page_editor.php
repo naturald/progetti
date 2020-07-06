@@ -7,15 +7,16 @@
 <html lang="en">
 <head>
     <title>Login Gusci Page editor</title>
-    <link rel="icon" href="img/icon.png"/>
+    <link rel="icon" href="../img/icon.png"/>
 </head>
 <body>
-<link rel="stylesheet" href="css/classi.css">
+<link rel="stylesheet" href="../css/classi.css">
+
 <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
 
 <div id="login_cms" class="login_cms">
     <div id="login_cms_form" class="login_cms_form">
-        <img src="img/logo_cms.png" alt=""  style="height: 75px;
+        <img src="../img/logo_cms.png" alt=""  style="height: 75px;
                                                     width: 190px;
                                                     margin: auto;
                                                     margin-bottom: 30px;">                                                                  
