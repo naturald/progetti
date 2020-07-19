@@ -45,6 +45,13 @@ ALTER TABLE table_name AUTO_INCREMENT = value;
 Denial of service = dos
 Distributed Denial of Services = ddos
 
+La multiplazione, o in inglese multiplexing, nelle telecomunicazioni, elettronica e reti di computer, è il meccanismo o tecnica di trasmissione 
+per cui più canali trasmissivi in ingresso condividono la stessa capacità trasmissiva disponibile in uscita ovvero combinando più segnali analogici o flussi di dati digitali 
+detti segnali tributari) in un solo segnale (detto multiplato) trasmesso in uscita su uno stesso collegamento fisico.
+
+Un MAC address identifica una interfaccia di rete univoca presente in un dispositivo. Mentre gli indirizzi IP vengono assegnati dagli ISP e possono essere riassegnati 
+quando i dispositivi vengono collegati e scollegati, gli indirizzi MAC sono legati a un adattatore fisico e vengono assegnati dai produttori.
+
 def TCP = In telecomunicazioni e informatica il Transmission Control Protocol (TCP)
  è un protocollo di rete a pacchetto di livello di trasporto, appartenente alla suite di protocolli Internet,
 che si occupa di controllo della trasmissione ovvero rendere affidabile la comunicazione dati in rete tra mittente e

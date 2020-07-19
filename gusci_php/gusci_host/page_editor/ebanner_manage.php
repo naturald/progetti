@@ -96,9 +96,9 @@ EOT;
                                 echo '<textarea class="dati_prodotto" id="descrizione" placeholder="Descrizione" name="descr"  style="height: 150px; resize: none;">'.$articoli['descrizione'].'</textarea>';
 
                                 echo '<div style="display: flex;"> ';
-                                    echo '<input type="number" class="dati_prodotto prezzo" id="Prezzo" value="'.$articoli['prezzo'].'" name="prezzo" placeholder="prezzo" style="margin-bottom: 0;
-                                                                                                                                                                                width: 60px;
-                                                                                                                                                                                font-size: 20px;"> ';
+                                    echo '<input type="number" class="dati_prodotto prezzo" id="Prezzo"  max=1000 min=1 value="'.$articoli['prezzo'].'" name="prezzo" placeholder="prezzo" style="margin-bottom: 0;
+                                                                                                                                                                                            width: 80px;
+                                                                                                                                                                                            font-size: 20px;"> ';
 echo <<<'EOT'
                                     <h2 style="font-size: 27px;
                                                 margin-top: 3px;

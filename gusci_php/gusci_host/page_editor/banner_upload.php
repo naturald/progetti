@@ -11,7 +11,7 @@
                 $imge=file_get_contents($fileTmpName);
                 $imge=addslashes(base64_encode($imge));
                 
-                if(strlen($imge)>0 && (strlen($_POST['titolo'])>0 && strlen($_POST['titolo'])<18) && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0 )
+                if(strlen($imge)>0 && (strlen($_POST['titolo'])>0 && strlen($_POST['titolo'])<18) && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0 && $_POST['prezzo']>0 && $_POST['prezzo']<1001 )
                 {
                     
                     $conn=mysqli_connect("localhost"," gusci","","my_gusci");
@@ -103,7 +103,7 @@
             $img=file_get_contents($fileTmp);
             $img=(string) base64_encode($imge);
             
-            if( strlen($_POST['titolo'])>0 && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0 )
+            if( strlen($_POST['titolo'])>0 && strlen($_POST['descr'])>0 && strlen($_POST['prezzo'])>0  && $_POST['prezzo']>0 && $_POST['prezzo']<1001)
             {
                 $conn=mysqli_connect("localhost"," gusci","","my_gusci");
                 if(strlen($img)<=0)

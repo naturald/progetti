@@ -77,9 +77,9 @@
                     <textarea class="dati_prodotto" id="descrizione" placeholder="Descrizione" name="descr"  style="height: 150px; resize: none;"></textarea>
 
                     <div style="display: flex;"> 
-                        <input type="number" class="dati_prodotto prezzo" id="Prezzo" name="prezzo" placeholder="prezzo" style="margin-bottom: 0;
-                                                                                                                    width: 60px;
-                                                                                                                    font-size: 20px;"> 
+                        <input type="number" class="dati_prodotto prezzo" max=1000 min=1 id="Prezzo" name="prezzo" placeholder="prezzo" style="margin-bottom: 0;
+                                                                                                                                                width: 80px;
+                                                                                                                                                font-size: 20px;"> 
                         <h2 style="font-size: 27px;
                                     margin-top: 3px;
                                     margin-left: 10px;">
