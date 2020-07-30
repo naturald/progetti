@@ -63,6 +63,11 @@ come strato software di rete all'interno del sistema operativo di un host, e il 
 DOS=Disk Operating System 
 
 
+LAN = Local Area Network = tutti i compiunter collegati tra loro sotto uno switch , esistono vari tipi di collengamenti per la lan guardare img messa dentro la cartella
+
+WAN = Wide Area Network = l'insieme e il collegamento di tutte le lan  
+
+
 //___________________hacker rank______________________//
     int A_home=0;
     int O_home=0;
