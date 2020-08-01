@@ -168,5 +168,35 @@ WAN = Wide Area Network = l'insieme e il collegamento di tutte le lan
     }
     return div;
 
+
+
+--------------------------------------------------------  
+    int maxP=0;
+    int minP=0;
+    vector<int> improvement(2);
+
+    for(int i=0;i<scores.size();i++)
+    {
+        if(i==0)
+        {
+            minP=scores[i];
+            maxP=scores[i];
+            continue;
+        }
+
+        if(scores[i]<minP)
+        {
+            minP=scores[i];
+            improvement[1]++;
+        }
+            
+        if(scores[i]>maxP)
+        {
+            maxP=scores[i];
+            improvement[0]++;
+        }
+    }
+    return improvement;
+
 //______________________________________________________//
 
