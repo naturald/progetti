@@ -201,12 +201,9 @@ textarea
 	left: 0;
 	top: 0;
 	position: fixed;
-	overflow-y: auto; /* Enable scroll if needed */
-	background-color: rgb(0,0,0); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	
-	
-
+	overflow-y: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4); 
 }
 .con_modal
 {
@@ -412,14 +409,6 @@ textarea
 	width: 175px;
 	transition: 0.6s;
 }
-.lente::placeholder
-{
-
-}  
-.lente::placeholder::before
-{
-
-}
 /*--------INFO----------*/
 .info
 {
@@ -528,7 +517,7 @@ textarea
 .login_cms_form
 {
 	z-index: 1201;
-	box-shadow :0px 5px 12px -5px  black;
+	box-shadow: 5px 5px 12px -1px black;
 	display: flex;
 	flex-direction: column;
 	margin: auto;
