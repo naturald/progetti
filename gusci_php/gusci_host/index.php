@@ -130,26 +130,21 @@
                 <form name="sign_up" action="elogin.php?auten=1" method="POST">
                     <center>
                         <img src="img/logo_sito.png" style="height: 125px;width: 125px;">
-                        <h1 style="padding-bottom: 40px;
-                                font-size: 50px;
-                                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+                        <h1 style="margin-bottom: 50px; font-size: 50px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
                                 GUSCI LOGIN </h1>
-                        <input type="text" class="dati" style="margin-bottom: 20px;"  id="nome" name="nome" placeholder="Nome">
                     </center>
-                    
+                    <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="text" class="dati" style="margin-top: 20px;"  id="nome" name="nome" required >
+                        <label for="nome" class="label">Nome</label>   
+                    </div>
 
-                    <center>
-                        <input type="password"  class="dati" style="margin-bottom: 20px;"  id="psw" name="psw"  placeholder="password">
-                    </center>
-                        
-                    <center style="    margin-top: 50px;">
-                        
-
-                        <input type="submit" class="bottoni" name="login"  id="btn2" value="login"  style="padding: 13px 33px 13px 33px;
-                                                                                            margin-top: 25px;
-                                                                                            margin-bottom: 20px;
-                                                                                            font-size: 15px;">
-                    
+                    <div style="display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="password"  class="dati" style="margin-top: 50px;"  id="psw" name="psw" required  >
+                        <label for="psw" class="label">Password</label>
+                    </div>
+              
+                    <center style="margin-top: 60px;">
+                        <input type="submit" class="bottoni" name="login"  id="btn2" value="login"  style="padding: 13px 33px 13px 33px; margin-top: 25px; margin-bottom: 20px; font-size: 15px;">
                         <h5 id="sign_up">non ho un account</h5>
                         <h6  class="hide" style="color: red;position: relative; top: -130px;" id="allert3">nome o password sono sbagliati</h6>
 
@@ -166,23 +161,34 @@
                                 font-size: 50px;
                                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
                                 GUSCI REGISTRAZIONE </h1>
-                        <input type="text" class="dati" style="margin-bottom: 20px;" onkeyup="contr_lung_sign()"  id="sign_nome" name="sign_nome" placeholder="Nome">
                     </center>
+
+                    <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="text" class="dati" style="margin-top: 20px;" onkeyup="contr_lung_sign()"  id="sign_nome" name="sign_nome" required >
+                        <label for="sign_nome" class="label">Nome</label>
+                    </div>
                     <h6 class="hide allert" id="allert_sign_up">troppo lunga</h6><br>
-                    <center>
-                        <input type="text"  class="dati" style="margin-bottom: 20px;" id="sign_cognome" onkeyup="contr_lung_sign_cognome()"  name="sign_cognome"  placeholder="Cognome">
-                    </center>
+
+                    <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="text"  class="dati" style="margin-top: 20px;" id="sign_cognome" onkeyup="contr_lung_sign_cognome()"   name="sign_cognome" required >
+                        <label for="sign_cognome" class="label">Cognome</label>
+                    </div>
                     <h6 class="hide allert" id="allert_sign_up2">troppo lunga</h6><br>
-                    <center>
-                        <input type="email"  class="dati" style="margin-bottom: 20px;"  id="mail" name="mail" placeholder="Mail">
-                    </center>
+
+                    <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="email"  class="dati" style="margin-top: 20px;"  id="mail" name="mail" required >
+                        <label for="mail" class="label">Mail</label>
+                    </div>
                     <h6 class="hide allert" id="allert_sign_up3">non e una mail</h6><br>
-                    <center>
-                        <input type="password"  class="dati" style="margin-bottom: 20px;" id="pass" name="pass" placeholder="Password">
-                    </center>
+                    
+                    <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                        <input type="password"  class="dati" style="margin-top: 20px;" id="pass" name="pass" required >
+                        <label for="pass" class="label" >Password</label>
+                    </div>
                     <h6 class="hide allert" id="allert_sign_up4">troppo corta</h6><br>
-                    <center>
-                        <h6 class="hide allert" id="err_gen_sign" style="position: absolute; top: 540px; margin-left: 15px;" >completa tutti i campi</h6>
+
+                    <center style="margin-top: 40px;" >
+                        <h6 class="hide allert" id="err_gen_sign" style="position: absolute; top: 650px; margin-left: 15px;" >completa tutti i campi</h6>
                         <input type="submit" class="bottoni"  name="sign_up" value="registrati" id="btn2_sign"    style="padding: 13px 33px 13px 33px;                       
                                                                                                                         margin-top: 25px;
                                                                                                                         margin-bottom: 20px;
@@ -207,7 +213,7 @@
     
         if($_GET['err']==1)
         {
-            echo 'document.getElementById("allert3").style.display="block";';
+            echo 'document.getElementById("allert3").style.display="block";';    
             echo 'document.getElementById("login").style.display="flex";';
         
         }

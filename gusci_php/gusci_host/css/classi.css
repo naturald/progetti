@@ -6,6 +6,9 @@ p
 	font-family: Circularstd, sans-serif;
 
 }
+html::-webkit-scrollbar {
+    width: 0px; /* For Chrome, Safari, and Opera */
+}
 body,html
 {
 	width: 100%;
@@ -231,18 +234,40 @@ textarea
 }
 .dati
 {	
-	padding: 10px;
-	border-radius: 100px;
 	border-style: none;
-	border: transparent;
-	border-bottom: black;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 20px;
+	border: 0;
+	border-bottom: 2px solid black;
+	background: transparent;
+	outline: none;
 	width: 170px;
 	transition: 0.6s;
 }
-.dati:focus
+.label
 {
-	width: 210px;
-	transition: 0.6s;
+	width: fit-content;
+    font-family: Tahoma, Geneva, sans-serif;
+	margin: 0;
+    bottom: 5px;
+    position: absolute;
+    display: block;
+    transition: 0.4s;
+    font-size: 20px;
+    color: grey;
+}
+
+.dati:valid + label,
+.dati:focus + label
+{
+	font-family: Tahoma, Geneva, sans-serif;
+	position: absolute;
+	bottom: 30px;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: black;
+	
 }
 .con_modal_sign_in   
 {
@@ -273,7 +298,7 @@ textarea
 .allert
 {
 	position: relative;
-	top: -50px;
+	top: -23px;
 	height: 0;
 	float: right;
 	color: red;
