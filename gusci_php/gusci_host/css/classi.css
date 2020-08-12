@@ -234,7 +234,8 @@ textarea
 	padding: 10px;
 	border-radius: 100px;
 	border-style: none;
-	border: solid black 3px;
+	border: transparent;
+	border-bottom: black;
 	width: 170px;
 	transition: 0.6s;
 }
