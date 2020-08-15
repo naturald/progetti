@@ -23,10 +23,19 @@
             <h1 style="text-align:center;" class="space">LOGIN</h1>
 
             <form name="login_cms" style="display: flex; flex-direction: column; " action="login_page_editor.php?elab=true" method="POST">
-                <input type="text" placeholder="Nome" id="nome_cms" name="nome_cms" class="dati_cms space">
-                <input type="password" class="dati_cms space" id="pass_cms" name="pass_cms" placeholder="Password"><br>
+                <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                    <input type="text" class="dati" style="margin-top: 20px;" id="nome_cms" name="nome_cms" required >
+                    <label for="sign_nome" class="label">Nome</label>
+                </div>
+
+                <div style=" display: block;margin: auto;width: fit-content;position: relative;">
+                    <input type="password"  class="dati" style="margin-top: 40px;" id="pass_cms"  name="pass_cms" required >
+                    <label for="sign_cognome" class="label">Cognome</label>
+                </div>
+                <br>
                 <input type="submit" class="bottoni space" id="btn_cms" value="Login" style="width: fit-content; 
                                                                                             margin: auto;
+                                                                                            margin-top: 40px;
                                                                                             margin-bottom: 20px;">
                 <h6 class="hide allert_cms" id="cms_alt">nome o password sbagliato</h6>
             </form>

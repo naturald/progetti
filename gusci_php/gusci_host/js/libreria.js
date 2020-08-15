@@ -340,4 +340,29 @@ function login()
 {
     $( "#login_regiser" ).load( "login_register.php" );
 }
+function dropDownL()
+{
+    $("#cont_dropL").css('display', 'block');
+    $("#DropL").css('display', 'none');
+    $("#DropL_close").css('display', 'block');
+}
+function dropDownL_close()
+{
+    $("#cont_dropL").css('display', 'none');
+    $("#DropL").css('display', 'block');
+    $("#DropL_close").css('display', 'none');
+}
+function clear_hamMenu(window_trigg)
+{
+    if(window_trigg.matches)
+    {
+        $("#cont_dropL").css('display', 'none');
+        $("#DropL").css('display', 'none');
+        $("#DropL_close").css('display', 'none');
+    }   
+    else
+    {
+        $("#DropL").css('display', 'block');
+    }
 
+}

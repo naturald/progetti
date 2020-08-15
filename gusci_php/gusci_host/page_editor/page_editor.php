@@ -4,7 +4,7 @@
     if(isset($_SESSION['acess_cms']))
     {
         echo "<div style='position:absolute;top: 20px;right:30px;'> ";
-        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nomeAdmin']."  ".$_SESSION['cognomeAdmin']."</h2> ";
+        echo "<h2 id='hide_' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nomeAdmin']."  ".$_SESSION['cognomeAdmin']."</h2> ";
         echo "</div>";
     }
     else
@@ -34,8 +34,8 @@
 
             <ul class="menu" style="display: table-cell;">
     
-                <li><a href="page_editor.php" style="text-decoration:none;"><h2 class="voci">crea banner</h2></a></li>
-                <li><a href="page_editor_manage.php" style="text-decoration:none;" ><h2 class="voci">gestione banner</h2></a></li>
+                <li><a href="page_editor.php" style="text-decoration:none;"><h2 class="voci2">crea banner</h2></a></li>
+                <li><a href="page_editor_manage.php" style="text-decoration:none;" ><h2 class="voci2">gestione banner</h2></a></li>
                 
             </ul>
 
@@ -47,13 +47,7 @@
             <h2  id='hide2' style="font-size: 19px;">logout</h2>
         </a>
 
-        <center>
-            <a href="" style="position: absolute;top:27px;" id="tre_menu">
-                <span class="tre"></span>
-                <span class="tre"></span>
-                <span class="tre"></span>
-            </a>
-        </center>
+       
 </div>
     <div style="display: flex;flex-direction: column;">
         <h1 class="titolo_page_creator">CREAZIONE BANNER</h1>

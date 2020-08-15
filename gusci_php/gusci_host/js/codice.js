@@ -32,10 +32,6 @@ $(function ()
 
     // è normale che ci siano cosi tante varibili e function jquery?
     
-    tre_menu.onclick=function()
-    {
-
-    }
     close.onclick=function()
     {
         $("#sign_nome").val("");
@@ -122,13 +118,11 @@ $(function ()
        
 
     }
-   
-    hide2.onclick=function()
-    {
-            
-    }
     
     
+    var window_trigg = window.matchMedia("(min-width: 942px)");
+    clear_hamMenu(window_trigg);
+    window_trigg.addListener(clear_hamMenu);
 
 }
 )

@@ -18,17 +18,17 @@
     
     if(isset($_SESSION['acess']))
     {
-        echo "<a href='carrello.php'> ";
+        echo "<a id='hideCar' href='carrello.php'> ";
         echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
         echo "<div style='position:absolute;top: 20px;right:30px;'> ";
-        echo "<h2 id='hide' style='font-size: 15px; position: absolute; right: 150px;  width: 150px;'>".'benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
+        echo "<h2 id='hide' style='font-size: 15px; position: relative; right: 40%;  width: 150px;'>".'Benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
         echo "</div>";
         echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
         echo "<ul class='menu' style='display: table-cell;'> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
-        echo "<li><a href='session_destroy.php' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
+        echo "<li><a href='session_destroy.php' id='SesD' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
                                 
     }
     else
@@ -54,13 +54,25 @@
         <a href="index.php">
             <img src="img/logo_sito.png" alt="" class="img_logo">
         </a>
-        <center>
-            <a href="" style="position: absolute;top:27px;" id="tre_menu">
-                <span class="tre"></span>
-                <span class="tre"></span>
-                <span class="tre"></span>
-            </a>
-        </center>
+        
+        <h1 class="titNav" id="titNav" >
+            GUSCI
+        </h1>
+        <button onclick="dropDownL()" class="DropL" id="DropL">  
+            <span class="tre"></span>
+            <span class="tre"></span>
+            <span class="tre" style="margin-bottom: 0;"></span>
+        </button>
+        <button onclick="dropDownL_close()" class="DropL" style="display: none;" id="DropL_close">  
+            <div style="width: 30px; height: 30px; position: relative; top: 10px;">
+                <span style="transform: rotate(-45deg);height: 6px; width: 30px; background-color: white;display: block;"></span>
+                <span style="transform: rotate(45deg);position: relative;height: 6px; width: 30px; background-color: white;display: block;top: -5px;"></span>
+            </div>
+        </button>
+
+        <div id="cont_dropL" class="cont_dropL">
+            ciao
+        </div>
     </header>
 
     
@@ -78,7 +90,7 @@
         </div>
     </div>
 
-    <input type="text" class="lente" onkeyup="trova_art()" id="lente" placeholder="&#x1f50d;    cerca...">
+    <input type="text" class="lente" onkeyup="trova_art()" id="lente" style="background-image: url(img/searchicon.png);" placeholder=" cerca articolo">
 
     <div class="card">
         <ul class="cardList" id="lista">
@@ -94,11 +106,10 @@
     foreach($articoli as $articolo)
     {
         echo "<li id='banner'>";
+            echo "  <a href='tameplate_banner.php?articolo=".$articolo['idart']."' style='text-decoration: none;color: black;'>";
             echo "<div class='banner'>";
                 echo " <center>";
-                    echo "  <a href='tameplate_banner.php?articolo=".$articolo['idart']."'>";
                         echo "<img class='img_banner' src='data:image;base64,".$articolo['img']."'  >";
-                    echo "</a>";
                     echo " <div>";
                         echo " <h1 class='text_banner'>";
                             echo $articolo['titolo'];
@@ -107,8 +118,10 @@
                             echo $articolo['prezzo']." &#x20ac";
                         echo "</h3>";
                     echo " </div>";
+                    
                 echo "</center>";
             echo "</div>";
+            echo "</a>";
         echo "</li>";
 
     
@@ -300,6 +313,7 @@ EOT;
 
             }
         }
+       
   
 <?php
     
