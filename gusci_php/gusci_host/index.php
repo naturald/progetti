@@ -29,6 +29,32 @@
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
         echo "<li><a href='session_destroy.php' id='SesD' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
+        echo <<<'EOT'
+        </div>
+        <h1 class="titNav" id="titNav" >
+            GUSCI
+        </h1>
+
+        <button onclick="dropDownL()" class="DropL" id="DropL">  
+            <span class="tre"></span>
+            <span class="tre"></span>
+            <span class="tre" style="margin-bottom: 0;"></span>
+        </button>
+        
+        
+        <div id="cont_dropL" class="cont_dropL" style="top:-15px;">
+            <ul class="lista_cont_dropL">
+EOT;
+                echo '<li class="voci_cont_dropL" style="height: fit-content;">Benvevenuto<br>'. $_SESSION['nome'].'  '.$_SESSION['cognome'].'</li>';
+echo <<<'EOT'
+                <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
+                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
+                <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
+                <li class="voci_cont_dropL" style="border: none;"><a href="session_destroy.php" class="text_voci_cont_dropL">Logout</a></li>
+            </ul>
+        </div>
+       
+EOT;
                                 
     }
     else
@@ -43,6 +69,26 @@
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
+        echo <<<'EOT'
+        </div>
+        <h1 class="titNav" id="titNav" >
+            GUSCI
+        </h1>
+        <button onclick="dropDownL_Prelog()" class="DropL" id="DropL">  
+            <span class="tre"></span>
+            <span class="tre"></span>
+            <span class="tre" style="margin-bottom: 0;"></span>
+        </button>
+            
+        <div id="cont_dropL" class="cont_dropL" style="top:-15px;">
+            <ul class="lista_cont_dropL">
+                <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
+                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
+                <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
+                <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop">Login</h2></li>
+            </ul>
+        </div>
+EOT;
     }
 
     
@@ -50,19 +96,13 @@
 
 ?>
        
-        </div>
+        
         <a href="index.php">
             <img src="img/logo_sito.png" alt="" class="img_logo">
         </a>
         
-        <h1 class="titNav" id="titNav" >
-            GUSCI
-        </h1>
-        <button onclick="dropDownL()" class="DropL" id="DropL">  
-            <span class="tre"></span>
-            <span class="tre"></span>
-            <span class="tre" style="margin-bottom: 0;"></span>
-        </button>
+      
+        
         <button onclick="dropDownL_close()" class="DropL" style="display: none;" id="DropL_close">  
             <div style="width: 30px; height: 30px; position: relative; top: 10px;">
                 <span style="transform: rotate(-45deg);height: 6px; width: 30px; background-color: white;display: block;"></span>
@@ -70,9 +110,7 @@
             </div>
         </button>
 
-        <div id="cont_dropL" class="cont_dropL">
-            ciao
-        </div>
+       
     </header>
 
     
@@ -278,6 +316,13 @@ EOT;
         document.getElementById("btn").onclick=function()
         {
             document.getElementById("login").style.display="flex";
+        }
+        
+        document.getElementById("voce_login_drop").onclick=function()
+        {
+            $("#cont_dropL").css('height', '0px');
+            document.getElementById("login").style.display="flex";
+            
         }
         
         var modal=document.getElementById("login");

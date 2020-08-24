@@ -342,27 +342,35 @@ function login()
 }
 function dropDownL()
 {
-    $("#cont_dropL").css('display', 'block');
+    $("#cont_dropL").css('height', '287px');
     $("#DropL").css('display', 'none');
     $("#DropL_close").css('display', 'block');
 }
 function dropDownL_close()
 {
-    $("#cont_dropL").css('display', 'none');
+    $("#cont_dropL").css('height', '0px');
     $("#DropL").css('display', 'block');
     $("#DropL_close").css('display', 'none');
+}
+function dropDownL_Prelog()
+{
+    $("#cont_dropL").css('height', '215px');
+    $("#DropL").css('display', 'none');
+    $("#DropL_close").css('display', 'block');
 }
 function clear_hamMenu(window_trigg)
 {
     if(window_trigg.matches)
     {
         $("#cont_dropL").css('display', 'none');
+        $("#cont_dropL").css('height', '0px');
         $("#DropL").css('display', 'none');
         $("#DropL_close").css('display', 'none');
     }   
     else
     {
         $("#DropL").css('display', 'block');
+        $("#cont_dropL").css('display', 'block');
     }
 
 }

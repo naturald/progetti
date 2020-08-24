@@ -53,13 +53,21 @@
     <a href="index.php">
         <img src="img/logo_sito.png" alt="" class="img_logo">
     </a>
-    <center>
-        <a href="" style="position: absolute;top:27px;" id="tre_menu">
+    <h1 class="titNav" id="titNav" >
+            GUSCI
+    </h1>
+    <button onclick="dropDownL()" class="DropL" id="DropL">  
             <span class="tre"></span>
             <span class="tre"></span>
-            <span class="tre"></span>
-        </a>
-    </center>
+            <span class="tre" style="margin-bottom: 0;"></span>
+        </button>
+        <button onclick="dropDownL_close()" class="DropL" style="display: none;" id="DropL_close">  
+            <div style="width: 30px; height: 30px; position: relative; top: 10px;">
+                <span style="transform: rotate(-45deg);height: 6px; width: 30px; background-color: white;display: block;"></span>
+                <span style="transform: rotate(45deg);position: relative;height: 6px; width: 30px; background-color: white;display: block;top: -5px;"></span>
+            </div>
+        </button>
+
 </header>
 
 
