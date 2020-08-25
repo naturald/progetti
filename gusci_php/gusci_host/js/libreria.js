@@ -339,6 +339,7 @@ function spazzino()
 function login()
 {
     $( "#login_regiser" ).load( "login_register.php" );
+    dropDownL_close();
 }
 function dropDownL()
 {

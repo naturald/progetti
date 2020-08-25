@@ -321,6 +321,8 @@ EOT;
         document.getElementById("voce_login_drop").onclick=function()
         {
             $("#cont_dropL").css('height', '0px');
+            $("#DropL").css('display', 'block');
+            $("#DropL_close").css('display', 'none');
             document.getElementById("login").style.display="flex";
             
         }
