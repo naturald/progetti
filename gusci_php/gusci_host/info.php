@@ -15,7 +15,7 @@
 
     
     <header class="nav">
-    <?php 
+<?php 
     
     if(isset($_SESSION['acess']))
     {
@@ -51,6 +51,7 @@ echo <<<'EOT'
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
                 <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
+                <li class="voci_cont_dropL"><a href="carrello.php"  class="text_voci_cont_dropL">Carrello</a></li>
                 <li class="voci_cont_dropL" style="border: none;"><a href="session_destroy.php" class="text_voci_cont_dropL">Logout</a></li>
             </ul>
         </div>
@@ -61,7 +62,7 @@ EOT;
     else
     {
         echo "<div style='position:absolute;top: 20px;right:30px;'>";
-        echo "<button class='bottoni' id='btn' onclick='login()' > ";
+        echo "<button class='bottoni' id='btn' > ";
         echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
         echo "</button> ";
         echo "</div> ";
@@ -86,7 +87,7 @@ EOT;
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
                 <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
-                <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop" onclick='login()' >Login</h2></li>
+                <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop" onclick="login()" >Login</h2></li>
             </ul>
         </div>
 EOT;
@@ -111,8 +112,8 @@ EOT;
             </div>
         </button>
 
-
-</header>
+       
+    </header>
 
 
    <div class="cover">

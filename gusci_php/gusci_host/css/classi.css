@@ -739,6 +739,7 @@ textarea
 		position: absolute;
 		top: 13%;
 		width: 100%;
+		height: auto;
 	}
 	.img_tameplate
 	{
@@ -751,6 +752,10 @@ textarea
 		height: fit-content;
 		width: fit-content;
 		margin: auto;
+		right: 0;
+		left: 0;
+		position: static;
+		margin-bottom: 70px;
 	}
 	.testo_tameplate
 	{

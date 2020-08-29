@@ -50,6 +50,7 @@ echo <<<'EOT'
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
                 <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
+                <li class="voci_cont_dropL"><a href="carrello.php"  class="text_voci_cont_dropL">Carrello</a></li>
                 <li class="voci_cont_dropL" style="border: none;"><a href="session_destroy.php" class="text_voci_cont_dropL">Logout</a></li>
             </ul>
         </div>
