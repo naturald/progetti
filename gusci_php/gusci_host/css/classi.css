@@ -606,6 +606,41 @@ textarea
 	border-radius: 11px;
 	position: relative;
 }
+/*--------TAMEPLATE-----------*/
+.container_text_img
+{
+	height: 60%;
+	display: flex;
+	position: absolute;
+	top: 25%;
+	width: 100%;
+}
+.img_tameplate
+{
+	position: relative;
+	height: inherit;
+	display: flex;
+	margin-left: 20px;
+	margin-right: 0;
+	flex-direction: column;
+	justify-content: center;
+}
+.prezzo
+{
+	height: fit-content;
+	position: absolute;
+	top: 30%;
+	right: 7%;
+}
+.testo_tameplate
+{
+	position: relative;
+	width: 600px;
+	height: 100%;
+	left: 11%;
+	justify-content: center;
+	overflow: hidden;
+}
 /*--------RESPONSIVITA----------*/           
 .DropL
 {
@@ -693,6 +728,40 @@ textarea
 		flex-flow: wrap;
 		margin-left: auto;
 		margin-right: auto;
+	}
+}
+@media only screen and (max-width: 1444px)
+{
+	.container_text_img
+	{
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 13%;
+		width: 100%;
+	}
+	.img_tameplate
+	{
+		height: 350px;
+		width: 350px;
+		margin: auto;
+	}
+	.prezzo
+	{
+		height: fit-content;
+		width: fit-content;
+		margin: auto;
+	}
+	.testo_tameplate
+	{
+		position: relative;
+		width: 80%;
+		height: 100%;
+		left: 11%;
+		justify-content: center;
+		overflow: hidden;
+		margin-top: 50px;
+		margin-bottom: 100px;
 	}
 }
 @media only screen and (max-width: 1400px)

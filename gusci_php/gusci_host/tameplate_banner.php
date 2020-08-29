@@ -78,13 +78,13 @@
         </center>
     </header>
     
-        <div style="height: 60%;display: flex;position: absolute;top: 25%;width: 100%;">
+        <div class="container_text_img">
             <?php
                 echo '<img src="data:image;base64,'.$articolo['img'].'" alt="" 
-                        style="position: relative;height: inherit;display: flex;margin-left: 20px;margin-right: 0;flex-direction: column;justify-content: center;">';
+                        class="img_tameplate">';
             ?>   
             
-            <div style="position: relative;width: 600px;height: 100%;left: 11%;justify-content: center;overflow: hidden;">
+            <div class="testo_tameplate">
                 <div>
                     <h1 style="margin-bottom: 15px;"><?php echo $articolo['titolo'] ?></h1>
                 </div>
@@ -93,8 +93,10 @@
                     <h4 style="margin-top: 15px;width: 600px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
                 </div>   
             </div>
+        </div>
+        
 
-            <div style="height: fit-content;position: absolute;top: 30%;right: 7%;">
+            <div class="prezzo">
                 <h1 style="position: relative;display: flex;margin-bottom: 30px;justify-content: center;">Prezzo: <?php echo $articolo['prezzo'] ?> &#x20ac</h1>
 <?php 
     $quantita=mysqli_query($conn,"select quantita from carrello where idart=".addslashes($articolo['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
