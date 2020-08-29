@@ -159,7 +159,7 @@ EOT;
                 </div>
                 <hr>
                 <div>
-                    <h4 style="margin-top: 15px;width: 600px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
+                    <h4 style="margin: auto;margin-top: 15px;width: 650px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
                 </div>   
             </div>
             
