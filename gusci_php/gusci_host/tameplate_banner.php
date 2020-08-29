@@ -49,8 +49,7 @@
 <header class="nav">
 <?php 
     
-    if(isset($_SESSION['acess']))
-    {
+  
         echo "<a id='hideCar' href='carrello.php'> ";
         echo "<img src='img/carrello.png' id='carrello' class='carrello' style='display: block;'> "."</a> ";
         echo "<div style='position:absolute;top: 20px;right:30px;'> ";
@@ -90,43 +89,7 @@ echo <<<'EOT'
        
 EOT;
                                 
-    }
-    else
-    {
-        echo "<div style='position:absolute;top: 20px;right:30px;'>";
-        echo "<button class='bottoni' id='btn' > ";
-        echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
-        echo "</button> ";
-        echo "</div> ";
-        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-        echo "<ul class='menu' style='display: table-cell;'> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
-        echo <<<'EOT'
-        </div>
-        <h1 class="titNav" id="titNav" >
-            GUSCI
-        </h1>
-        <button onclick="dropDownL_Prelog()" class="DropL" id="DropL">  
-            <span class="tre"></span>
-            <span class="tre"></span>
-            <span class="tre" style="margin-bottom: 0;"></span>
-        </button>
-            
-        <div id="cont_dropL" class="cont_dropL" style="top:-15px;">
-            <ul class="lista_cont_dropL">
-                <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
-                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
-                <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
-                <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop" onclick="login()" >Login</h2></li>
-            </ul>
-        </div>
-EOT;
-    }
-
     
-  
 
 ?>
        
@@ -159,7 +122,7 @@ EOT;
                 </div>
                 <hr>
                 <div>
-                    <h4 style="margin: auto;margin-top: 15px;width: 650px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
+                    <h4 style="margin-top: 15px;word-wrap: break-word;"><?php echo $articolo['descrizione'] ?></h4>
                 </div>   
             </div>
             
@@ -167,32 +130,32 @@ EOT;
         
 
             <div class="prezzo">
-                <h1 style="position: relative;display: flex;margin-bottom: 30px;justify-content: center;">Prezzo: <?php echo $articolo['prezzo'] ?> &#x20ac</h1>
+                <h1  class="prezzo_num">Prezzo: <?php echo $articolo['prezzo'] ?> &#x20ac</h1>
 <?php 
     $quantita=mysqli_query($conn,"select quantita from carrello where idart=".addslashes($articolo['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
     $quantita=mysqli_fetch_array($quantita);
     if($quantita[0]<10)
     {
         echo '<form action="tameplate_banner.php?articolo='.$_GET['articolo'].'" method="POST">';
-        echo '<div style="display: flex;justify-content: center;margin-bottom: 10px;">';
+        echo '<div class="quantita_respo">';
         echo '<h3 style="height: fit-content; top: 8px; margin-right: 10px; position: relative;">Quantità:</h3>';
-        echo '<input type="number" class="dati_prodotto" name="quantita" style="font-size: 20px;width: 40px;margin-bottom: 15px;" value="1" min="1" max="10"> ';
+        echo '<input type="number" class="dati_prodotto " style="margin-bottom: 0; width: 30px; padding: 7px;" name="quantita"  value="1" min="1" max="10"> ';
         echo '</div>';
         if(strlen($quantita[0])<=0)
             $i=0;
         else
             $i=$quantita[0];
             
-        echo '<h3 style="height: fit-content; top: 8px;margin-bottom: 20px; position: relative;">'.$i.' già nel tuo carrello </h3>';
-        echo '<hr>';
-        echo '<input type="submit" class="bottoni" name="submit_add_cart" style="margin-top: 15px;" value="aggiungi al carrelo">';
+        echo '<h3 class="gia_carrello">'.$i.' già nel tuo carrello </h3>';
+        echo '<hr class="linea_tameplate" >';
+        echo '<input type="submit" class="bottoni bottone_tameplate_resp" name="submit_add_cart" value="aggiungi al carrelo">';
         echo '</form>';
 
     }
     else
     {
-        echo '<h3 style="height: fit-content; top: 8px;margin-bottom: 20px; position: relative; width:300px; font-size: 17px;"> non puoi più aggiungere questo articolo hai raggiunto la quantita massima per singolo articolo di 10</h3>';
-        echo '<hr>';
+        echo '<h3  class="gia_carrello_10" > non puoi più aggiungere questo articolo hai raggiunto la quantita massima per singolo articolo di 10</h3>';
+        echo '<hr class="linea_tameplate">';
         echo '<button class="bottoni_fake">aggiungi al carrelo</button> ';
 
     }

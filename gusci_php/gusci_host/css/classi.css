@@ -315,6 +315,7 @@ textarea
 /*--------BOTTONI----------*/
 .bottoni
 {
+	outline: none;
 	margin: 5px;
 	padding: 12px;
 	background-color: white;
@@ -335,6 +336,7 @@ textarea
 }
 .bottoni_fake
 {
+	outline: none;
 	margin-top: 15px;
 	position: relative; 
 	left: 60px; 
@@ -364,6 +366,7 @@ textarea
 
 .bottoni_hide
 {
+	outline: none;
 	margin-top: 50px;
 	padding: 12px;
 	background-color: white;
@@ -428,6 +431,7 @@ textarea
 /*--------LENTE----------*/
 .lente
 {
+	outline: none;
 	height: 30px;
     width: 150px;
     border: solid 2px black;
@@ -449,17 +453,18 @@ textarea
 /*--------INFO----------*/
 .info
 {
-
-	position: absolute;
-	top: 50%;
-	width: 100%;
-	margin-bottom: 200px;
+	margin: auto;
+	position: relative;
+	top: 450px;
+	width: 80%;
+	margin-bottom: 100px;
 	
 }
 .info_text
 {
 	position: relative;
-	width: 80%;
+	width: 100%;
+	text-align: center;
 	border-bottom: solid 1px black;
 	border-top: solid 1px black;
 	padding-top: 20px;
@@ -468,6 +473,7 @@ textarea
 /*--------PAGE_EDITOR----------*/ 
 .dati_file
 {
+	outline: none;
 	width: 300px;
 	height: 360px;
 	background-color: white;
@@ -512,6 +518,7 @@ textarea
 }
 .dati_prodotto
 {
+	outline: none;
 	border: solid black 2px;
 	border-radius: 7px;
 	padding: 5px;
@@ -564,6 +571,7 @@ textarea
 }
 .dati_cms
 {
+	outline: none;
 	width: 200px;
 	padding: 10px;
 	border-radius: 100px;
@@ -640,6 +648,45 @@ textarea
 	left: 11%;
 	justify-content: center;
 	overflow: hidden;
+}
+.prezzo_num
+{
+	position: absolute;
+	width: 200px; 
+	top: -60px;
+	display: flex;
+	margin-bottom: 30px;
+	justify-content: center;	
+}
+.linea_tameplate
+{
+	display: block;
+}
+.gia_carrello
+{
+	height: fit-content;
+	top: 8px;
+	margin-bottom: 20px; 
+	position: relative;
+}
+.gia_carrello_10
+{
+	height: fit-content; 
+	top: 8px;
+	margin-bottom: 20px; 
+	position: relative; 
+	width:300px; 
+	font-size: 17px;
+}
+.bottone_tameplate_resp
+{
+	margin-top: 15px;
+}
+.quantita_respo
+{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
 }
 /*--------RESPONSIVITA----------*/           
 .DropL
@@ -732,19 +779,65 @@ textarea
 }
 @media only screen and (max-width: 1444px)
 {
+	.bottone_tameplate_resp
+	{
+		position: relative;
+		bottom: 40px;
+	}
+	.quantita_respo
+	{
+		display: flex;
+    	justify-content: center;
+    	position: relative;
+    	top: 100px;
+	}
+	.bottoni_fake
+	{
+		position: relative;
+		left: 320px;
+		bottom: 40px;
+	}
 	.container_text_img
 	{
+		margin-top: 40px;
 		display: flex;
 		flex-direction: column;
 		position: absolute;
-		top: 13%;
+		top: 10%;
 		width: 100%;
-		height: auto;
+		height: 85%;
+	}
+	.linea_tameplate
+	{
+		display: none;
+	}
+	.gia_carrello
+	{
+		height: fit-content;
+		top: 100px;
+		position: relative;
+		font-size: 17px;
+		margin-bottom: 0;
+	}
+	.gia_carrello_10
+	{
+		height: fit-content;
+		top: 100px;
+		position: relative;
+		font-size: 17px;
+		margin-bottom: 0;
+		width: fit-content;	
+	}
+	.prezzo_num
+	{
+		position: absolute;
+		top: 275px;
+		right: 10%;
 	}
 	.img_tameplate
 	{
-		height: 350px;
-		width: 350px;
+		height: 225px;
+		width: 225px;
 		margin: auto;
 	}
 	.prezzo

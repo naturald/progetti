@@ -336,10 +336,14 @@ function spazzino()
         $("#pass").val("");
     }
 }
-function login()
+function dropDownL_login()
 {
     $( "#login_regiser" ).load( "login_register.php" );
     dropDownL_close();
+}
+function login()
+{
+    $( "#login_regiser" ).load( "login_register.php" );
 }
 function dropDownL()
 {

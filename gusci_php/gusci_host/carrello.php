@@ -72,36 +72,7 @@ EOT;
     }
     else
     {
-        echo "<div style='position:absolute;top: 20px;right:30px;'>";
-        echo "<button class='bottoni' id='btn' > ";
-        echo "<h2 style='font-size: 18px;' >"."Login"."</h2>";            
-        echo "</button> ";
-        echo "</div> ";
-        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-        echo "<ul class='menu' style='display: table-cell;'> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-        echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
-        echo <<<'EOT'
-        </div>
-        <h1 class="titNav" id="titNav" >
-            GUSCI
-        </h1>
-        <button onclick="dropDownL_Prelog()" class="DropL" id="DropL">  
-            <span class="tre"></span>
-            <span class="tre"></span>
-            <span class="tre" style="margin-bottom: 0;"></span>
-        </button>
-            
-        <div id="cont_dropL" class="cont_dropL" style="top:-15px;">
-            <ul class="lista_cont_dropL">
-                <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
-                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
-                <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
-                <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop" onclick="login()" >Login</h2></li>
-            </ul>
-        </div>
-EOT;
+        header("location: index.php");  
     }
 
     
@@ -126,20 +97,12 @@ EOT;
        
     </header>
 
-    <div style="position: absolute;
-                top: 120px;
-                width: 100%;">
+    <div style="position: absolute; top: 120px; height: 85%; width: 100%;">
 
         <h1 style="text-align: center;
                    margin-bottom: 18px;">CARRELLO</h1>
                    
-        <div style="width: 80%;
-                    height: 650px;
-                    border-top: solid 2px black;
-                    border-bottom: solid 2px black;
-                    position:relative;
-                    overflow: auto;
-                    margin:auto;">
+        <div style="width: 80%; height: 85%; border-top: solid 2px black; border-bottom: solid 2px black; position: relative; overflow: auto; margin: auto;">
 <?php
             $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
@@ -220,11 +183,11 @@ EOT;
 <?php    
     if($flag)
     {
-        echo '<a class="bottoni" style="position: absolute;right: 17%;top: 730px;text-decoration:none" href="paga.php"><h2>Paga</h2></a>';    
+        echo '<a  style="position: relative; right: 200px; top: -25px; float: right;text-decoration: none;" href="paga.php"><h2 class="bottoni" style="width: fit-content;">Paga</h2></a>';    
 
     }
     else
-        echo '<button class="bottoni" style="position: absolute;right: 17%;top: 730px;"><h2>Paga</h2></button>';
+        echo '<button class="bottoni" style="position: relative; right: 200px; top: -25px; float: right;"><h2>Paga</h2></button>';
     
 ?>
     </div>

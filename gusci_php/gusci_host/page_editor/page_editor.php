@@ -73,7 +73,7 @@
                     <div style="display: flex;"> 
                         <input type="number" class="dati_prodotto prezzo" max=1000 min=1 id="Prezzo" name="prezzo" placeholder="prezzo" style="margin-bottom: 0;
                                                                                                                                                 width: 80px;
-                                                                                                                                                font-size: 20px;"> 
+                                                                                                                                                font-size: 20px;margin: 0;"> 
                         <h2 style="font-size: 27px;
                                     margin-top: 3px;
                                     margin-left: 10px;">
