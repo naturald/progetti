@@ -55,7 +55,7 @@
         echo "<div style='position:absolute;top: 20px;right:30px;'> ";
         echo "<h2 id='hide' style='font-size: 15px; position: relative; right: 40%;  width: 150px;'>".'Benvenuto,'."<br>". $_SESSION['nome']."  ".$_SESSION['cognome']."</h2> ";
         echo "</div>";
-        echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
+        echo "<div style='display: block; width: max-content;  margin-left: auto;  margin-right: auto;'> ";
         echo "<ul class='menu' style='display: table-cell;'> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
