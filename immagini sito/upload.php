@@ -23,4 +23,9 @@
         }
         header("location: index.php?status=true&idimg=".$_POST['idimg']); 
     }
+    else
+    {
+        header("location: index.php"); 
+    }
+
 ?>

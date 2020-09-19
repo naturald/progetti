@@ -20,11 +20,12 @@ html
 }
 .link
 {
+    max-width: 73%;
     width: fit-content;
     display: block;
     position: relative;
     margin: auto;
-    top: -190px;
+    top: -130px;
     max-height: 600px;
     height: fit-content;
 }
