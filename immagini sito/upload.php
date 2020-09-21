@@ -10,11 +10,19 @@
 
             $fileTmpName=$_FILES['img']['tmp_name'];
             $fileName=$_FILES['img']['name'];
-            $casa=move_uploaded_file($fileTmpName,"img/$fileName");
-            //$imge=file_get_contents($fileTmpName);
-            //$imge=addslashes(base64_encode($imge));
-            $query="insert immagine values(null,'".$_POST['titolo']."','img/".$fileName."');";
-            mysqli_query($conn,$query);
+            $fileExt=explode('.',$fileName);
+            $fileActualExt=strtolower(end($fileExt));
+                    
+            $allowed= array('jpg','png','jpeg','pdf');
+
+            if(in_array($fileActualExt, $allowed ))
+            {
+                $casa=move_uploaded_file($fileTmpName,"img/$fileName");
+                //$imge=file_get_contents($fileTmpName);
+                //$imge=addslashes(base64_encode($imge));
+                $query="insert immagine values(null,'".$_POST['titolo']."','img/".$fileName."');";
+                mysqli_query($conn,$query);
+            }
 
             
             mysqli_close($conn);

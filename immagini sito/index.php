@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(!($_SESSION['access']=="true"))
+    {
+        header("location: usercheck.php");
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +24,7 @@
         <input type="number" min="1" name="idimg" placeholder="Id img" class="dati">
         <div style="display: flex;">
         <input type="submit" name="fatto" class="submit" value="carica">
+       
 <?php
     if(strlen($_GET['idimg'])>0)
     {
@@ -22,6 +32,8 @@
     }
 ?>      
         </div>
+        <a href="session_destroy.php" style="text-decoration: none; width:max-content;     margin-top: 40px;" class="submit">Esci</a>
+    
     </form>
     
    
@@ -72,3 +84,4 @@
 
 </body>
 </html>
+
