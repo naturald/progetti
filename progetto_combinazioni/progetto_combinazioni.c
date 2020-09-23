@@ -17,6 +17,8 @@ int main()
 	int card_n;
 	int card_k;
 	int i;
+	int j;
+	int x;
 	int ris=0;
 	
 	printf("Benvenuto nel calcolatore di combinazioni massime con lunghezza minima fissa \n");
@@ -59,10 +61,68 @@ int main()
 		min_len=i;
 	}
 	
-	printf("%d",min_len);
+	//printf("%d",min_len);
+	printf("\n");
 	
 	int comb[min_len];
+	for(i=0;i<min_len;i++)
+		comb[i]=0;
+		
+	int N_comb=potenza(card_k,min_len);
+	int pos_simb=1;
+	int pos_len;
+	int simb_ele;
+	int simb_back;
+	for(simb_ele=0;simb_ele<card_k;simb_ele++)
+	{
+		for(simb_back=0;simb_back<card_k;simb_back++)
+		{
+			if(simb_ele==simb_back)
+			{
+				for(i=0;i<min_len;i++)
+				{
+					comb[i]=Alf_cod[simb_back];
+					printf("%d ",comb[i]);	
+					
+					
+				}
+				printf("\n");
+				continue;
+			}
+				
+				
+			for(pos_len=0;pos_len<min_len;pos_len++)
+			{
+				
+				//imposto il back-ground
+				for(i=0;i<min_len;i++)
+					comb[i]=Alf_cod[simb_back];
+					
+				for(j=0;j<min_len;j++)
+				{
+					if(j==pos_len)
+					{
+						comb[j]=Alf_cod[simb_ele];			
+					}
+					else
+					{
+						comb[j]=Alf_cod[simb_back];
+					}
+					
+					printf("%d ",comb[j]);
+						
+				}
+				printf("\n");	
+			}
+		}
 	
+	}
+	
+	/*for(i=0;i<min_len;i++)
+	{
+		comb[i]= Alf_cod[i];
+			
+	}*/
 	getch();
 	
 	return 0;
