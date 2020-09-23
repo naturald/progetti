@@ -16,7 +16,7 @@
     if(isset($_POST['sub']))
     {
 
-        $pas="OUsEfeReNtO";
+        $pas="jango";
         if($_POST['psw']===$pas)
         {
             echo "ciao";
