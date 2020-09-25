@@ -1,39 +1,4 @@
 CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-<?php 
-
-if(isset($_GET['sign_up']))
-{
-    echo "<a href='carrello.html'> ";
-    echo "<img src='img/carrello.png' id='carrello' class='carrello'> "."</a> ";
-
-    echo "<div style='position:absolute;top: 20px;right:30px;'> ";
-    
-    echo"<h2 class='hide' id='hide' style='font-size: 15px;  width: 150px;'>".'benvenuto '."</h2> ";
-    echo "</div>";
-    echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-    echo "<ul class='menu' style='display: table-cell;'> ";
-    echo "<li><a href='index.html' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-    echo "<li><a href='index.html' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-    echo "<li><a href='info.html' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
-    echo "<li><a href='index.html' style='text-decoration:none;'><h2 class='voci_hide' id='hide2'>logout</h2></a></li>"."</ul> ";
-                            
-}
-else
-{
-    echo "<div style='position:absolute;top: 20px;right:30px;'>";
-    echo "<button class='bottoni' id='btn' > ";
-    echo "<h2 style='font-size: 18px;'>"."Login"."</h2>";            
-    echo "</button> ";
-    echo "</div> ";
-    echo "<div style='display: block; width: fit-content;  margin-left: auto;  margin-right: auto;'> ";
-    echo "<ul class='menu' style='display: table-cell;'> ";
-    echo "<li><a href='index.html' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-    echo "<li><a href='index.html' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
-    echo "<li><a href='info.html' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
-}
-
-
-?>
 insert users values(null,"csa","dfsf","sdff","citta");
 $( selector ).load( URL );
 select iduser from users where email ="citta";
@@ -42,6 +7,9 @@ atoi(Plet.c_str())
 Student[] studentArray = new Student[7];
 UNIQUE KEY (`Employee_Code`),
 ALTER TABLE table_name AUTO_INCREMENT = value;
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 Denial of service = dos
 Distributed Denial of Services = ddos
 
