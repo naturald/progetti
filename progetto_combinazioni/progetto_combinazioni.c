@@ -12,6 +12,8 @@ int potenza(int base,int espo)
 	return Ris;	
 }
 
+
+
 int main()
 {
 	int card_n;
@@ -19,6 +21,7 @@ int main()
 	int i;
 	int j;
 	int x;
+	int y;
 	int ris=0;
 	
 	printf("Benvenuto nel calcolatore di combinazioni massime con lunghezza minima fissa \n");
@@ -66,8 +69,12 @@ int main()
 	
 	int comb[min_len];
 	for(i=0;i<min_len;i++)
-		comb[i]=0;
-		
+		comb[i]=Alf_cod[0];
+	
+	/* 
+
+	prima prova algoritmo brute-force
+
 	int N_comb=potenza(card_k,min_len);
 	int pos_simb=1;
 	int pos_len;
@@ -102,7 +109,7 @@ int main()
 				{
 					if(j==pos_len)
 					{
-						comb[j]=Alf_cod[simb_ele];			
+						comb[j]=Alf_cod[simb_ele];
 					}
 					else
 					{
@@ -118,11 +125,113 @@ int main()
 	
 	}
 	
-	/*for(i=0;i<min_len;i++)
+	for(i=0;i<min_len;i++)
 	{
 		comb[i]= Alf_cod[i];
-			
+		
 	}*/
+	int punt_cod=0;
+	int posiz;
+	int flag;
+	int contr=2;
+	int aumen_trig;
+	int comodo;
+	int status[min_len-1];
+	int status_len=min_len-1;
+	int n=2;
+	for(i=0;i<min_len;i++)
+		status[i]=1;
+	
+	for(i=0,posiz=2,flag=1,aumen_trig=0;flag==1;i++)
+	{
+		for(j=0;j<min_len;j++)
+		{
+			if(j==(min_len-1))
+				comb[j]=Alf_cod[punt_cod];
+				
+			printf("%d ",comb[j]);	
+		}
+		if(punt_cod<card_k-1)
+			punt_cod++;
+		else
+		{	
+			if(punt_cod==card_k-1)
+			{
+				punt_cod=0;
+				
+				
+				if(status[0]>=card_k-1)
+				{
+					status[0]=1;
+					status[1]++;
+					posiz++;
+					comb[min_len-posiz]=Alf_cod[status[1]];
+					posiz--;
+				}
+				else
+				{
+					status[0]++;
+					comb[min_len-posiz]=Alf_cod[status[0]];
+				}
+					
+				
+				for(x=1;x<n;x++)
+				{
+					comb[min_len-x]=Alf_cod[0];	
+				}
+
+				
+			}
+		
+		
+			/*for(x=1;x<min_len && comb[min_len-x]!=Alf_cod[0] ;x++)
+			{
+				if(comb[min_len-x]==Alf_cod[card_k-1])
+				{
+					for(j=0;j<card_k-1;j++)
+					{
+						if(comb[min_len-(x+1)]==Alf_cod[j])
+						{
+							if((j+1)==card_k)
+							{
+								for(y=2;comb[min_len-(x+y)]>=Alf_cod[card_k-1];y++)
+								{
+									flag_w=y;
+									comodo=x+y;
+								}
+								for(y=0;y<card_k;y++)
+								{
+									if(comb[min_len-(x+flag_w)]==Alf_cod[y])
+									{
+										comb[min_len-(x+flag_w)]=Alf_cod[y+1];	
+										
+										
+									}
+								}
+								
+							}
+							else
+							{
+								
+								comb[min_len-(x+1)]=Alf_cod[j+1];	
+								comodo=x+1;
+								break;
+								
+							}
+						}		
+					}	
+				}	
+			}
+			*/
+		}
+		
+		printf("\n");
+
+		if(comb[0]==Alf_cod[card_k-1])
+			flag=0;
+	}
+	
+	
 	getch();
 	
 	return 0;
