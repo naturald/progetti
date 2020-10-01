@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub siti</title>
+</head>
+<body style="margin: 0;">
+    <style>
+        .pagine
+        {
+            width: 50%;
+            height: 400px;
+            background: no-repeat center;
+            background-size:contain;
+
+        }
+        .contenitore
+        {
+            width: 100%;
+            height: 100%;
+            transition: 0.8s;
+            position: relative;
+        }
+        .copertina
+        {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            transition: 0.8s;
+        }
+        .copertina:hover
+        {
+            background-color: rgba(0,0,0,0.9);
+            transition: 0.8s;
+            
+        }
+        .copertina:hover + h1
+        {
+            color: yellow;
+            transition: 0.8s;
+        }
+        .titolo_sito
+        {
+            position: relative;
+            margin: 0;
+            width: max-content;
+            font-family: 'Courgette', cursive;
+            transition: 0.8s;
+            margin: auto;
+            top: -220px;
+            color: white;
+        }
+        a
+        {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <header style="position: fixed;width: 100%;height: 100px;display: flex; flex-direction: column; justify-content: center;box-shadow: 0px 0px 60px 10px;z-index: 99;" >
+        <h1 style="font-family: 'Courgette', cursive;margin: auto;width: max-content;vertical-align: middle;">Hub Siti</h1>
+    </header>
+    <div style="display: flex;flex-wrap: wrap;position: relative;top: 150px;">
+        <a href="" class="pagine"  style="background-image: url('img/pre_gusci.png')">
+            <div class="contenitore" >
+                <div class="copertina"></div>
+                <h1 class="titolo_sito">Gusci</h1>
+            </div>
+        </a>
+        <a href="" class="pagine"  style="background-image: url('img/pre_immgini.png')">
+            <div class="contenitore" >
+                <div class="copertina"></div>
+                <h1 class="titolo_sito">Immagini</h1>
+            </div>
+        </a>
+        <a href="" class="pagine"  style="background-image: url('img/pre_presentazione.png')">
+            <div class="contenitore" >
+                <div class="copertina"></div>
+                <h1 class="titolo_sito">Presentazione</h1>
+            </div>
+        </a>
+        <a href="" class="pagine"  style="background-image: url('img/pre_sito_tps.png')">
+            <div class="contenitore" >
+                <div class="copertina"></div>
+                <h1 class="titolo_sito">Sito Tps</h1>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
