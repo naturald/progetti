@@ -4,23 +4,9 @@
 
 using namespace std;
 
-int  main()
+void dis_campo(char campo[3][3])
 {
-	srand(time(NULL));
-	cout<<"Benvenuto nel gioco del tris \n\n";
-	
-	int i,j,turno=0,fine=0;
-	char campo[3][3];
-	
-	
-	for(i=0;i<3;i++)
-		for(j=0;j<3;j++)
-			campo[i][j]=' ';
-		
-	
-	do
-	{	
-		for(i=0;i<3;i++)
+	for(int i=0;i<3;i++)
 		{
 			if(i==0)
 			{
@@ -31,14 +17,45 @@ int  main()
 				cout<<" o---o---o---o \n";
 				
 			cout<<i;
-			for(j=0;j<3;j++)
+			for(int j=0;j<3;j++)
 			{
 				cout<<"| "<<campo[i][j]<<" ";
 				
 			}
 			cout<<"|\n";
 		}	
-		cout<<" o---o---o---o \n";
+		cout<<" o---o---o---o \n";	
+}
+void spazzi()
+{
+	for(int i=0;i<20;i++)
+		cout<<"\n";
+}
+
+int  main()
+{
+	int i,j,turno=0,fine=0,n_gioc;
+	char campo[3][3];
+	
+	srand(time(NULL));
+	cout<<"Benvenuto nel gioco del tris\n";
+	do
+	{
+		cout<<"quanti giocatori min 1 max 2: ";
+		cin>>n_gioc;
+	}
+	while(n_gioc<1||n_gioc>2);
+
+	for(i=0;i<3;i++)
+		for(j=0;j<3;j++)
+			campo[i][j]=' ';
+		
+	
+	do
+	{	
+		spazzi();
+		dis_campo(campo);
+		
 		cout<<"\n\n";
 		
 		if(turno==5||fine!=0)
@@ -50,11 +67,11 @@ int  main()
 		cout<<"scegli cordinate dove mettere la X\n";
 		do
 		{
-			cout<<"indica colonna tra 0 e 2: ";
-			cin>> j;
 			cout<<"indice righa tra 0 e 2: ";
 			cin>>i;
-			if(campo[i][j]=='O'||campo[i][j]=='X')
+			cout<<"indica colonna tra 0 e 2: ";
+			cin>> j;
+			if(campo[i][j]!=' ')
 			{
 				i=-1;
 				cout<<"gia' occupata questa posizione rimetti \n";
@@ -106,21 +123,48 @@ int  main()
 				continue;
 			
 		}
-		
-	
-		
-		
+			
 		
 		if(turno<4)
 		{
-			do
+			switch(n_gioc)
 			{
-				i=rand()%3;
-				j=rand()%3;
-			}
-			while(campo[i][j]=='O'||campo[i][j]=='X');
-			campo[i][j]='O';
+				case 1:	
+					do
+					{
+						i=rand()%3;
+						j=rand()%3;
+					}
+					while(campo[i][j]=='O'||campo[i][j]=='X');
+					campo[i][j]='O';
+				break;
 				
+				case 2:	
+					spazzi();
+						
+					dis_campo(campo);
+					
+					
+					cout<<"scegli cordinate dove mettere la O\n";
+					do
+					{
+						cout<<"indice righa tra 0 e 2: ";
+						cin>>i;
+						cout<<"indica colonna tra 0 e 2: ";
+						cin>> j;
+						if(campo[i][j]!=' ')
+						{
+							i=-1;
+							cout<<"gia' occupata questa posizione rimetti \n";
+						}
+						cout<<"\n\n";
+						
+					}
+					while((i<0 || i>2) ||  (j<0 || j>2));
+					campo[i][j]='O';
+				break;	
+			}
+					
 			if(turno>=2)
 			{
 				for(i=0;i<3;i++)
@@ -159,28 +203,33 @@ int  main()
 				}
 				if(fine!=0)
 					continue;
+			
 			}
 		}
-		
-		if(turno<4)	
-			for(i=0;i<20;i++)
-				cout<<"\n";
-		
+
+	
 		turno++;
+		cout<<turno;
 	}
-	while(turno<=5);
+	while(turno<=9);
 	
 	if(turno==5)
 		cout<<"PARITA'\n\n";
 		
 	switch(fine)
 	{
-		case 1:	
-			cout<<"HAI VINTO \n\n";	
+		case 1:
+			if(n_gioc==2)
+				cout<<"HA VINTO X\n\n";	
+			else
+				cout<<"HAI VINTO \n\n";		
 		break;
 		
 		case 2:	
-			cout<<"HAI PERSO \n\n";
+			if(n_gioc==2)
+				cout<<"HA VINTO O\n\n";	
+			else
+				cout<<"HAI PERSO \n\n";	
 		break;	
 	}
 
