@@ -209,7 +209,7 @@ int  main()
 
 	
 		turno++;
-		cout<<turno;
+	
 	}
 	while(turno<=9);
 	

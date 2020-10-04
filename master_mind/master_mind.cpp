@@ -4,10 +4,32 @@
 
 using namespace std;
 
+int quanti_ele(int arr[4],int ele)
+{
+	int i;
+	int quantita=0;
+	int pos_prim=0;
+	for(i=0;i<4;i++)
+	{
+			
+		if(arr[i]==ele)
+		{
+			if(quantita==0)
+				pos_prim=i;
+			else
+				quantita++;
+		}
+		
+	}
+	return pos_prim;
+}
+
+
+
 int main()
 {
 	srand(time(NULL));
-	int comb[4],soluz[4],i,indizzi[4]={0},tenta=0;
+	int comb[4],soluz[4],i,indizzi[4]={0},tenta=0,primo;
 	
 	for(i=0;i<4;i++)
 		soluz[i]=rand()%10;
@@ -43,10 +65,19 @@ int main()
 				if(comb[j]==soluz[x])
 				{
 					if(j==x)
-						indizzi[j]=2;
+					{
+						indizzi[j]=2;						
+					}
 					else
-						indizzi[j]=1;
-							
+					{
+						primo=quanti_ele(comb,comb[j]);
+						if(primo!=j)
+							indizzi[j]=0;
+						else
+						{
+							indizzi[j]=1;
+						}	
+					}					
 				}
 			}
 			cout<<comb[j];			
@@ -66,7 +97,7 @@ int main()
 			
 		tenta++;
 	}
-	while(tenta<=10);
+	while(tenta<10);
 	
 	
 	
