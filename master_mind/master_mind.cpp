@@ -4,24 +4,29 @@
 
 using namespace std;
 
-int quanti_ele(int arr[4],int ele)
+int prim_occ(int arr[4],int ele)
 {
-	int i;
-	int quantita=0;
-	int pos_prim=0;
-	for(i=0;i<4;i++)
-	{
-			
+	int pos_prim;
+	for(int i=0;i<4;i++)	
 		if(arr[i]==ele)
 		{
-			if(quantita==0)
-				pos_prim=i;
-			else
-				quantita++;
+			pos_prim=i;
+			break;
 		}
 		
-	}
 	return pos_prim;
+}
+int cerca_ele(int arr[4],int ele)
+{
+	int pos=-1;
+	for(int i=0;i<4;i++)
+		if(arr[i]==ele)
+		{
+			pos=i;
+			break;
+		}
+		
+	return pos;		
 }
 
 
@@ -29,10 +34,18 @@ int quanti_ele(int arr[4],int ele)
 int main()
 {
 	srand(time(NULL));
-	int comb[4],soluz[4],i,indizzi[4]={0},tenta=0,primo;
+	int comb[4],soluz[4]={-1},i,indizzi[4]={0},tenta=0,primo,pos_sbagl,prov_sol,com_sort;
 	
 	for(i=0;i<4;i++)
-		soluz[i]=rand()%10;
+	{
+		do
+		{
+			prov_sol=rand()%10;	
+		}
+		while(cerca_ele(soluz,prov_sol)!=-1);
+		soluz[i]=prov_sol;
+	}
+
 	
 	do
 	{
@@ -66,24 +79,42 @@ int main()
 				{
 					if(j==x)
 					{
-						indizzi[j]=2;						
+						indizzi[j]=2;	
+						break;					
 					}
-					else
+					else	
 					{
-						primo=quanti_ele(comb,comb[j]);
-						if(primo!=j)
-							indizzi[j]=0;
-						else
-						{
+						primo=prim_occ(comb,comb[j]);
+						if(primo==j)
 							indizzi[j]=1;
-						}	
-					}					
+						else
+							indizzi[j]=0;
+					}				
 				}
-			}
-			cout<<comb[j];			
+			}			
+		}
+		for(i=0;i<4;i++)	
+		{
+			if(indizzi[i]==2)
+				for(int j=0;j<4;j++)
+					if(comb[i]==comb[j]&&i!=j)
+						indizzi[j]=0;
+			
+			cout<<comb[i];			
 		}
 				
-			
+		for(i=0;i<4;i++)
+		{
+			for(int j=0;j<4;j++)
+			{		
+				if(indizzi[i]>indizzi[j])
+				{
+					com_sort=indizzi[j];
+					indizzi[j]=indizzi[i];
+					indizzi[i]=com_sort;
+				}
+			}
+		}
 
 		cout<<"  ";
 		for(i=0;i<4;i++)
