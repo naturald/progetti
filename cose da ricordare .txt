@@ -41,6 +41,7 @@ RICERCA DICOTOMICA
 
 LOGARITMO
 
+cisco packet tracer= programma per creare reti 
 
 
 //___________________hacker rank______________________//
