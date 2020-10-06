@@ -41,6 +41,7 @@ RICERCA DICOTOMICA
 
 LOGARITMO
 
+Nic =(Network interface card)
 cisco packet tracer= programma per creare reti 
 
 
