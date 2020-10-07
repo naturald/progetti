@@ -4,10 +4,10 @@
 	il programma non è ottimizato al meglio ma ho cercato di fare il mio meglio senza guardare da internet
 */
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include <conio.h>
-
+#include <stdlib.h>//per rand() e srand()
+#include <time.h>//per time(NULL)
+#include <conio.h>//per getch()
+#define LEN_MAX 1000000000
 using namespace std;
 
 //funzione che cerca la prima occorenza di un elemento in un array
@@ -36,16 +36,24 @@ int cerca_ele(int arr[4],int ele)
 		
 	return pos;		
 }
-
+//funzione per mettere spazzi
+void spazzi(int n_spaz)
+{
+	for(int i=0;i<n_spaz;i++)
+		cout<<"\n";
+}
 
 
 int main()
 {
+
 	srand(time(NULL));
-	int comb[4],soluz[4]={-1},i,indizzi[4]={0},tenta=0,primo,pos_sbagl,prov_sol,com_sort,n_2;
+	//da un seed alla combinazione casuase ad ogni seed è associata una combinazione fissa ma se cambiamo il seed ogni volta avremmo combinazioni diverse 
+	//questo è possibile  grazie a time() che returna i secondi da una data 1970(credo) il numero dei secondi cambia sempre dando sempre un seed diverso a srand()
+	int comb[4],soluz[4]={-1},i,indizzi[4]={0},tenta=0,primo,pos_sbagl,prov_sol,com_sort,n_volt2;
 	string risposta;
 	
-	cout<<"Benvenuto sul gioco Mastermind \n vuoi leggere il manuale prima di iniziare rispondi si o no : ";
+	cout<<"Benvenuto sul gioco Mastermind \nvuoi leggere il manuale prima di iniziare rispondi si o no : ";
 	cin>>risposta;
 	while(risposta!="no"&&risposta!="si")
 	{
@@ -54,23 +62,21 @@ int main()
 	}
 	if(risposta=="si")
 	{
-		cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		spazzi(20);
 		cout<<"Questo programma si basa su un gioco da tavolo chiamato 'Mastermind'\n";
 		cout<<"dove c'e' un codificatore (in questo caso il pc) che crea un codice nascosto a chi deve cercare di indovinarte \n";
 		cout<<"colui che cerca di indovinare ha 10 tentativi per indovinare la combinaziione nascosta se no perde\n";
 		cout<<"in caso sbagliasse la conmbinazione gli verranno dati degli indizzi\n";
 		cout<<"dove il 2 significa che un numero non specificato della combinazione e'esatto ed e' nella posizione giusta \n";
 		cout<<"l'indizio con numero 1 indica che un numero non specificato e' giusto ma non nella posizione corretta \n";
-		//cout<<"infine lo 0 che indica che non ci sono numeri nel tentativo che corrispondono alla combinazione nascosta \n";
 		cout<<"\n\n\n\n PREMERE QUALSIASI TASTO PER INIZIARE A GIOCARE\n\n\n\n";
 	
 		getch();
 	}
 	
 	//per creare un effetto di pagina nuova 
-	for(i=0;i<50;i++)
-		cout<<"\n";
-		
+	spazzi(50);
+	
 	//creo il codice nascosto che ha ogni singolo numero diverso dal altro grazie alla funzione creata sopra cerca_ele()
 	for(i=0;i<4;i++)
 	{
@@ -93,16 +99,25 @@ int main()
 		for(i=0;i<10;i++)
 			cout<<i<<";";
 		
-		cout<<"\n\n\n\n";	
+		spazzi(4);	
 		
 		for(i=0;i<4;i++)
 		{
 			cout<<"metti numero per la combinazione tra quelli a disposizione: ";
 			cin>>comb[i];
-			while(comb[i]>9 || comb[i]<0)
+			while((comb[i]>9 || comb[i]<0)|| cin.fail())//cin.fail() chiede lo stato dell input ovvero di cin
 			{
+				cin.clear();//pulisce l'input stream 
+				cin.ignore(LEN_MAX, '\n');// ignora i caratteri messi in precedenza fino a LEN_MAX che è uguale a 1000000000
+			
+				/*
+					ho fatto questo perché se si prova a mettere un  carattere o una stringha dentro una variablie intera 
+					si avrà come se il buffer dell input fosse sempre "pieno" o completato  dopo qualche ricerca ho scoperto che questo è dovuto 
+					dal fatto  che il cin e uno stato fallimentare e attiva una flag d'errore che è il motivo per cui continua a ciclare all'infinito 
+					lui cicla fino a che la flag dell'errore e il buffer non sono resettati (o almeno credo)
+				*/
 				cout<<"mettere un numnero tra 0 a 9 \n";
-				cout<<"metti numero per la combinazione tra quelli disposizione: ";
+				cout<<"metti numero per la combinazione tra quelli a disposizione: ";
 				cin>>comb[i];	
 			}
 		}
@@ -129,7 +144,7 @@ int main()
 						else
 							indizzi[j]=0;
 						
-						//se j!=k ovveroil numero è giusto ma posizione sbagliata e ci sono piu numeri uguali nel tentativo allora chiamo la funz prim_occ() 
+						//se j!=k ovvero il numero è giusto ma posizione sbagliata e ci sono piu numeri uguali nel tentativo allora chiamo la funz prim_occ() 
 						//che trova la prima occorenza del numero passato nel array passato  facendo cosi tento conto del numero solo la prima volta che lo incontro 
 						//evitando cosi di mettere 1 in piu 
 					}				
@@ -165,16 +180,16 @@ int main()
 		}
 
 		cout<<"  indizzi: ";
-		for(i=0,n_2=0;i<4;i++)
+		for(i=0,n_volt2=0;i<4;i++)
 		{
 			cout<<indizzi[i];
 			if(indizzi[i]==2)
-				n_2++;
+				n_volt2++;
 		}
 		
-		cout<<"\n\n\n";	
+		spazzi(3);	
 		
-		if(n_2==4)
+		if(n_volt2==4)
 		{
 			cout<<"HAI VINTO \n\n";	
 			break;	
@@ -185,17 +200,15 @@ int main()
 	}
 	while(tenta<10);
 	
-	if(n_2<4)
+	if(n_volt2<4)
 		cout<<"HAI PERSO \n\n";	
 		
 	cout<<"la combinazione giusta era: ";
 	for(i=0;i<4;i++)
 		cout<<soluz[i];
 		
-	cout<<"\n\n\n\n";
+	spazzi(4);
 		
 	
-	getch();
-	
-	
+	getch();	
 }
