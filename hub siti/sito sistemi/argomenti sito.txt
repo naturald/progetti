@@ -1,0 +1,26 @@
+pag3 
+-descrizione
+Un dispositivo mobile, in informatica e elettronica, indica tutti quei dispositivi elettronici che sono pienamente utilizzabili seguendo la mobilità dell'utente quali telefoni cellulari, palmari, smartphone, tablet, laptop, lettori MP3, ricevitori GPS ecc.[1][2]. Il termine designa dunque in modo generico le tecnologie di elaborazione o accesso ai dati (anche via Internet) prive di vincoli sulla posizione fisica dell'utente o delle apparecchiature coinvolte.
+L'espressione "computer mobile" (mobile computer) viene talvolta usata per riferirsi alle apparecchiature utilizzate. Con il termine Mobile Internet Device (spesso abbreviato in MID) vengono indicati invece alcuni particolari dispositivi destinati soprattutto alla navigazione in Internet e pensati soprattutto per un pubblico non professionale, il cui sviluppo è stato portato avanti nel corso del 2007.
+-storia
+Le origini del mobile computing si possono ricondurre alla progressiva diffusione dei personal computer portatili, a sua volta legata ai progressi tecnologici che hanno consentito una progressiva riduzione delle dimensioni dei componenti hardware. La categoria dei portatili ha subito una rapida evoluzione negli ultimi decenni, dando origine a una ampia classe di categorie di computer a basso ingombro come laptop, notebook, tablet PC e così via, fino ai palmari. Contemporaneamente alla miniaturizzazione dei computer, altri dispositivi digitali di piccole dimensioni (come fotocamere digitali, lettori mp3, telefoni cellulari, navigatori GPS) hanno visto un accrescimento delle loro capacità di calcolo e delle loro possibilità di interconnessione, portando a un mercato in cui il confine fra computer e altri dispositivi è sempre più sfumato. 
+
+
+-primo laptop
+https://it.wikipedia.org/wiki/Osborne_1#:~:text=L'Osborne%201%20%C3%A8%20stato,era%20il%20CP%2FM%20
+
+-maggiori esponenti 
+
+-*necessita 
+
+in seguito e2 esempi di dispositivi mobili 
+
+
+pag 4 
+
+lap top
+
+
+pag 5 
+
+tablet/MP3
