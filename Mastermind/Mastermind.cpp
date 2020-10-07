@@ -42,7 +42,11 @@ void spazzi(int n_spaz)
 	for(int i=0;i<n_spaz;i++)
 		cout<<"\n";
 }
-
+void linea()
+{
+	for(int i=0;i<70;i++)
+		cout<<"-";
+}
 
 int main()
 {
@@ -188,6 +192,8 @@ int main()
 		}
 		
 		spazzi(3);	
+		linea();
+		spazzi(3);	
 		
 		if(n_volt2==4)
 		{
@@ -208,6 +214,7 @@ int main()
 		cout<<soluz[i];
 		
 	spazzi(4);
+	
 		
 	
 	getch();	
