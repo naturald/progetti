@@ -1,4 +1,4 @@
-//programma emulazione del gioco Mastermind creato da marco schiavello  il 05/10/2020
+//programma emulazione del gioco Mastermind creato da Marco schiavello  il 05/10/2020
 /*
 	chiunque guardi il codice prego di non guardare l'aspetto grammatico (lo so fa schifo)
 	il programma non è ottimizato al meglio ma ho cercato di fare il mio meglio senza guardare da internet
@@ -64,7 +64,7 @@ int main()
 	{
 		spazzi(20);
 		cout<<"Questo programma si basa su un gioco da tavolo chiamato 'Mastermind'\n";
-		cout<<"dove c'e' un codificatore (in questo caso il pc) che crea un codice nascosto a chi deve cercare di indovinarte \n";
+		cout<<"dove c'e' un codificatore (in questo caso il programma) che crea un codice nascosto a chi deve cercare di indovinarte \n";
 		cout<<"colui che cerca di indovinare ha 10 tentativi per indovinare la combinaziione nascosta se no perde\n";
 		cout<<"in caso sbagliasse la conmbinazione gli verranno dati degli indizzi\n";
 		cout<<"dove il 2 significa che un numero non specificato della combinazione e'esatto ed e' nella posizione giusta \n";
@@ -89,7 +89,7 @@ int main()
 	}
 
 
-	//ciclo che cicla per 10 volte, 10 perche corrispondono ai tentativi massimi 
+	//ciclo che cicla per 10 volte, 10 perché corrispondono ai tentativi massimi 
 	do
 	{
 		for(i=0;i<4;i++)
@@ -165,7 +165,7 @@ int main()
 		}
 		
 		
-		//sorto gli indizzi in modo che non si capisca dalla posizione del indizzio a chi e riferito	
+		//sorto gli indizzi in modo che non si capisca dalla posizione del indizzio a chi è riferito	
 		for(i=0;i<4;i++)
 		{
 			for(int j=0;j<4;j++)
