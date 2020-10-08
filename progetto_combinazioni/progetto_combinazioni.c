@@ -140,7 +140,7 @@ int main()
 	int status_len=min_len-1;
 	int n=2;
 	for(i=0;i<min_len;i++)
-		status[i]=1;
+		status[i]=0;
 	
 	for(i=0,posiz=2,flag=1,aumen_trig=0;flag==1;i++)
 	{
@@ -162,11 +162,15 @@ int main()
 				
 				if(status[0]>=card_k-1)
 				{
-					status[0]=1;
-					status[1]++;
-					posiz++;
-					comb[min_len-posiz]=Alf_cod[status[1]];
-					posiz--;
+					status[0]++;
+					//status[1]++;
+					//posiz++;
+					comb[min_len-posiz]=Alf_cod[status[1]+1];
+					for(j=0;j<posiz;j++)
+					{
+						comb[min_len-j]=0;
+					}	
+					//posiz--;
 				}
 				else
 				{
