@@ -140,44 +140,31 @@ int main()
 		//assegno in ordine le parole alle combinazioni
 		if(n_comb<card_n)
 			printf("= %s",Alf_src[n_comb]);
-		
-		//FORSE DA OTTIMIZARE O LOGICA FALLACE NON OTTIMIZATA NEL CICLO 
-		for(i=0;i<min_len;i++)
+	
+		//vedo se il primo ha raggiunto il massimo valore del afabelo del codice
+		if(status[0]>=card_k-1)
 		{
-			//scorro tutta la combinazione dello stato finche non trovo un numero che è il massimo del insieme per incrementare il prossimo
-			if(status[i]>=card_k-1)
-			{
-				//vedo se il numero succesivo a il primo trovato e anche lui il numero massimo del insieme
-				//se no vado avanti finche non trovo un numero diverso da quello massimo del insieme
-				for(j=1;j<min_len;j++)
+			//vedo se il numero succesivo al primo e anche lui il numero massimo del insieme
+			//se si, vado avanti finche non trovo un numero diverso da quello massimo del alfabeto del codice
+			for(j=1;j<min_len;j++)
+				if(status[j]!=card_k-1)
 				{
-					if(status[i+j]!=card_k-1)
-					{
-						status[i+j]++;
-						break;
-					}
+					status[j]++;
+					break;
 				}
 				
-				//dopo aumentare il succesivo metto a zero gli altri prima es(999 +1 1000)	
-				for(x=0;x<=(i+j)-1;x++)
-					status[x]=0;
-						
-				break;
-			}
-			else
-			{
-				//se non e il numero massimo continuo ad aumentare 
-				status[i]++;
-				break;
-			}
-		}	
-		
+			//dopo aumentare il succesivo metto a zero gli altri prima es(999 +1 =1000)
+			for(x=0;x<=j-1;x++)
+				status[x]=0;
+		}
+		else
+			status[0]++;
+		//se non è il numero massimo continuo ad aumentare  
+	
 		//metto una maschera diciamo così allo status in modo che punti al corrispetivo elemento del afabeto del codice
 		for(i=0;i<min_len;i++)
-		{
 			comb[(min_len-1)-i][0]=Alf_cod[status[i]][0];
-		}
-		
+			
 		printf("\n");
 	}
 	
