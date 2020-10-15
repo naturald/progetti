@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <math.h>
 #define MAX_LEN 700
 
 using namespace std;
@@ -43,7 +44,7 @@ int main()
 			dec[j]=0;			
 		}
 			
-		printf("inserire numero in base 10: ");
+		printf("inserire numero in base 10 (max 5 numeri decimali): ");
 		scanf("%f",&n);
 		part_dec=n;
 		part_int= (int) n;
@@ -73,13 +74,15 @@ int main()
 		{
 			if(part_dec==0.0)
 				break;
-			printf("%.*f * %d = %.*f --> %.*f + %d \n",cifr_dec,part_dec,base,cifr_dec,part_dec*base,cifr_dec,(part_dec*base)-(int) (part_dec*base), (int) (part_dec*base));
+				
+			printf("%.5f * %d = %.5f --> %.5f + %d \n",part_dec,base,part_dec*base,(part_dec*base)-(int) (part_dec*base), (int) (part_dec*base));
 			part_dec*=base;
 			dec[j]=(int) part_dec;
 			part_dec-=(int) part_dec;
+			round(part_dec * 10000L);
 		}
 		
-		printf("\n\n(%.*f) 10 = (",cifr_dec,n);
+		printf("\n\n(%.5f) 10 = (",n);
 		for(;i>=0;i--)
 		{
 			if(inte[i]>9)
