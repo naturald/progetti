@@ -6,11 +6,10 @@
 
 int main()
 {
-	long long int min=MAX_INT,n,i=0;
+	int min=MAX_INT,n,i=0;
 	
 	do
 	{
-		
 		do
 		{
 			printf("inserire n: ");
@@ -28,4 +27,4 @@ int main()
 	
 	getch();
 	
-}
+}n
