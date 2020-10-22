@@ -10,26 +10,28 @@ int main()
 	
 	do
 	{
-		printf("mettere num alunni: ");
+		system("cls");
+		printf("mettere num alunni (min 3 max 33): ");
 		scanf("%d",&n_stud);
-		if(n_stud>=30)
-			n_stud=-1;
 	}
-	while(n_stud<0);
+	while(n_stud<3||n_stud>33);
 	
 	while(i<n_stud)
 	{
 		do
 		{
-			printf("mettere peso singolo alunno: ");
+			printf("mettere peso singolo alunno %d (min 11 max 200): ",i+1);
 			scanf("%d",&peso);
 		}
-		while(peso<0);
+		while(peso<11||peso>200);
 		
 		som=som+peso;
 		i=i+1;
 	}
 	media=som/n_stud;//troncato perché è intero
-	printf("la media dei pesi e': %d ",media);
+
+	printf("la media dei pesi e': %d \n",media);
+	printf("la somma dei pesi e': %d \n",som);
+	getch();
 }
 
