@@ -13,6 +13,11 @@ ALTER TABLE table_name AUTO_INCREMENT = value;
 Denial of service = dos
 Distributed Denial of Services = ddos
 
+Amplified Denial of service = ados
+ADSL=sigla dell'inglese Asymmetric Digital Subscriber Line, in italiano Linea Asimmetrica di Sottoscrizione Digitale
+
+Cross Site Request Forgery=XSRF (non piu usato)
+
 La multiplazione, o in inglese multiplexing, nelle telecomunicazioni, elettronica e reti di computer, è il meccanismo o tecnica di trasmissione 
 per cui più canali trasmissivi in ingresso condividono la stessa capacità trasmissiva disponibile in uscita ovvero combinando più segnali analogici o flussi di dati digitali 
 detti segnali tributari) in un solo segnale (detto multiplato) trasmesso in uscita su uno stesso collegamento fisico.

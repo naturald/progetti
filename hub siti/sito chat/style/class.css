@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body,html
+{
+	width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.tit_log
+{
+    width: max-content;
+    position: relative;
+    top: 30px;
+    margin:auto;
+    font-family: 'Roboto', sans-serif;
+}
+.input_log
+{
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: black solid 1px;
+    transition: 0.3s;
+    width: 150px;
+    font-size: 20px;
+}
+.input_log:focus
+{
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: black solid 1px;
+    transition: 0.3s;
+    width: 200px;
+}
+.input_log+label
+{
+    position: relative;
+    top: -25px;
+    pointer-events: none;
+    cursor: text;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color:rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    height: 0;
+}
+.input_log:valid + label,
+.input_log:focus + label
+{
+    position: relative;
+    top: -50px;
+    font-size: small;
+    transition: 0.3s;
+    color:rgba(0, 0, 0, 1);
+}
+.sub_log
+{
+    border-radius: 20px;
+    background-color: white;
+    padding: 6px;
+    font-size: 15px;
+    border: solid 1px;
+    padding: 10px 7px 10px 7px;
+    transition: 0.4s;
+}
+.sub_log:hover
+{
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    padding: 20px 20px 20px 20px;
+    font-size: 15px;
+    border: solid 1px;
+    transition: 0.4s;
+    width:100px;
+}
+.message
+{
+    width: 86%;
+    border: solid 2px black;
+    border-radius: 50px;
+    font-size: 20px;
+    padding: 10px;
+    margin: auto;
+    outline: none;
+}
+.send
+{
+    outline: none;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 15px;
+    padding: 12.5px 10px 12.5px 10px;
+    border: solid 2px;
+    transition: 0.5s;
+}
+.send:hover
+{
+    outline: none;
+    border-radius: 20px;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    border: solid 2px;
+    padding: 12.5px 10px 12.5px 10px;
+    transition: 0.5s;
+}
+.msg
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.box_msg
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
