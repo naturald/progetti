@@ -24,11 +24,10 @@
             </form>
         </div>
     </div>
-    <button type="button" onclick="ajax_try()" >ajax</button>
     <script type="text/javascript">
 
         var ajax=new XMLHttpRequest();
-        ajax.open("GET","foo.php",false);
+        ajax.open("GET","chat.php",false);
         ajax.send(null);
         document.getElementById("ajax_up").innerHTML=ajax.responseText;
         
