@@ -17,7 +17,7 @@
                     <li>
                         <h2>Descrizione</h2>
                         <font font size="4px" face = "Verdana">
-                            Lo schema si basa su cinque componenti fondamentali:
+                            Lo schema si basa su quatro componenti fondamentali:
                             <ol>
                                 <li>CPU(importantissima in un pc) che si divide a sua volta in unità aritmetica e logica (o ALU) e unità di controllo;</li>
                                 <li>Unità di memoria, intesa come memoria di lavoro o memoria principale (RAM, Random Access Memory);</li>
@@ -35,13 +35,13 @@
             <li>
                 <h2>CPU</h2>
                 <font font size="4px" face = "Verdana">
-                    Una generica CPU contiene:
+                    Una CPU contiene:
                     <ol>
                         <li>
                             <h3>Unità di controllo (Control Unit o CU)</h3> 
                             preleva istruzioni e dati dalla memoria centrale, decodifica le istruzioni e le invia ad un'unità aritmetica e logica per poi comandarne l'esecuzione.
                             Una volta finita l'esecuzione di una istruzione e solo allora, la CU ha il compito di prelevare una nuova istruzione e gli eventuali dati. La CU ha inoltre il compito di inviare 
-                            dati relativi ai risultati delle elaborazioni. Infine, nei computer moderni, la CU ha il compito di organizzare il lavoro delle altre unità di elaborazione;
+                            dati relativi ai risultati delle elaborazioni.
                         </li>
                         <li>
                             <h3>unità aritmetica e logica (Arithmetic Logic Unit o ALU)</h3>
@@ -50,7 +50,8 @@
                         <br>
                         <li>
                             <h3>Registri interni</h3>
-                            hanno un tempo di accesso nettamente inferiore a quello della memoria centrale
+                            hanno un tempo di accesso nettamente inferiore a quello della memoria centrale, hanno funzione di ausilio per l'istruzione in elaborazione contenedo informazioni o stati del elaborazione e esistono di tre tipi
+                            di uso speciale,generale e quelli di sengmento.
                         </li>
                     </ol>
                 </font>
@@ -62,9 +63,8 @@
                         <h2 >Memoria</h2>
                         <font font size="4px" face = "Verdana">
                             La memorizzazione di informazioni in memoria e il loro successivo recupero sono funzioni fondamentali nei processi di elaborazione dati. La capacità dei supporti di memoria elettronici 
-                            di immagazzinare grandi quantità di dati in poco spazio e la velocità con cui è possibile prelevare un'informazione fa parte delle motivazioni chiave per lo sviluppo dell'elettronica, 
-                            portando per esempio alla nascita dei database moderni.È anche possibile inserire ed eliminare programmi da una stessa memoria. 
-                            Ciò fa si che un computer possa teoricamente eseguire infiniti programmi nell'arco della sua esistenza, rendendo possibile una macchina di Turing con una memoria di capienza finita.
+                            di immagazzinare grandi quantità di dati in poco spazio e la velocità con cui è possibile prelevare un'informazione fa parte delle motivazioni chiave per lo sviluppo dell'elettronica.
+                            È anche possibile inserire ed eliminare programmi da una stessa memoria. 
                         </font>
                     </li>
                 </tr>
@@ -76,26 +76,25 @@
             <li>
                 <h2>Periferiche</h2>
                 <font font size="4px" face = "Verdana">
-                    Una periferica, nell'informatica, indica un qualsiasi dispositivo hardware al quale è collegata.Ogni periferica può essere di ingresso, di uscita o ausiliaria al funzionamento interno.
+                    Una periferica, nell'informatica, indica un qualsiasi dispositivo hardware collegato a PC.Ogni periferica può essere di ingresso, di uscita o ausiliaria al funzionamento interno.
                 </font>
             </li>
             <li>
                 <h2>Bus</h2>
                 <font font size="4px" face = "Verdana">
                     E' un canale di comunicazione che permette a periferiche e componenti di un sistema elettronico di interfacciarsi tra loro scambiandosi informazioni o dati di sistema attraverso la trasmissione e la ricezione di segnali.
-                    Il bus di sistema, presente in tutti i microcalcolatori, è composto da 50 a 100 fili in rame incisi sulla scheda madre essi si suddividono in 3 tipi
+                    Il bus di sistema è composto da 50 a 100 fili in rame incisi sulla scheda madre essi si suddividono in 3 tipi
                     <ol>
                         <li>
                             <h3>Bus dati</h3>
-                            il bus dati viene utilizzato per lo scambio di informazioni tra i vari dispositivi. È bidirezionale in quanto l'invio dei dati non è di sola appartenenza alla CPU  
+                            il bus dati viene utilizzato per lo scambio di informazioni tra i vari dispositivi, È bidirezionale.
                         </li>
                         <br>
                         <li>
                             <h3>Bus indirizzi</h3>
                             È il bus (unidirezionale) attraverso il quale la CPU decide in quale indirizzo andare a scrivere o a leggere informazioni; sia le celle di memoria (RAM)
                             sia le periferiche di I/O (Input/Output) sono infatti divise in zone, ognuna delle quali ha un dato indirizzo. Dopo aver comunicato l'indirizzo tramite questo bus,
-                            la scrittura o lettura avviene normalmente tramite il bus dati. Naturalmente il bus indirizzi è fruibile in scrittura solo dalla CPU e in lettura dagli altri componenti, 
-                            in quanto tramite questo bus viene dato solo l'indirizzo della cella, che è deciso dalla CPU.    
+                            la scrittura o lettura avviene normalmente tramite il bus dati.   
                         </li>
                         <br>
                         <li>
