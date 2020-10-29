@@ -9,7 +9,6 @@ function close_menu()
 function color(input)
 {
     document.getElementById("text").style.color="#"+input;
-    console.log(input);
 }
 function font_size(input)
 {
