@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prove quarto sito tps</title>
+    <style>
+        html,body
+        {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .test_zone
+        {
+            width: 80%;
+            height: 60%;
+            box-shadow: 0 0 10px -2px;
+            border-radius: 10px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .fake_body /*tutte le rischieste di stile della consegna verrano fatte qua*/
+        {
+            /*per farlo sembrare un body*/
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /*------------------------*/
+        }
+        .text
+        {
+            color: #000000;
+            font-size: 20px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            background-color:#5f6061;
+            border: solid;
+            padding: 5px;
+            margin: 5px;
+            /*mie aggiunzioni fuori da consegna*/
+            width: max-content;
+            margin: auto;
+        }
+        #menu
+        {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            display: none;
+            position: absolute;
+            background-color: rgba(0,0,0,0.3);
+            flex-direction: column;
+            justify-content: center;
+        }
+        .cont_menu
+        {
+            position: relative;
+            width: 500px;
+            height: 80%;
+            background-color: white;
+            margin: auto;
+        }
+        #close
+        {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+        }
+        p,h3,h1
+        {
+            width: max-content;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="menu()" style="position: relative;width: max-content;margin: auto;">Menu</button>
+    <div id="menu">
+        <div class="cont_menu">
+            <div style="width: max-content;margin: auto;">
+                <h3>mettere codice colore testo senza "#"</h3><input type="text" id="color">
+                <h3>numero pixel per font-size</h3><input type="number" id="font_size" >
+                <h3>mettere font-family</h3><input type="text" id="font_family">
+                <h3>mettere text-align</h3><input type="text" id="text_align">
+                <h3>mettere codice colore sfondo testo senza "#"</h3><input type="text" id="back_col">
+                <h3>mettere regole bordo</h3><input type="text" id="border">
+                <h3>mettere numero pixel padding</h3><input type="text" id="padding">
+                <h3>mettere codice pixel margine</h3><input type="number" id="margin">
+            </div>
+            <button style="width:max-content" onclick="submit()" id="close" >OK</button>
+        </div>
+    </div>
+    <div class="test_zone">
+        <div class="fake_body">
+            <p class="text" id="text">Ciao questo sito fa schifo</p>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="library.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>
