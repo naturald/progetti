@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>pag5 TPS</title>
+    <style>
+        html,body
+        {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        a
+        {
+            display: block;
+            width: max-content;
+            margin: auto;
+            margin-bottom:50px;
+        }
+        #button
+        {
+            outline: none;
+            color: black;
+            background-color: white;
+            border: solid 1px black;
+            padding: 10px;
+            font-size: 15px;
+            text-decoration: none;
+        }
+        #button:active,#button:hover
+        {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            text-decoration:  underline;
+        }    
+        </style>
+</head>
+<body style="display: flex;flex-direction: column;justify-content: center;">
+    <div>
+        <a href="mailto:s7813907w@studenti.itisavogadro.it" >Manda emial</a><br>
+        <a href="https://www.regione.piemonte.it/web/" target="_blank" id="button">
+            Piemonte
+        </a><br>
+        <a href="https://www.regione.piemonte.it/web/" target="_blank">
+            <img src="img/img_piem.png">
+        </a><br>
+        <a href="#hide">Vai ad hide</a><br>
+        <h1 id="hide" style="position:absolute;bottom:  -1000px;">Hide</h1>
+    </div>
+</body>
+</html>
