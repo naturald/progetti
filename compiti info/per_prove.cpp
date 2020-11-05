@@ -6,6 +6,26 @@
 
 int main()
 {
+	/*
+	int scelta;
+	scanf("%d",&scelta);
+	switch (scelta)
+	{
+		case 1:
+			printf("ciao");
+		break;
+		case 2:
+			printf("ciao2");
+		break;
+		case 3:
+			printf("ciao3");
+		break;
+		default:
+			printf("CIAO BOH");
+		break;
+	}*/
+	
+	/*BOH CILCI
 	int i=1;
 	do
 	{
@@ -13,6 +33,7 @@ int main()
 		i=i+1;
 	}
 	while(i<=10);
+	*/
 	
 	
 	/* ciao con for 
