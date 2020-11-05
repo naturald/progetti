@@ -79,7 +79,11 @@ int main()
 		break;
 	}
 	if(c!=0)
-		printf("cento ");
+		if(u==1||u==8)
+			printf("cent ");
+		else
+			printf("cento ");
+	
 		
 	switch (d)
 	{
