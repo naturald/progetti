@@ -8,18 +8,24 @@
 int main()
 {
 	srand(time(0));
-	int n=rand()%1000+1,ind;
-	printf("%d\n",n);
-	while(ind!=n)
+	int n=rand()%10000+1,ind,i=0;
+	//printf("%d\n",n);
+	while(i<14)
 	{
-		printf("prova a indovinare: "); 
-		scanf("%d",&ind);
+		i++;
+		do
+		{
+			printf("%d )prova a indovinare: ",i); 
+			scanf("%d",&ind);
+		}
+		while(ind<0||ind>10000);
 		if(ind==n)
-			printf("hai indovinato\n");
+			printf("hai indovinato HAI VINTO\n");
 		else if(ind<n)
 			printf("troppo basso\n");
 		else if(ind>n)
 			printf("troppo alto\n");
 	}
+	printf("HAI PERSO")
 	getch();
 }
