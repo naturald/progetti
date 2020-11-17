@@ -7,14 +7,15 @@
 int main()
 {	
 	char c;
-	do
+	printf("inserisci carattere: ");
+	c=getch();//oppure scanf(" %c",&c);
+	while(c!='0')
 	{
+		printf("il valore ascii e': %d\n\n\n\n",c);
 		printf("inserisci carattere: ");
-		c=getch();
+		c=getch();//oppure scanf(" %c",&c);
 		printf("%c\n",c);
-		printf("il valore ascii e': %d\n",c);
-
 	}
-	while(c!='0');
+
 
 }
