@@ -42,15 +42,13 @@ int main()
         }
         while(aaaa<1);
         if(mm==2&&gg>28)
-        {
-            if((aaaa%4==0&&aaaa<=1917)||((aaaa%4==0&&aaaa%100!=0)||aaaa%400==0)&&aaaa>1917)
+            if((aaaa%4==0&&aaaa%100!=0)||aaaa%400==0)
                 if(gg==29)
                     rep=false;
                 else
                     rep=true;
             else
                 rep=true;
-        }
         else
             rep=false;
 
@@ -59,4 +57,5 @@ int main()
 
 
     printf("\nva bene");
+    getch();
 }
