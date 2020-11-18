@@ -1,0 +1,25 @@
+*
+{
+  padding: 10px;
+  margin: 10px;
+}
+.span1
+{
+  border:dashed 3px black;
+  background-color:lightgrey;
+}
+.span2
+{
+  border:solid 3px black;
+  background-color:yellow;
+}
+.div1
+{
+  border:dashed 3px red;
+  background-color:lightseagreen;
+}
+.div2
+{
+  border:solid 3px red;
+  background-color:lightsteelblue;
+}
