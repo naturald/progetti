@@ -1,4 +1,4 @@
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+_CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 insert users values(null,"csa","dfsf","sdff","citta");
 $( selector ).load( URL );
 select iduser from users where email ="citta";
