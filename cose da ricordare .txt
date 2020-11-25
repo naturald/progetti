@@ -18,18 +18,18 @@ ADSL=sigla dell'inglese Asymmetric Digital Subscriber Line, in italiano Linea As
 
 Cross Site Request Forgery=XSRF (non piu usato)
 
-La multiplazione, o in inglese multiplexing, nelle telecomunicazioni, elettronica e reti di computer, è il meccanismo o tecnica di trasmissione 
-per cui più canali trasmissivi in ingresso condividono la stessa capacità trasmissiva disponibile in uscita ovvero combinando più segnali analogici o flussi di dati digitali 
+La multiplazione, o in inglese multiplexing, nelle telecomunicazioni, elettronica e reti di computer, Ã¨ il meccanismo o tecnica di trasmissione 
+per cui piÃ¹ canali trasmissivi in ingresso condividono la stessa capacitÃ  trasmissiva disponibile in uscita ovvero combinando piÃ¹ segnali analogici o flussi di dati digitali 
 detti segnali tributari) in un solo segnale (detto multiplato) trasmesso in uscita su uno stesso collegamento fisico.
 
 Un MAC address identifica una interfaccia di rete univoca presente in un dispositivo. Mentre gli indirizzi IP vengono assegnati dagli ISP e possono essere riassegnati 
 quando i dispositivi vengono collegati e scollegati, gli indirizzi MAC sono legati a un adattatore fisico e vengono assegnati dai produttori.
 
 def TCP = In telecomunicazioni e informatica il Transmission Control Protocol (TCP)
- è un protocollo di rete a pacchetto di livello di trasporto, appartenente alla suite di protocolli Internet,
+ Ã¨ un protocollo di rete a pacchetto di livello di trasporto, appartenente alla suite di protocolli Internet,
 che si occupa di controllo della trasmissione ovvero rendere affidabile la comunicazione dati in rete tra mittente e
  destinatario. Definito nella RFC 793, su di esso si appoggia gran parte delle applicazioni della rete Internet, 
-è presente solo sui terminali di rete (host) e non sui nodi interni di commutazione della rete di trasporto, implementato 
+Ã¨ presente solo sui terminali di rete (host) e non sui nodi interni di commutazione della rete di trasporto, implementato 
 come strato software di rete all'interno del sistema operativo di un host, e il terminale in trasmissione o in ricezione vi
  accede attraverso l'uso di opportune chiamate di sistema definite nelle API di sistema.
 
@@ -50,7 +50,8 @@ Nic =(Network interface card)
 cisco packet tracer= programma per creare reti 
 
 
-|/___________________hacker rank______________________//
+//___________________hacker rank______________________//
+
     int A_home=0;
     int O_home=0;
     for(int i=0;i<apples.size();i++) 
