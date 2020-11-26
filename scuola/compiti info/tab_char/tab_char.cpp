@@ -5,7 +5,7 @@
 #include <windows.h>//system ("cls")
 #define N_COL 19
 
-void linea(int volte,bool invio=false,bool trat=false)
+void tabella(int volte,bool invio=false,bool trat=false)
 {
 	for(int i=0;i<volte;i++)
 	{
@@ -22,13 +22,13 @@ void linea(int volte,bool invio=false,bool trat=false)
 int main()
 {
 	int col=0;
-	linea(N_COL,true,true);
+	tabella(N_COL,true,true);
 	for(int i=0;i<256;i++)
 	{
 		if(i%N_COL==0&&i!=0)
 		{
 			printf("\n");
-			linea(N_COL,true,true);	
+			tabella(N_COL,true,true);	
 			col=0;
 		}
 
@@ -39,5 +39,5 @@ int main()
 		col++;
 	}
 	printf("\n");
-	linea(col,true,false);
+	tabella(col,true);
 }
