@@ -50,7 +50,7 @@ Nic =(Network interface card)
 cisco packet tracer= programma per creare reti 
 
 
-//___________________hacker rank______________________//
+//___-_______________hacker rank______________________//
 
     int A_home=0;
     int O_home=0;
