@@ -39,5 +39,5 @@ int main()
 		col++;
 	}
 	printf("\n");
-	linea(col,true,false);
+	linea(col,true);
 }
