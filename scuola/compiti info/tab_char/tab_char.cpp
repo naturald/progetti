@@ -1,5 +1,5 @@
 //marco schiavello 15/10/2020
-//controllo input
+//tabela asciii
 #include <stdio.h>
 #include <conio.h>//TEORICAMENTE SERVE IL 2 PER TEXTCOLOR(COLOR_NAME)
 #include <windows.h>//system ("cls")
@@ -39,9 +39,5 @@ int main()
 		col++;
 	}
 	printf("\n");
-<<<<<<< HEAD
-	linea(col,true);
-=======
 	tabella(col,true);
->>>>>>> 7c2949e4fdd718b4789934afdd4e3514c14aa5e2
 }

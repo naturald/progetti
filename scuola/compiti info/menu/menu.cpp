@@ -1,54 +1,62 @@
-//marco schiavello 3^Ci
+//marco schiavello 3^Ci 26/11/2020
 //menu
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "../marcoLib.h"
 #define N_COL 19
 
-void tabella(int volte,bool invio=false,bool trat=false)
+
+int menu()
 {
-	for(int i=0;i<volte;i++)
+	int scelta;
+	do
 	{
-		printf("+-----");		
+		system("cls");
+		printf("1) tabella codici Ascii\n\n");
+		printf("2) codifica ascii di un carattere\n\n");
+		printf("3) carattere corrispondente ad un codice Ascii\n\n");
+		printf("4) trasforma una lettera minuscola in maiscula\n\n");
+		printf("5) esci\n\n");
+		printf("scegli --> ");
+		scanf("%d",&scelta);	
 	}
-	printf("+");
-	if(invio==true)
-		printf("\n");
-	if(trat==true)
-		printf("|");
-		
+	while(scelta<1||scelta>5);
+	return scelta;
 }
-
-
 int main()
 {
 	int scelta,cod;
 	char c;
 	do
-	{
-		do
-		{
-			system("cls");
-			printf("1) tabella codici Ascii\n\n");
-			printf("2) codifica ascii di un carattere\n\n");
-			printf("3) carattere corrispondente ad un codice Ascii\n\n");
-			printf("4) trasforma una lettera minuscola in maiscula\n\n");
-			printf("5) esci\n\n");
-			printf("scegli --> ");
-			scanf("%d",&scelta);	
-		}
-		while(scelta<1||scelta>4);
-	
+	{	
+		scelta=menu();
 		switch(scelta)
 		{
 			case 1:
 			{
 				system("cls");
+				int col=0;
+				tabella(N_COL,true,true);
 				for(int i=0;i<256;i++)
 				{
-					printf(" %3d %c",i,i);
+					if(i%N_COL==0&&i!=0)
+					{
+						printf("\n");
+						tabella(N_COL,true,true);	
+						col=0;
+					}
+			
+					if(i<=13||i==27)
+						printf("%3d %c|",i,14);
+					else
+						printf("%3d %c|",i,i);
+					col++;
 				}
+				printf("\n");
+				tabella(col,true);
+
 				getch();
 				break;
 			}
@@ -82,7 +90,7 @@ int main()
 				fflush(stdin);
 				scanf(" %c",&c);
 				if(c>96&&c<123)
-					printf("il carattere maiuscolo e'--> %c\n",c-32);
+					printf("il carattere maiuscolo e'--> %c\n",c-32);//	printf("il carattere maiuscolo e'--> %c\n",toupper(c));
 				else
 					printf("il carattere maiuscolo e'--> %c\n",c);
 					
