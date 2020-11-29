@@ -41,6 +41,7 @@
 <head>
     <title>Gusci - <?php echo $articolo['titolo'] ?></title>
     <link rel="icon" href="img/icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <link rel="stylesheet" href="css/classi.css">

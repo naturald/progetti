@@ -288,7 +288,10 @@ textarea
 
 	display: none;
 }   
-                                   
+#sub_log_index
+{
+	margin-top: 60px;
+}                                   
 /*-------ALLERT-----------*/
 .avviso1
 {
@@ -311,6 +314,12 @@ textarea
 	height: 0;
 	float: right;
 	color: red;
+}
+#allert3
+{
+	color: red;
+	position: relative; 
+	top: -130px;
 }
 /*--------BOTTONI----------*/
 .bottoni
@@ -339,7 +348,6 @@ textarea
 	outline: none;
 	margin-top: 15px;
 	position: relative; 
-	left: 60px; 
 	padding: 12px;
 	background-color: white;
 	color: #7272ea;
@@ -688,6 +696,51 @@ textarea
 	justify-content: center;
 	margin-bottom: 10px;
 }
+/*--------CARELLO----------*/ 
+#container_cart
+{
+	position: absolute; 
+	top: 120px; 
+	height: 83%; 
+	width: 100%;
+}
+.nome_prod
+{
+	height: fit-content;
+	position: relative;
+	top: 40px;
+	left: 10%;
+}  
+.prezzo_prod
+{
+	height: fit-content;
+	position: absolute ;
+	top: 56px;
+	left: 60%;
+}
+.bottom_cart
+{
+	position: relative;
+    height: 60px;
+    width: 80%;
+    margin: auto;
+}
+#prezzo_tot
+{
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: fit-content; 
+	line-height: 60px;
+}
+.but_paga
+{
+	position: absolute; 
+	right: 0; 
+	top: 0; 
+	float: right; 
+	text-decoration: none;
+}
 /*--------RESPONSIVITA----------*/           
 .DropL
 {
@@ -793,8 +846,9 @@ textarea
 	}
 	.bottoni_fake
 	{
+		display: block;
+		margin: auto;
 		position: relative;
-		left: 320px;
 		bottom: 40px;
 	}
 	.container_text_img
@@ -826,7 +880,8 @@ textarea
 		position: relative;
 		font-size: 17px;
 		margin-bottom: 0;
-		width: fit-content;	
+		width: 80%;
+		margin: auto;
 	}
 	.prezzo_num
 	{
@@ -894,22 +949,20 @@ textarea
 }
 @media only screen and (max-width: 942px)
 {
-	
-	#btn
+	#sub_log_index
+	{
+		margin-top: 20px;
+	}
+	#btn,#hideCar,#SesD,#hide
 	{
 		display: none;
 	}
-	#hideCar
+	.lente
 	{
-		display: none;
-	}
-	#SesD
-	{
-		display: none;
-	}
-	#hide
-	{
-		display: none;
+		margin: auto;
+		position: relative;
+		display: block;
+		right: 0;
 	}
 	.DropL
 	{
@@ -962,11 +1015,48 @@ textarea
 		margin: auto;
 		padding: 20px;
 		border: 1px solid #888;
-		width: 433px;
-		height: 550px;
+		width: 300px;
+		height: max-content;
+	}
+	.con_modal_sign_in 
+	{
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 320px;
+		height: 670px;
+		display: none;
+		height: max-content;
+	}
+	#allert3
+	{
+		color: red;
+		position: relative; 
+		top: -110px;
 	}
 	
-	
+}
+@media only screen and (max-width: 700px)
+{
+	.resp_cart
+	{
+		display: flex;
+		flex-direction: column;
+		line-height: 40px;
+	}
+	.nome_prod
+	{
+		position: relative;
+		top: 0;
+		left: 0%;
+	}  
+	.prezzo_prod
+	{
+		position: relative ;
+		top: 0;
+		left: 0%;
+	}
 }
 @media only screen and (max-width: 607px)
 {
@@ -980,13 +1070,35 @@ textarea
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.con_modal
+
+}
+@media only screen and (max-width: 555px)
+{
+	.but_paga
 	{
-		background-color: #fefefe;
+		position: relative;
+		height: 50px;
+		width: auto;
+	}
+	#prezzo_tot
+	{
+		position: relative;
 		margin: auto;
-		padding: 20px;
-		border: 1px solid #888;
-		width: 390px;
-		height: 550px;
+	}
+	.bottom_cart
+	{
+		display:flex;
+		flex-direction: column;
+		position: relative;
+		height: 60px;
+		width: 80%;
+		margin: auto;
+	}
+	#container_cart
+	{
+		position: absolute; 
+		top: 120px; 
+		height: 100%; 
+		width: 100%;
 	}
 }

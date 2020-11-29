@@ -40,9 +40,9 @@
                 <span class="close">&times;</span>
                 <form name="sign_up" action="elogin.php?auten=2" method="POST">
                     <center>
-                        <img src="img/logo_sito.png" style="height: 125px;width: 125px;">
+                        <img src="img/logo_sito.png" style="height: 80px;width: 80px;">
                         <h1 style="padding-bottom: 40px;
-                                font-size: 50px;
+                                font-size: 30px;
                                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
                                 GUSCI REGISTRAZIONE </h1>
                     </center>
@@ -71,7 +71,7 @@
                     </div>
                     <h6 class="hide allert" id="allert_sign_up4">troppo corta</h6><br>
 
-                    <center style="margin-top: 40px;" >
+                    <center style="margin-top: 20px;">
                         <h6 class="hide allert" id="err_gen_sign" style="position: absolute; top: 650px; margin-left: 15px;" >completa tutti i campi</h6>
                         <input type="submit" class="bottoni"  name="sign_up" value="registrati" id="btn2_sign"    style="padding: 13px 33px 13px 33px;                       
                                                                                                                         margin-top: 25px;

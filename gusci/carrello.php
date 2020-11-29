@@ -98,12 +98,12 @@ EOT;
        
     </header>
 
-    <div style="position: absolute; top: 120px; height: 85%; width: 100%;">
+    <div id="container_cart">
 
         <h1 style="text-align: center;
                    margin-bottom: 18px;">CARRELLO</h1>
                    
-        <div style="width: 80%; height: 85%; border-top: solid 2px black; border-bottom: solid 2px black; position: relative; overflow: auto; margin: auto;">
+        <div style="width: 80%; height: 479px; border-top: solid 2px black; border-bottom: solid 2px black; position: relative; overflow: auto; margin: auto;">
 <?php
             $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
@@ -149,16 +149,12 @@ EOT;
                 {
                     echo '<div class="banner_carrello">';
                     echo '<img src="data:image;base64,'.$articolo['img'].'"  style="height: 130px;">';
-                    echo '<h1 style=" height: fit-content;
-                                    position: relative;
-                                    top: 40px;
-                                    left: 10%;">';
+                    echo '<div class="resp_cart">';
+                    echo '<h1 class="nome_prod">';
                     echo $articolo['titolo'].'</h1>';
-                    echo '<h2 style=" height: fit-content;
-                                    position: absolute ;
-                                    top: 56px;
-                                    left: 60%;">
+                    echo '<h2 class="prezzo_prod">
                         Prezo: '.$articolo['prezzo'].' &#x20ac </h2>';
+                    echo '</div>';
                     echo "<a href='carrello.php?cart_elimina=".$articolo_sel['idart']."' >";
                     echo '<img src="img/cancella.png" alt="" style="position: absolute;right: 10px; height:40px; border-radius: 10px;">'. "</a>";
                     echo '<h3 style="position: absolute; right: 70px; bottom: 30px; width: fit-content;">Quantità:</h3>';
@@ -180,17 +176,19 @@ EOT;
 ?> 
 
         </div>
-        <h1 style="position:relative;top:20px;left:10%;width: fit-content;">Prezzo totale: <?php echo $prezzo_tot ?> &#x20ac</h1>
+        <div class="bottom_cart">
+            <h1 id="prezzo_tot">Prezzo totale: <?php echo $prezzo_tot ?> &#x20ac</h1>
 <?php    
     if($flag)
     {
-        echo '<a  style="position: relative; right: 200px; top: -25px; float: right;text-decoration: none;" href="paga.php"><h2 class="bottoni" style="width: fit-content;">Paga</h2></a>';    
+        echo '<a class="but_paga" href="paga.php"><h2 class="bottoni" style="text-align: center;">Paga</h2></a>';    
 
     }
     else
-        echo '<button class="bottoni" style="position: relative; right: 200px; top: -25px; float: right;"><h2>Paga</h2></button>';
+        echo '<button class="but_paga" style="background-color: white;border: none;"><h2 class="bottoni" style="text-align: center;">Paga</h2></button>';
     
-?>
+?>      
+        </div>
     </div>
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
