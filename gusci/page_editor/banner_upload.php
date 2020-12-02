@@ -35,7 +35,7 @@
                             if($fileSize<1000000)
                             {
                             
-                                $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."',null);";
+                                $new_banner="insert  articoli values(null,'".addslashes($_POST['titolo'])."','".addslashes($_POST['descr'])."','".addslashes($_POST['prezzo'])."',null,null,null);";
                                 mysqli_query($conn,$new_banner);
                                 $new_banner_2=" update articoli set img='".addslashes($imge)."' where idart=LAST_INSERT_ID(); ";
                                 mysqli_query($conn,$new_banner_2);

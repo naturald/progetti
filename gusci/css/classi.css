@@ -623,6 +623,10 @@ textarea
 	position: relative;
 }
 /*--------TAMEPLATE-----------*/
+#titolo_temp
+{
+	margin-bottom: 15px;
+}
 .container_text_img
 {
 	height: 60%;
@@ -651,7 +655,7 @@ textarea
 .testo_tameplate
 {
 	position: relative;
-	width: 600px;
+	width: 80%;
 	height: 100%;
 	left: 11%;
 	justify-content: center;
@@ -660,10 +664,11 @@ textarea
 .prezzo_num
 {
 	position: absolute;
-	width: 200px; 
-	top: -60px;
+	width: max-content;
+	top: -60px;    
+	top: 229px;
+	right: 10%;
 	display: flex;
-	margin-bottom: 30px;
 	justify-content: center;	
 }
 .linea_tameplate
@@ -706,11 +711,11 @@ textarea
 }
 .nome_prod
 {
-	height: fit-content;
 	position: relative;
-	top: 40px;
-	left: 10%;
-}  
+	top: 0;
+	left: 0%;
+	width: max-content;
+} 
 .prezzo_prod
 {
 	height: fit-content;
@@ -742,6 +747,14 @@ textarea
 	text-decoration: none;
 }
 /*--------RESPONSIVITA----------*/           
+.resp_cart
+{
+	display: flex;
+	flex-direction: column;
+	line-height: 40px;
+	width: 60%;
+	overflow: hidden;
+}
 .DropL
 {
 	position: absolute;
@@ -883,12 +896,7 @@ textarea
 		width: 80%;
 		margin: auto;
 	}
-	.prezzo_num
-	{
-		position: absolute;
-		top: 275px;
-		right: 10%;
-	}
+
 	.img_tameplate
 	{
 		height: 225px;
@@ -905,18 +913,7 @@ textarea
 		position: static;
 		margin-bottom: 70px;
 	}
-	.testo_tameplate
-	{
-		position: relative;
-		width: 80%;
-		min-height: 90px;
-		height: 100%;
-		left: 11%;
-		justify-content: center;
-		overflow: hidden;
-		margin-top: 50px;
-		margin-bottom: 100px;
-	}
+
 }
 @media only screen and (max-width: 1400px)
 {
@@ -949,6 +946,14 @@ textarea
 }
 @media only screen and (max-width: 942px)
 {
+	.resp_cart
+	{
+		display: flex;
+		flex-direction: column;
+		line-height: 40px;
+		width: 500px;
+		overflow: hidden;
+	}
 	#sub_log_index
 	{
 		margin-top: 20px;
@@ -1039,23 +1044,55 @@ textarea
 }
 @media only screen and (max-width: 700px)
 {
-	.resp_cart
+	#toggle_prez_car
 	{
-		display: flex;
-		flex-direction: column;
-		line-height: 40px;
+		display:none;
 	}
 	.nome_prod
 	{
 		position: relative;
 		top: 0;
 		left: 0%;
-	}  
+		width: max-content;
+	} 
 	.prezzo_prod
 	{
 		position: relative ;
 		top: 0;
 		left: 0%;
+	}
+	.testo_tameplate
+	{
+		position: relative;
+		width: 80%;
+		min-height: 90px;
+		height: 100%;
+		left: 11%;
+		justify-content: center;
+		overflow: hidden;
+		margin-top: 50px;
+	}
+	#titolo_temp
+	{
+		margin-bottom: 45px;
+	}
+	.prezzo_num
+	{
+		position: absolute;
+		top: 315px;
+		left: 11%;
+		right: 0;
+	}
+}
+@media only screen and (max-width: 644px)
+{
+	.resp_cart
+	{
+		display: flex;
+		flex-direction: column;
+		line-height: 40px;
+		width: 112px;
+		overflow: hidden;
 	}
 }
 @media only screen and (max-width: 607px)

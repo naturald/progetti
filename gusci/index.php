@@ -1,5 +1,57 @@
 <?php
     session_start();
+    $conn=mysqli_connect("localhost"," gusci","","my_gusci");
+    $articoli=mysqli_query($conn,"select * from articoli;");
+    $max_id=mysqli_query($conn,"SELECT * FROM articoli ORDER BY idart DESC LIMIT 0, 1");
+    $max_id=mysqli_fetch_assoc($max_id);
+    $scaduto=false;
+    foreach($articoli as $articolo)
+    {
+        $date=getdate();
+        $ex_data_=$articolo['expiration'];
+        $ex_data=explode("/",$ex_data_);
+        if($date['mon']==$ex_data[0])
+        {
+            for($i=1;$i<=$max_id['idart'];$i++)
+            {
+                mysqli_query($conn,"update articoli set sconto=".(0).",expiration='' where idart=".$i.";");
+            }
+        
+           
+            $sconti=array("25"=>0,"50"=>0,"80"=>0);
+            $quota_scont=round(($max_id['idart']*40)/100);
+            $sconti['25']=round(($quota_scont*40)/100);
+            $sconti['50']=round(($quota_scont*35)/100);
+            $sconti['80']=round(($quota_scont*25)/100);
+            $c=25;
+            foreach($sconti as $sconto)
+            {   
+                for($i=0;$i<$sconto;$i++)
+                {
+                    
+                    do
+                    {
+                        $rand=rand(1,$max_id['idart']);
+                        $articoli_=mysqli_query($conn,"select sconto from articoli where idart=".$rand.";");
+                        $articoli_=mysqli_fetch_array($articoli_);
+                    }
+                    while($articoli_[0]>1);
+
+
+                    if($date['mon']==12)
+                        mysqli_query($conn,"update articoli set sconto=".$c.",expiration='".(1)."/".($date['year']+1)."' where idart=".$rand.";");
+                    else
+                        mysqli_query($conn,"update articoli set sconto=".$c.",expiration='".($date['mon']+1)."/".$date['year']."' where idart=".$rand.";");
+                }
+                if($c<50)
+                    $c+=25;
+                else
+                    $c+=30;
+            }
+            break;
+
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +79,7 @@
         echo "<div style='display: block; width: max-content;   margin-left: auto;  margin-right: auto;'> ";
         echo "<ul class='menu' style='display: table-cell;'> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='sconti.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
         echo "<li><a href='session_destroy.php' id='SesD' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
         echo <<<'EOT'
@@ -49,7 +101,7 @@ EOT;
                 echo '<li class="voci_cont_dropL" style="height: fit-content;">Benvevenuto<br>'. $_SESSION['nome'].'  '.$_SESSION['cognome'].'</li>';
 echo <<<'EOT'
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
-                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
+                <li class="voci_cont_dropL"><a href="sconti.php"  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
                 <li class="voci_cont_dropL"><a href="carrello.php"  class="text_voci_cont_dropL">Carrello</a></li>
                 <li class="voci_cont_dropL" style="border: none;"><a href="session_destroy.php" class="text_voci_cont_dropL">Logout</a></li>
@@ -69,7 +121,7 @@ EOT;
         echo "<div style='display: block; width: max-content;  margin-left: auto;  margin-right: auto;'> ";
         echo "<ul class='menu' style='display: table-cell;'> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='sconti.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> "."</ul>";
         echo <<<'EOT'
         </div>
@@ -85,7 +137,7 @@ EOT;
         <div id="cont_dropL" class="cont_dropL" style="top:-15px;">
             <ul class="lista_cont_dropL">
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
-                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
+                <li class="voci_cont_dropL"><a href="sconti.php"  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
                 <li class="voci_cont_dropL" style="border: none;"><h2 class="text_voci_cont_dropL" id="voce_login_drop">Login</h2></li>
             </ul>
@@ -134,29 +186,45 @@ EOT;
 
     <div class="card">
         <ul class="cardList" id="lista">
-
+        
 
 <?php
 
     $conn=mysqli_connect("localhost"," gusci","","my_gusci");
 
     $articoli=mysqli_query($conn,"select * from articoli;");
-    $articoli_A=mysqli_fetch_assoc($articoli);
 
     foreach($articoli as $articolo)
     {
         echo "<li id='banner'>";
             echo "  <a href='tameplate_banner.php?articolo=".$articolo['idart']."' style='text-decoration: none;color: black;'>";
             echo "<div class='banner'>";
+            if($articolo['sconto']>1)
+            {
+                echo " <img src='img/".$articolo['sconto']."sconto.png' style='position: absolute; height: 100px;'>";           
+            }
                 echo " <center>";
                         echo "<img class='img_banner' src='data:image;base64,".$articolo['img']."'  >";
                     echo " <div>";
                         echo " <h1 class='text_banner'>";
                             echo $articolo['titolo'];
                         echo "</h1><br>";
-                        echo "<h3 class='text_banner'>";
+                        if($articolo['sconto']>1)
+                        {
+                            echo "<del class='text_banner'>";
                             echo $articolo['prezzo']." &#x20ac";
-                        echo "</h3>";
+                            echo "</del><br>";
+                            echo "<h3 class='text_banner'>";
+                            $prezzo=floor($articolo['prezzo']-(($articolo['prezzo']*$articolo['sconto'])/100));
+                            echo $prezzo." &#x20ac";
+                            echo "</h3>";
+                        }
+                        else
+                        {
+                            echo "<h3 class='text_banner'>";
+                            echo $articolo['prezzo']." &#x20ac";
+                            echo "</h3>";
+                        }
                     echo " </div>";
                     
                 echo "</center>";
@@ -379,4 +447,3 @@ EOT;
     
 </body>
 </html>
-

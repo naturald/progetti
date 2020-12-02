@@ -7,7 +7,8 @@
     $articolo=mysqli_query($conn,"select * from articoli where idart=".addslashes($_GET['articolo']).";");
     $articolo=mysqli_fetch_assoc($articolo);
 
-    
+    if($articolo['sconto']>0)
+        $articolo['prezzo']=floor($articolo['prezzo']-(($articolo['prezzo']*$articolo['sconto'])/100)); 
     if(isset($_POST['submit_add_cart']))
     {
         
@@ -59,7 +60,7 @@
         echo "<div style='display: block; width: max-content;  margin-left: auto;  margin-right: auto;'> ";
         echo "<ul class='menu' style='display: table-cell;'> ";
         echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>pag iniziale</h2></a></li> ";
-        echo "<li><a href='index.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
+        echo "<li><a href='sconti.php' style='text-decoration:none;'><h2 class='voci'>sconti</h2></a></li> ";
         echo "<li><a href='info.php' style='text-decoration:none;' ><h2 class='voci'>info</h2></a> </li> ";
         echo "<li><a href='session_destroy.php' id='SesD' style='text-decoration:none;'><h2 class='voci_hide' style='display: block;' id='hide2'>logout</h2></a></li>"."</ul> ";
         echo <<<'EOT'
@@ -81,7 +82,7 @@ EOT;
                 echo '<li class="voci_cont_dropL" style="height: fit-content;">Benvevenuto<br>'. $_SESSION['nome'].'  '.$_SESSION['cognome'].'</li>';
 echo <<<'EOT'
                 <li class="voci_cont_dropL"><a href="index.php" class="text_voci_cont_dropL">Pag iniziale</a></li>
-                <li class="voci_cont_dropL"><a href=""  class="text_voci_cont_dropL">Sconti</a></li>
+                <li class="voci_cont_dropL"><a href="sconti.php"  class="text_voci_cont_dropL">Sconti</a></li>
                 <li class="voci_cont_dropL"><a href="info.php"  class="text_voci_cont_dropL">Info</a></li>
                 <li class="voci_cont_dropL"><a href="carrello.php"  class="text_voci_cont_dropL">Carrello</a></li>
                 <li class="voci_cont_dropL" style="border: none;"><a href="session_destroy.php" class="text_voci_cont_dropL">Logout</a></li>
@@ -119,7 +120,7 @@ EOT;
             
             <div class="testo_tameplate">
                 <div>
-                    <h1 style="margin-bottom: 15px;"><?php echo $articolo['titolo'] ?></h1>
+                    <h1 id="titolo_temp"><?php echo $articolo['titolo'] ?></h1>
                 </div>
                 <hr>
                 <div>
@@ -135,6 +136,7 @@ EOT;
 <?php 
     $quantita=mysqli_query($conn,"select quantita from carrello where idart=".addslashes($articolo['idart'])." and iduser=".addslashes($_SESSION['iduser']).";");
     $quantita=mysqli_fetch_array($quantita);
+
     if($quantita[0]<10)
     {
         echo '<form action="tameplate_banner.php?articolo='.$_GET['articolo'].'" method="POST">';
