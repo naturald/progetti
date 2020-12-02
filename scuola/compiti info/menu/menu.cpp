@@ -8,7 +8,7 @@
 #define N_COL 19
 
 
-int menu()
+void menu(int *scelta_)
 {
 	int scelta;
 	do
@@ -23,15 +23,16 @@ int menu()
 		scanf("%d",&scelta);	
 	}
 	while(scelta<1||scelta>5);
-	return scelta;
+	*scelta_=scelta;
+	
 }
 int main()
 {
-	int scelta,cod;
+	int scelta,*scelta_=&scelta,cod;
 	char c;
 	do
 	{	
-		scelta=menu();
+		menu(scelta_);
 		switch(scelta)
 		{
 			case 1:
