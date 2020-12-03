@@ -7,6 +7,7 @@
 #include "../marcoLib.h"
 #define N_COL 19
 
+int scelta;//variabile globale
 
 void menu(int *scelta_)
 {
@@ -35,7 +36,7 @@ int main()
 		menu(scelta_);
 		switch(scelta)
 		{
-			case 1:
+			case 1:	
 			{
 				system("cls");
 				int col=0;
