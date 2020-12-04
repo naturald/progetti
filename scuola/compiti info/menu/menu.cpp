@@ -1,5 +1,5 @@
 //marco schiavello 3^Ci 26/11/2020
-//menu
+//menu che offre de servizzi inerenti a codifica ascii con tabella fatta con sotto-programma
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -39,27 +39,7 @@ int main()
 			case 1:	
 			{
 				system("cls");
-				int col=0;
-				tabella(N_COL,true,true);
-				for(int i=0;i<256;i++)
-				{
-					if(i%N_COL==0&&i!=0)
-					{
-						printf("\n");
-						tabella(N_COL,true,true);	
-						col=0;
-					}
-			
-					if(i<=13||i==27)
-						printf("%3d %c|",i,14);
-					else
-						printf("%3d %c|",i,i);
-					col++;
-				}
-				printf("\n");
-				tabella(col,true);
-
-				getch();
+				tab_ascii(N_COL);
 				break;
 			}
 			case 2:
@@ -68,7 +48,7 @@ int main()
 				printf("scegli carattere--> ");
 				fflush(stdin);
 				scanf(" %c",&c);
-				printf("il codice Ascii e' --> %d\n",c,c);
+				printf("il codice Ascii e' --> %d\n",c);
 				getch();
 				break;
 			}
@@ -95,9 +75,6 @@ int main()
 					printf("il carattere maiuscolo e'--> %c\n",c-32);//	printf("il carattere maiuscolo e'--> %c\n",toupper(c));
 				else
 					printf("il carattere maiuscolo e'--> %c\n",c);
-					
-
-				
 				getch();
 				break;
 			}
