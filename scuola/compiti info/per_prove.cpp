@@ -1,4 +1,4 @@
-//marco schiavello
+//marco schiavello 3^CI 05/11/2020
 //programma per provare forme di algoritmi credo 
 #include <stdio.h>
 #include <conio.h>

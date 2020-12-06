@@ -1,4 +1,4 @@
-//marco schiavello 8/11/2020
+//marco schiavello 3^CI 8/11/2020
 //codifica in c della verifica
 #include <stdio.h>
 #include <conio.h>

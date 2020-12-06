@@ -1,4 +1,4 @@
-//marco schiavello 08/10/2020
+//marco schiavello 3^CI 08/10/2020
 //contare e stampare i numeri da 1 a n
 #include <stdio.h>
 #include <conio.h>

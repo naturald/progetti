@@ -1,5 +1,5 @@
-//marco schiavello 3^Ci
-//menu calcolatore aree
+//marco schiavello 3^Ci 02/12/2020
+//menu calcolatore aree geometriche
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>

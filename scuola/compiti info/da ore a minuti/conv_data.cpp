@@ -1,3 +1,5 @@
+//marco schiavello 3^CI 1/10/2020
+// da secondi ore minuti secondi 
 #include <stdio.h>
 #include <conio.h>
 

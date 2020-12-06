@@ -1,4 +1,4 @@
-//marco schiavello
+//marco schiavello 3^CI 5/11/2020
 //dato un numero scriverlo in forma letterale
 #include <stdio.h>
 #include <conio.h>

@@ -1,4 +1,4 @@
-//marco schiavello 15/10/2020
+//marco schiavello 3^CI 15/10/2020
 //peso medio
 #include <stdio.h>
 #include <conio.h>//SERVE IL 2 PER TEXTCOLOR(COLOR_NAME)

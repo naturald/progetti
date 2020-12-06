@@ -1,4 +1,4 @@
-//marco schiavello
+//marco schiavello 3^CI 17/11/2020
 //leggere in input un carattere (0= uscita) e stampare la codifica asci del carattere 
 #include <stdio.h>
 #include <stdlib.h>

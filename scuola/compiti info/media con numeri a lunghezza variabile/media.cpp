@@ -1,4 +1,4 @@
-//marco schiavello 1/10/2020
+//marco schiavello 3^CI 1/10/2020
 //dato un numero intero n chiedere n numeri interi e fare la media di essi
 #include <stdio.h>
 #include <conio.h>

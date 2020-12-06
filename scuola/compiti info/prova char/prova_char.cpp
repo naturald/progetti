@@ -1,4 +1,4 @@
-//marco schiavello 13/11/2020
+//marco schiavello 3^CI 13/11/2020
 //esercizio per provare il carattere
 #include <stdio.h>
 

@@ -1,3 +1,5 @@
+//marco schivello 3^CI 25/09/2020
+//dati 3 numeri fare prodotto
 #include <stdio.h>
 #include <conio2.h>
 

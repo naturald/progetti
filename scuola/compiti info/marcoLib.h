@@ -1,4 +1,5 @@
-//libreria marco schiavello 
+//libreria marco schiavello 3^CI 4/12/2020
+//boh e una libreria
 
 void tabella(int volte,bool invio=false,bool trat=false)
 {

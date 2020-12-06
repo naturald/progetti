@@ -1,4 +1,4 @@
-//marco schiavello 
+//marco schiavello 3^CI 1/10/2020
 //compito numero succ e precendente
 #include <stdio.h>
 #include <conio.h>

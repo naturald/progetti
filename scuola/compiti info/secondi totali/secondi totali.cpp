@@ -1,3 +1,5 @@
+//marco schivello 3^CI 25/09/2020
+//inesrire ore per sestituire data in ore minuti secondi
 #include <stdio.h>
 #include <conio2.h>
 
