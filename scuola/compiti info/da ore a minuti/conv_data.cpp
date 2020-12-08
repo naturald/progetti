@@ -1,5 +1,5 @@
 //marco schiavello 3^CI 1/10/2020
-// da secondi ore minuti secondi 
+//da secondi ore minuti secondi 
 #include <stdio.h>
 #include <conio.h>
 
@@ -8,21 +8,12 @@ int main()
 	int sec,ore,min,sec_ecc;
 	printf("inserisci numero secondi totali per avere ora min sec: ");
 	scanf("%d",&sec);
-	/*while(sec<0 || sec>1000000000)
+	while(sec<0 || sec>1000000000)
 	{
 		printf("inserisci numero secondi totali per avere ora min sec: ");
 		scanf("%d",&sec);	
-	}*/
-	switch(sec)
-	{
-		case sec<0:
-			sec*=-1;
-		break;
-		case sec>1000000000:
-			sec=1000000000;
-		break;		
 	}
-	/*
+	/* oppure su puo fare cosi
 	if(sec<0)
 		sec*=-1;
 	if(sec>1000000000)

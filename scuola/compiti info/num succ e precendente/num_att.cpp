@@ -5,20 +5,16 @@
 
 int main()
 {
-	int n,n_att;
+	int n;
 	//prima versione prece e succ adiacenti 
 	/*
 	printf("inserisci numero : ");
 	scanf("%d",&n);
-	n_att=n+1;
-	printf("il succ e' %d ",n_att);
-	n_att=n-1;
-	printf("\nil precedente e' %d",n_att);
+	printf("il succ e' %d ",n+1);
+	printf("\nil precedente e' %d",n-1);
 	*/
 	
-	//seconde versione prece e succ secondo tipologia
-
-	
+	//seconde versione prece e succ secondo tipologia	
 	printf("inserisci numero : ");
 	scanf("%d",&n);
 	if(n==0)
@@ -27,9 +23,7 @@ int main()
 		getch();
 		return 0;
 	}
-	n_att=n+2;
-	printf("il succ e' %d ",n_att);
-	n_att=n-2;
-	printf("\nil precedente e' %d",n_att);
+	printf("il succ e' %d ",n+2);
+	printf("\nil precedente e' %d",n-2);
 	
 }

@@ -1,4 +1,4 @@
-//marco schiavello
+//marco schiavello 3^CI 1/10/2020
 //programma che dice se pari o dispari 
 #include <stdio.h>
 #include <conio.h>

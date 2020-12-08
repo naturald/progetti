@@ -1,4 +1,4 @@
-//marco schiavello 12/11/2020
+//marco schiavello 3^CI 12/11/2020
 //controllo formale della data
 #include <stdio.h>
 #include <conio.h>
@@ -64,7 +64,7 @@ int main()
 	    do
 	    {
 			fflush(stdin);
-		    printf("vuoi continuare: ");
+		    printf("vuoi continuare (s o n): ");
 		    scanf("%c",&risp);
 		    tolower(risp);
 		}

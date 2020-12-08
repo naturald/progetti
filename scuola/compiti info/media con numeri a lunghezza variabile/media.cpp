@@ -14,7 +14,6 @@ int main()
 		printf("inserisci numero %d : ",(n_inser+1)-i);
 		scanf("%d",&n);
 		sum=sum+n;
-		printf("%d",sum);
 		i=i-1;
 	}
 	media=sum/n_inser;

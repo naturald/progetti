@@ -6,7 +6,7 @@
 
 int main()
 {
-	/*
+	/*prova switch
 	int scelta;
 	scanf("%d",&scelta);
 	switch (scelta)

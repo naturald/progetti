@@ -37,6 +37,6 @@ float pow(int base,int esp,int volte=0,int ris=1,bool neg=false)
 
 int main()
 {
-	//printf("%d",somma(5,6));//5 e 6 parametri attuali
-	printf("%.20f",pow(2,-8));
+	printf("funzione somma risultato: %d\n",somma(5,6));//5 e 6 parametri attuali
+	printf("funzione potenza risultato: %.10f",pow(2,-8));
 }

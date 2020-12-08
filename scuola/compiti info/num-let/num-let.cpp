@@ -4,22 +4,8 @@
 #include <conio.h>
 #include <windows.h>
 
-int main()
+void migliaglia(int m)
 {
-	int n,u,d,c,m;
-	
-	do
-	{
-		printf("inserire un numero (tra 1 e 9999 ) : ");
-		scanf("%d",&n);		
-	}
-	while(n<0||n>9999);
-	
-	m=n/1000;
-	c=(n-(m*1000))/100;
-	d=(n-((c*100)+(m*1000)))/10;
-	u=(n-((c*100)+(d*10)+(m*1000)))/1;
-	printf("%d,%d,%d,%d \n",m,c,d,u);
 	switch (m)
 	{
 		case 2:
@@ -51,6 +37,9 @@ int main()
 		printf("mille ");
 	else if(m!=0)
 		printf("mila ");
+}
+void centinaia(int c,int u)
+{
 	switch (c)
 	{
 		case 2:
@@ -83,8 +72,9 @@ int main()
 			printf("cent ");
 		else
 			printf("cento ");
-	
-		
+}
+void decine_unita(int d,int u)
+{
 	switch (d)
 	{
 		case 1:
@@ -205,7 +195,29 @@ int main()
 				printf("nove ");
 			break;
 		}
+}
 
+int main()
+{
+	int n,u,d,c,m;
+	
+	do
+	{
+		printf("inserire un numero (tra 1 e 9999 ) : ");
+		scanf("%d",&n);		
+	}
+	while(n<0||n>9999);
+	
+	m=n/1000;
+	c=(n-(m*1000))/100;
+	d=(n-((c*100)+(m*1000)))/10;
+	u=(n-((c*100)+(d*10)+(m*1000)))/1;
+	printf("%d,%d,%d,%d \n",m,c,d,u);
+	
+	migliaglia(m);
+	centinaia(c,u);
+	decine_unita(d,u);
+	
 	printf("\n");
 	getch();
 }

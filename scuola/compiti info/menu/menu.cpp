@@ -24,16 +24,16 @@ void menu(int *scelta_)
 		scanf("%d",&scelta);	
 	}
 	while(scelta<1||scelta>5);
-	*scelta_=scelta;
+	*scelta_=scelta;//assegno al volare a cui sta puntando il valore di scelta
 	
 }
 int main()
 {
-	int scelta,*scelta_=&scelta,cod;
+	int scelta,*scelta_=&scelta,cod;//dico di puntare alla variabile scelta 
 	char c;
 	do
 	{	
-		menu(scelta_);
+		menu(scelta_);//passo il puntatore
 		switch(scelta)
 		{
 			case 1:	

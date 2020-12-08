@@ -6,21 +6,20 @@
 
 int main()
 {
-	int i=0,n_max;
+	int i=1,n_max;
 	printf("metti numero fine arco di numeri da 0 a numero che scegli(min 2 max 1000000000 ): ");
 	scanf("%d",&n_max);
-	do
+	while(n_max<2||n_max>MAX_INT)
 	{
 		printf("rimetti: ");
 		scanf("%d",&n_max);	
 	}
-	while(n_max<2||n_max>MAX_INT);
 	
 	do
 	{
 		printf("%d \n",i);
-		i+=2;//i=i+2;
+		i++;//i=i+2;
 	}
-	while(i<=n_max/*||i<=n_max-1*/);
+	while(i<=n_max);
 	getch();
 }

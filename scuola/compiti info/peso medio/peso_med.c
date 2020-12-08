@@ -6,7 +6,8 @@
 
 int main()
 {
-	int n_stud,som=0,peso,i=0,media;
+	int n_stud,som=0,peso,i=0;
+	float media;
 	
 	do
 	{
@@ -28,9 +29,9 @@ int main()
 		som=som+peso;
 		i=i+1;
 	}
-	media=som/n_stud;//troncato perché è intero
+	media=(float)som/n_stud;
 
-	printf("la media dei pesi e': %d \n",media);
+	printf("la media dei pesi e': %.3f \n",media);
 	printf("la somma dei pesi e': %d \n",som);
 	getch();
 }

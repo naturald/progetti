@@ -1,4 +1,4 @@
-//Marco Schiavello 24/1172020
+//Marco Schiavello 3^CI 24/11/2020
 /*
 	Cassa automatica
 	Progetta un terminale per automatizzare la spesa in un supermercato:
@@ -9,7 +9,7 @@
 int main()
 {
 	int	prez_art,n_art=0,tot=0;
-	bool max=false;
+	bool max=false;//flag che dice se si è raggiunto il massimo o no 
 	do
 	{
 		printf("mettere prezzo prodotto (0 = esci): ");
@@ -26,6 +26,6 @@ int main()
 				max=true;
 		}
 	}
-	while(max!=true);
+	while(max==false);
 	printf("il totale e': %d \nnumero di art e': %d",tot,n_art);
 }

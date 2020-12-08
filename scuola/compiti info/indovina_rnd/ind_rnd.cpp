@@ -1,5 +1,5 @@
-//marco schiavello 05/11/2020
-//indovina un numero rand
+//marco schiavello 3^CI 05/11/2020
+//indovina un numero random
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>

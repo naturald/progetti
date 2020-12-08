@@ -1,4 +1,4 @@
-//marco schiavello 08/10/2020
+//marco schiavello 3^CI 08/10/2020
 //chiedere peso e età e dire se si è normo peso o no 
 #include <stdio.h>
 #include <conio.h>
@@ -13,14 +13,14 @@ int main()
 		printf("metti la tua eta (min 1): ");
 		scanf("%d",&eta);
 	}
-	while(eta<=0/*||eta>MAX_INT*/);
+	while(eta<=0||eta>MAX_INT);
 	
 	do
 	{
 		printf("metti il tuo peso (min 1): ");
 		scanf("%d",&peso);
 	}
-	while(peso<=0/*||peso>MAX_INT*/);
+	while(peso<=0||peso>MAX_INT);
 
 	if(eta<=18)
 		if(peso<=60)

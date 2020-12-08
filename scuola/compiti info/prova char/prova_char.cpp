@@ -1,5 +1,5 @@
 //marco schiavello 3^CI 13/11/2020
-//esercizio per provare il carattere
+//esercizio per provare il carattere e la funzione sizeof()
 #include <stdio.h>
 
 int main()

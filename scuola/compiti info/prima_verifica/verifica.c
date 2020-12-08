@@ -14,13 +14,9 @@ int main()
 		{
 			n_tot++;
 			if(n%2==0)
-			{
 				n_par++;
-			}
 			else
-			{
 				n_dis++;
-			}
 		}
 	}
 	while(n!=0);

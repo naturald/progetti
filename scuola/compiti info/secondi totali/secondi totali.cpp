@@ -1,11 +1,11 @@
 //marco schivello 3^CI 25/09/2020
-//inesrire ore per sestituire data in ore minuti secondi
+//inesrire ora in ora minuti e secondi per averla solo in secondi totali
 #include <stdio.h>
-#include <conio2.h>
+#include <conio.h>
 
 int main()
 {
-	int ore,min,sec,ts;
+	int ore,min,sec,tempo_s;
 	
 	printf("inserire ore: ");
 	scanf("%d",&ore);
@@ -16,7 +16,7 @@ int main()
 	printf("inserire sec: ");
 	scanf("%d",&sec);
 	
-	ts=(ore*3600)+(min*60)+sec;
+	tempo_s=(ore*3600)+(min*60)+sec;
 	
-	printf("i secondi totali sono sono: %d",ts);
+	printf("i secondi totali sono sono: %d",tempo_s);
 }

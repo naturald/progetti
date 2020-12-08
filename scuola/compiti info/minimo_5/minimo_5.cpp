@@ -15,7 +15,7 @@ int main()
 			printf("inserire n: ");
 			scanf("%d",&n);	
 		}
-		while(n<-MAX_INT||n>MAX_INT);
+		while(n<(-MAX_INT)||n>MAX_INT);
 		
 		if(n<min)
 			min=n;
@@ -27,4 +27,4 @@ int main()
 	
 	getch();
 	
-}n
+}

@@ -1,5 +1,5 @@
-//marco schiavello 15/10/2020
-//controllo input
+//marco schiavello 3^CI 15/10/2020
+//prove controllo formale del input
 #include <stdio.h>
 #include <conio.h>//TEORICAMENTE SERVE IL 2 PER TEXTCOLOR(COLOR_NAME)
 #include <windows.h>//system ("cls")
