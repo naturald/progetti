@@ -1,5 +1,6 @@
 //libreria marco schiavello 3^CI 4/12/2020
 //boh e una libreria
+#include <windows.h>
 
 void tabella(int volte,bool invio=false,bool trat=false)
 {
@@ -43,11 +44,26 @@ float pow(int base,int esp,int volte=0,int ris=1,bool neg=false)
 }
 void goToXY(int x,int y)
 {
-  system("cls");
-  for(int i=0;i<y;i++)
-    printf("\n");
-  for(int j=0;j<x;j++)
-    printf(" ");
+	
+	// questa cosatnte serve per le versioni di windows arretrate rispetto alla 10
+	#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+	
+	//----------abilito le ANSI sequence per windows 10----------
+  	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD consoleMode;
+    GetConsoleMode(console, &consoleMode);
+    consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;//bitwise OR
+    SetConsoleMode(console, consoleMode);
+    //------------------------------------------------------------
+    
+	printf("\x1b[%d;%df",y,x);
+	/*
+		"\x1b", sarebbe il numero esadecimale 1bche in decimale sarebbe 27. 
+		27 è il numero del carattere ESC;
+		questo carattere porta la stringa ad essere interpretata come una sequenza di escape.
+		dove si ha la ANSI sequence con una sintassi di questo tipo "esc[righa;colonna f"
+	*/
+
 }
 void tab_ascii(int N_COL)
 {
@@ -73,5 +89,26 @@ void tab_ascii(int N_COL)
 
 	getch();
 }
-
+char toUpper(char c)
+{
+	printf("scegli minuscola --> ");
+	fflush(stdin);
+	scanf(" %c",&c);
+	if(c>96&&c<123)
+		printf("il carattere maiuscolo e'--> %c\n",c-32);//	printf("il carattere maiuscolo e'--> %c\n",toupper(c));
+	else
+		printf("il carattere maiuscolo e'--> %c\n",c);
+	getch();
+}
+char toLow(char c)
+{
+	printf("scegli maiuscola --> ");
+	fflush(stdin);
+	scanf(" %c",&c);
+	if(c>64&&c<91)
+		printf("il carattere maiuscolo e'--> %c\n",c+32);//	printf("il carattere maiuscolo e'--> %c\n",tolower(c));?
+	else
+		printf("il carattere maiuscolo e'--> %c\n",c);
+	getch();
+}
 

@@ -3,9 +3,19 @@
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
+#include "marcoLib.h"
 
 int main()
 {
+	char *punt;
+	printf("%d",sizeof(punt));
+	/*
+    int foo; 
+	printf("sdaaaaaaaaaaaaaa\n\n\nsdddasdasdsda\n");
+	goToXY(10,10);
+	scanf("%d",&foo);
+	*/
+	
 	/*prova switch
 	int scelta;
 	scanf("%d",&scelta);
@@ -64,7 +74,6 @@ int main()
 	}
 	*/
 	
-	printf("\n");
-		
+	
 	getch();
 }

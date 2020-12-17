@@ -4,11 +4,11 @@
 #include <stdlib.h>
 #include <conio.h>
 
-struct cursore
+typedef struct cursore
 {
 	int x;
 	int y;
-};
+} cursore;
 
 void goToXY(struct cursore cur)
 {
@@ -22,7 +22,7 @@ void goToXY(struct cursore cur)
 int main() 
 {
 
-	struct cursore cur;
+	cursore cur;
 	do
 	{
 		system("cls");
