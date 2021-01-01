@@ -655,7 +655,7 @@ textarea
 .testo_tameplate
 {
 	position: relative;
-	width: 80%;
+	width: 37%;
 	height: 100%;
 	left: 11%;
 	justify-content: center;
@@ -663,7 +663,6 @@ textarea
 }
 .prezzo_num
 {
-	position: absolute;
 	width: max-content;
 	top: -60px;    
 	top: 229px;
@@ -845,6 +844,27 @@ textarea
 }
 @media only screen and (max-width: 1444px)
 {
+	.prezzo_num
+	{
+		position: absolute;
+		width: max-content;
+		top: -60px;    
+		top: 271px;
+		right: 10%;
+		display: flex;
+		justify-content: center;	
+	}
+	.testo_tameplate
+	{
+		position: relative;
+		width: 80%;
+		min-height: 90px;
+		height: 100%;
+		left: 11%;
+		justify-content: center;
+		overflow: hidden;
+		margin-top: 50px;
+	}
 	.bottone_tameplate_resp
 	{
 		position: relative;
