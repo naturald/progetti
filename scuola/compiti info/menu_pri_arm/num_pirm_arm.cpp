@@ -28,32 +28,42 @@ int menu()
 void n_primi(int n)
 {
 	bool prim;
-	for(int i=2;i<n;i++)//passa tutti i numeri 
+	for(int i=2;n!=0;i++)//passa tutti i numeri 
 	{
 		prim=true;
 		for(int j=2;j<=i/2;j++)// per ogni numero divide da 2 a il numero i 
 			if(i%j==0)//se ce un divisore in questo arco di numeri mette la flag a false per dire che non e un numero primo
 				prim=false;
 		if(prim==true)
+		{
 			printf("%d\n",i);
+			n--;			
+		}
 	}	
 }
 void n_arm()
 {
-	int n,digit[4],n_arm;
+	int n,n_arm=0;
+	int *digit;
 	for(n=1;n<=5000;n++)
 	{
 		n_arm=0;
-		//-------------------divisioni in singoli numeri-------------------------
+		/*-------------------divisioni in singoli numeri-------------------------
 		digit[3]=n/1000;
 		digit[2]=(n-(digit[3]*1000))/100;
 		digit[1]=(n-((digit[2]*100)+(digit[3]*1000)))/10;
 		digit[0]=(n-((digit[2]*100)+(digit[1]*10)+(digit[3]*1000)))/1;
+		*/
+		digit=singlDig(n);
 		//-----------------------------------------------------------------------
-		for(int i=0;i<(sizeof(digit)/4);i++)//scorre per ogni numero e fa la somma di ogni cubo 
+		for(int i=0;digit[i]!=-1;i++)//scorre per ogni numero e fa la somma di ogni cubo 
+		{
 			n_arm+=pow(digit[i],3);
+						
+		}
 		if(n_arm==n)// se la somma combacia con il numero stampa
 			printf("%d\n",n);
+		free(digit);
 	}
 
 }
@@ -65,7 +75,8 @@ int main()
 	do
 	{
 		system("cls");
-		scelta = menu(); 
+		singlDig(1233234242);
+		scelta = menu(); //chiamata funzione 
 		switch(scelta)
 		{
 			case 1:

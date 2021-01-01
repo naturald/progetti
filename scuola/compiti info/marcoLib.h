@@ -21,8 +21,12 @@ int leggi_int(char messagio[],int da_leg)
 	scanf("%d",&da_leg);
 	return da_leg;
 }
-float pow(int base,int esp,int volte=0,int ris=1,bool neg=false)
+double pow(int base,int esp,int volte=0,int ris=1,bool neg=false)
 {
+	if(esp==0)
+		return 1;
+	if(base==0)
+		return 0;
 	if(volte==0)
 		if(esp<0)
 		{
@@ -32,7 +36,7 @@ float pow(int base,int esp,int volte=0,int ris=1,bool neg=false)
 	if(volte==esp)
 	{
 		if(neg==true)
-			return (float)1/ris;
+			return (double)1/ris;
 		return ris;
 	}
 	volte++;
@@ -110,5 +114,53 @@ char toLow(char c)
 	else
 		printf("il carattere maiuscolo e'--> %c\n",c);
 	getch();
+}
+int* singlDig(int num)
+{
+	/*
+		MANUALE FUNZIONE 
+		dato un numero come parametro restituisce un inirizzo all'array contenete le singole cifre separate 
+		questo array viene salvato sull'heap e non sullo stack questo perche le funzioni quando finiscono
+		cancellano tutte le varibili riferite alla funzione e chiude il blocco della riferito ad essa percio quando
+		si cercherà di accedere all'indirizzo dell'array riferito alla funzione esso non esisterà piu fuori da essa
+		(perciò ci sara credo un memory leak).
+		facendo cosi l'heap per la durata del programma salvera quell'array in modo 
+		da essere richiamato da altre parti via indirizzo notare che questo accade perche creamo un array 
+		in modo che la sua dimensione sia dinamica con malloc/calloc percio viene messo nella parte delòla memoria
+		chiamata heap che conservera quei dati con allocazione dinamicha di memoria.
+		quando finito di utilizare l'array fare free(nome puntatore a cui avete assegnato il ritorno della funzione) in modo da evitare memory leak.
+		non funzionera sizeof() sopra l'array per motivi spiegati sotto ma si potra definire la sua lunghezza
+		stabilendo che il valore dell'ultima cella di esso e -1
+	*/
+	int n_dig = 1,somDaTogl=0,tmp=num/pow(10,n_dig);
+	while(tmp!=0)
+	{
+		tmp=num/pow(10,n_dig);
+		n_dig++;
+	}
+	if(n_dig!=1)
+		n_dig--;
+	int pot=n_dig-1;
+	int *dig = (int*)calloc(n_dig+1, sizeof(int));
+	/*
+		si potrebbe fareanche *dig = (int*)malloc((n_dig * sizeof(int))+1) 
+		ma non inizializzarebbe le celle di memoria a zero		
+		RICORDARSI di castare il risultato di malloc e calloc a un puntatore di int
+		se si usa calloc usare questa notazione calloc(lunchezza array, grandezza singole celle)
+		se si usa malloc usare questa notazione malloc(numero totale di byte da occupre) 
+		TIP: fare lunghezza desiderata array e moltiplicarla per la grandezza di ogni cella
+	*/	
+	dig[n_dig]=-1;
+	/*
+		essendo che quando ritorno l'array non posso sapere la sua lunghezza che sta puntando 
+		metto una cella in piu dove mettero -1 che indica la fine dell'array  
+	*/
+	for(int i = 0;i<n_dig;i++)
+	{
+		dig[i]=(num-somDaTogl)/pow(10,pot);
+		somDaTogl+=(dig[i]*pow(10,pot));
+		pot--;
+	}
+	return dig;
 }
 
