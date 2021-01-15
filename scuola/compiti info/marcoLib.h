@@ -163,4 +163,44 @@ int* singlDig(int num)
 	}
 	return dig;
 }
+//------------------Quick Sort------------------------
+void scmbio(int * arr,int a,int b)
+{
+	int tmp = arr[a];
+	arr[a] = arr[b];
+	arr[b] =tmp;
+}
+
+int pos_pivot(int * arr,int min,int max)
+{
+	int piv = arr[max],ult_min = min;
+	for(int i = min;i<=max;i++)
+	{
+		if(arr[i]<=piv)
+		{
+			scmbio(arr,i,ult_min);	
+			if(i!=max)	
+				ult_min ++;	
+		}
+	}
+	return ult_min;
+}
+
+void quickSort(int * arr,int min,int max)
+{
+	if(min<max)
+	{
+		int pivI = pos_pivot(arr,min,max);
+		quickSort(arr,min,pivI-1);
+		quickSort(arr,pivI+1,max);
+	}
+}
+//----------------------------------------------------
+float sconto(float tot, float percentuale) 
+{
+	return tot - ((tot*percentuale)/100);
+}
+
+
+
 

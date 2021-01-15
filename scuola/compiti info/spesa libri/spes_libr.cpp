@@ -12,16 +12,30 @@
 #include <conio.h>
 #include "../marcoLib.h"
 
-int main()
+float getSconto(float tot)
 {
-	int n_lib;
-	float cost_lib,tot=0;
+	if(tot<50.01)
+		tot =(tot * 5)/100;
+	else if(tot>50&&tot<150)
+		tot = (tot * 10)/100;
+	else
+		tot = (tot * 15)/100;	
+	return tot;
+}
+
+void setNumLib(int * n_lib)
+{
 	do
 	{
+		system("cls");
 		printf("inserisci numeri libri: ");
-		scanf("%d",&n_lib);
+		scanf("%d",n_lib);
 	}
-	while(n_lib<0||n_lib>10);
+	while(*n_lib<0||*n_lib>10);
+}
+void setCostLib(float * tot,int n_lib)
+{
+	float cost_lib;	
 	for(int i=0;i<n_lib;i++)
 	{
 		do
@@ -30,15 +44,20 @@ int main()
 			scanf("%f",&cost_lib);
 		}
 		while(cost_lib<0||cost_lib>200);
-		tot+=cost_lib;
+		*tot+=cost_lib;
 	}
+}
+void scontrino(float tot)
+{
 	printf("il prezzo totale non scontato e': %.2f\n",tot);
-	if(tot<50.01)
-		tot = tot - ((tot * 5)/100);
-	else if(tot>50&&tot<150)
-		tot = tot - ((tot * 10)/100);
-	else
-		tot = tot - ((tot * 15)/100);
-	printf("il prezzo totale scontato e': %.2f",tot);
+	printf("il prezzo totale scontato e': %.2f",tot - getSconto(tot));	
+} 
+int main()
+{
+	int n_lib;
+	float tot=0;
+	setNumLib(&n_lib);
+	setCostLib(&tot,n_lib);
+	scontrino(tot);
 	getch();
 }
