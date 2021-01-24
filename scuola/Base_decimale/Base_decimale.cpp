@@ -26,7 +26,8 @@ int main()
 {
 	int base,pot_num,pos_vir = -1,num_len;
 	double ris, calcolo;
-	char numero[MAX_LEN],rispo;
+	char numero[MAX_LEN];//creazione array con MAX_LEN perciò da 0 a MAX_LEN-1
+	char rispo;
 	bool err = false;
 	do
 	{
@@ -35,36 +36,35 @@ int main()
 		do
 		{
 			system("cls");
-			printf("inserisci la base del numero (2-35): ");
+			printf("inserisci la base del numero (2-36): ");
 			scanf("%d",&base);
 		}
-		while(base>35||base<2);
+		while(base>36||base<2);
 		
 		do
 		{
 			system("cls");
-			printf("inserisci la base del numero (2-35): %d",base);
+			printf("inserisci la base del numero (2-36): %d",base);
 			if(err == true)
 				printf("\nil numero che hai inserito non appartiene alla base selezionata");
 			err = false;
 			printf("\ninserisci il numero: ");
 			scanf(" %s", numero);
 			//controlliamo che ogni singola cifra sia contenuta nella base selezionata 
-			while(numero[num_len] != 0)
+			for(int i = 0;numero[i] != 0;i++)//0 indica la fine della stringa
 			{
-				if(numero[num_len] == 44 || numero[num_len] == 46)
+				if(numero[i] == 44 || numero[i] == 46)
 				{
-					pos_vir = num_len;
+					pos_vir = i;
 					num_len++;
 					continue;
 				}
 				
-				if(CharToInt(numero[num_len]) >= base)
+				if(CharToInt(numero[i]) >= base)
 	        	{
 	        		err = true;
 	        		break;
 				}
-				printf("%d\n",numero[num_len]);
 				num_len++;
 			}
 		}
@@ -75,16 +75,27 @@ int main()
 		printf("%d = ",base);
 		
 		/*
-			controlliamo la posizione della virgola nel numero in modo 
+			Controlliamo la posizione della virgola nel numero in modo 
 			da capire quale sara la potenza massima della prima cifra del numero 
 		*/
+		printf("\n %d %d ",num_len,pos_vir);
 		if(pos_vir == -1)
 		    pot_num = num_len-1;
 		else
-		    pot_num = num_len-pos_vir; 
+		    pot_num = pos_vir-1; //es: 1000.1 -> 4 - 1 = 3
+		/* 
+			Prendiamo la posizione della virgola e sottraiamo uno 
+		    questo perché la posizione della virgola essendo un indice 
+			incrementa da 0 dove c'è la cifra piu significativa 
+		    perciò tutto quello che verrà prima della virgola sarà la parte intera
+		    togliendo 1 diciamo che la parte intera va da 0 a pos della virgola -1 
+			dove pos della virgola -1 indica implicitamente il numero di interi -1
+			che corrisponde all esponente della cifra piu significativa del numero
+		*/
+		    
 		    
 	    /* 
-			moltiplichiamo la cifra per la base elevata alla potenza 
+			Moltiplichiamo la cifra per la base elevata alla potenza 
 			che decrementera di 1 ogni volta andando a destra
 			infine lo aggiungiamo al risultato per poi stamparlo
 	    */	
@@ -101,6 +112,7 @@ int main()
 		        printf(" + ");
 			
 			calcolo = CharToInt(numero[i]) * pow(base,pot_num);
+			//prendiamo il simbolo che rappresenta il numero in posizione i-esima per fare i calcoli
 			
 		    ris += calcolo;
 		    pot_num--;

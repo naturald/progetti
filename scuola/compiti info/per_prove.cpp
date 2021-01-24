@@ -5,10 +5,34 @@
 #include <windows.h>
 #include "marcoLib.h"
 
+void chiediArr(int arr[],int len)
+{
+	for(int i=0;i<len;i++)
+	{
+		printf("%d metti input: ",len);
+		scanf("%d",&arr[i]);
+	}
+}
+
 int main()
 {
+	
+	//tipi di dato primitivi int char float boolean 
+	//strutturati array    
+	
+	int arr[24];
+	chiediArr(arr,(sizeof(arr)/4));
+	
+	for(int i=0;i<(sizeof(arr)/4);i++)
+	{
+		printf("%d \n",arr[i]);
+	}
+	
+	/*
 	char *punt;
 	printf("%d",sizeof(punt));
+	*/
+	
 	/*
     int foo; 
 	printf("sdaaaaaaaaaaaaaa\n\n\nsdddasdasdsda\n");
