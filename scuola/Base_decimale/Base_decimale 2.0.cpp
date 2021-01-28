@@ -19,12 +19,15 @@ int CharToInt(char n)
 			return n-55;
         else if(n>96 && n<123) // lettere minuscole
 			return n-87;
+			else //tutte le lettere che non sono in questi range speficicati 
+				return -1;
+				
 }
 
 
 int main()
 {
-	int base,pot_num,pos_vir = -1,num_len;
+	int base,pot_num,pos_vir,num_len;
 	double ris, calcolo;
 	char numero[MAX_LEN];//creazione array con MAX_LEN perciò da 0 a MAX_LEN-1
 	char rispo;
@@ -32,18 +35,19 @@ int main()
 	do
 	{
 		ris = 0,num_len=0,pos_vir = -1;
-		system("cls");
 		do
 		{
+			fflush(stdin);
 			system("cls");
 			printf("inserisci la base del numero (2-36): ");
 			scanf("%d",&base);
+			fflush(stdin);
 		}
 		while(base>36||base<2);
 		
 		do
 		{
-			
+			fflush(stdin);
 			system("cls");
 			printf("inserisci la base del numero (2-36): %d",base);
 			if(err == true)
@@ -61,7 +65,7 @@ int main()
 					continue;
 				}
 				
-				if(CharToInt(numero[i]) >= base)
+				if(CharToInt(numero[i]) >= base || CharToInt(numero[i]) == -1)
 	        	{
 	        		err = true;
 	        		num_len = 0;
@@ -69,7 +73,6 @@ int main()
 				}
 				num_len++;
 			}
-			
 		}
 		while(err == true);
 	
@@ -101,7 +104,7 @@ int main()
 			che decrementera di 1 ogni volta andando a destra
 			infine lo aggiungiamo al risultato per poi stamparlo
 	    */	
-		for(int i = 0;i<num_len;i++)
+		for(int i = 0;numero[i] != 0;i++)
 		{
 		    if(i == pos_vir) // saltiamo se c'è la virgola 
 		    	continue;
@@ -125,7 +128,8 @@ int main()
 			printf("%f",ris);
 			
 		printf("\n\nvuoi fare un altro numero ( s o n ): ");
-		scanf(" %c",&rispo);
-	}
+		printf("%d %c",scanf(" %c",&rispo),rispo);
+		system("pause");
+	}	
 	while(rispo == 's');
 }
