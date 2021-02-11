@@ -28,21 +28,21 @@ void caricaLati(int lati[])
 }
 
 //calcola per ogni lato calcola il suo perimentro con lo stesso contatore 
-void calcolaPeri(int lati[],int peri[])
+void calcolaPeri(int lati[],int peri[])//lati (input) , peri (output)
 {
 	for(int i = 0;i<DIM;i++)
 		peri[i] = lati[i]*N_LATI;
 }
 
 //calcola per ogni lato calcola l'area con lo stesso contatore 
-void calcolaAree(int lati[],int aree[])
+void calcolaAree(int lati[],int aree[])//lati (input) aree (output)
 {
 	for(int i = 0;i<DIM;i++)
 		aree[i] = lati[i]*lati[i];
 }
 
 //dati tre array contenenti lati peri e aree stampa una tabeli conetnedo i dati salvati negli array 
-void stampaTab(int lati[],int peri[],int aree[])
+void stampaTab(int lati[],int peri[],int aree[])// tutti output 
 {
 	system("cls");
 	printf("o------o------o------o------o\n");
