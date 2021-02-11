@@ -9,13 +9,24 @@ public class Controller
 
     public Controller()
     {
-        System.out.print("quanti resistori ci sono : ");
-        int n_res = input.nextInt();
+        int n_res;
+        do
+        {
+            System.out.print("quanti resistori ci sono (min 2 max 9): ");
+            n_res = input.nextInt();
+        }
+        while(n_res > 9 || n_res < 2);
         this.model = new Model(n_res);
         this.tabella = new Tabella(n_res);
     }
     public void addRelazione()
     {
+        if(model.resAve() < 2)
+        {
+            System.out.println("non ci sono abbastanza resistenze libere per creare una nuova relazione ");
+            return;
+        }
+
         String Rx,Ry,tipoRela;
         float Rxy;
         boolean err = false;

@@ -58,4 +58,12 @@ public class Model
                     return i;
         return -1;
     }
+    public int resAve()
+    {
+        int nResAve = 0;
+        for(Resistenza i : resiostori)
+            if(i!= null && !i.getStatus())
+                nResAve++;
+        return nResAve;
+    }
 }
