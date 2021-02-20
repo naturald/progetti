@@ -10,8 +10,6 @@ public class Resistenza
     }
     public float getValore() {return valore;}
     public String getNome() {return nome;}
-    public void setValore(float valore) {this.valore = valore;}
-    public void setNome(String nome) {this.nome = nome;}
     public void setStatus() {this.usata =  !this.usata;}
     public boolean getStatus() {return usata;}
 }

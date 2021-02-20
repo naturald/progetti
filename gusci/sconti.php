@@ -218,17 +218,16 @@ EOT;
         if(now.getMonth()==12)
         {
             now.setFullYear(now.getFullYear()+1);
-            now.setMonth(1);
+            now.setMonth(0);
         }
-        else
-            now.setMonth(now.getMonth()+1);
-            
-        var sec=new Date(ex_time[2],ex_time[1],ex_time[0]).getTime()-(now.getTime());
+    
+        var ex_date = new Date(ex_time[2],ex_time[1]-1,ex_time[0]);
+        var sec=ex_date.getTime() - now.getTime();
         var days = Math.floor(sec / (1000 * 60 * 60 * 24));
         var hours = Math.floor((sec % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((sec % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((sec % (1000 * 60)) / 1000);
-        time.innerHTML=days+" "+hours+" "+minutes+" "+seconds ;
+        time.innerHTML=days+"g "+hours+"h "+minutes+"m "+seconds+"s ";
         }
         ,1000);
 

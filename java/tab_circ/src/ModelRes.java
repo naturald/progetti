@@ -1,11 +1,13 @@
+import javax.crypto.NullCipher;
+import javax.lang.model.type.NullType;
 import java.util.Scanner;
 
-public class Model
+public class ModelRes
 {
     private Scanner input = new Scanner(System.in);
     public Resistenza[] resiostori;
     private int n_res;
-    public Model(int n_res)
+    public ModelRes(int n_res)
     {
         this.n_res = n_res;
         float valore;
@@ -26,7 +28,7 @@ public class Model
     public void remRes(String Rnome)
     {
         int index = indexByNome(Rnome);
-        System.arraycopy(resiostori, index + 1, resiostori, index, resiostori.length - 1 - index);
+        resiostori = remResFormArray(resiostori,index);
     }
     public float ValByNome(String Rnome)
     {
@@ -65,5 +67,29 @@ public class Model
             if(i!= null && !i.getStatus())
                 nResAve++;
         return nResAve;
+    }
+    public float rEqi(String tipoRela,String[] R)
+    {
+        float Rxy;
+        if(tipoRela.equals("serie"))
+            Rxy = serie(ValByNome(R[0]),ValByNome(R[1]));
+        else
+            Rxy =parallelo(ValByNome(R[0]),ValByNome(R[1]));
+        return Rxy;
+    }
+    public Resistenza[] getAllRes() {return resiostori;}
+    private float serie(float Rx,float Ry) { return Rx + Ry;}
+    private float parallelo(float Rx,float Ry) { return (Rx * Ry)/(Rx + Ry);}
+    private Resistenza[] remResFormArray(Resistenza[] res,int index)
+    {
+        Resistenza[] resCopy = new Resistenza[res.length];
+        for(int i = 0, j = 0; i<resCopy.length;i++,j++)
+        {
+            if(j == index)
+                j++;
+            if(j != resCopy.length)
+                resCopy[i] = res[j];
+        }
+        return resCopy;
     }
 }

@@ -6,8 +6,18 @@ public class Main
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        Controller controller = new Controller();
-        int scelta;
+        int Nres,scelta;
+        do
+        {
+            System.out.print("quanti resistori ci sono (min 2 max 9): ");
+            Nres = input.nextInt();
+        }
+        while(Nres > 9 || Nres < 2);
+        ModelRela modelRela = new ModelRela(Nres);
+        ModelRes modelRes = new ModelRes(Nres);
+        ViewRela viewRela = new ViewRela();
+        ViewRes viewRes = new ViewRes();
+        Controller controller = new Controller(modelRela,modelRes,viewRela,viewRes);
         do
         {
             System.out.println("-------------------------------------");
@@ -15,31 +25,27 @@ public class Main
             System.out.println("2) stampare tabella resistori");
             System.out.println("3) aggiungere relazione");
             System.out.println("4) rimuovi relazione");
-            System.out.println("5) rimuovi resistore");
-            System.out.println("6) esci");
+            System.out.println("5) esci");
             System.out.println("-------------------------------------");
             System.out.print("scelta : ");
             scelta = input.nextInt();
             switch (scelta)
             {
                 case 1:
-                    controller.stampaTab();
+                    controller.printTab();
                 break;
                 case 2:
-                    controller.stampaRes();
+                    controller.printRes();
                 break;
                 case 3:
                     controller.addRelazione();
                 break;
                 case 4:
-                    controller.remRes();
-                break;
-                case 5:
-
+                    controller.remRelazione();
                 break;
             }
         }
-        while(scelta != 6);
+        while(scelta != 5);
 
     }
 }
