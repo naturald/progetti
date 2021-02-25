@@ -1,0 +1,324 @@
+/*-----------------pre-settings---------------*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway&family=Varela+Round&display=swap');
+html,body
+{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+    overflow-x:hidden;
+}
+::-webkit-scrollbar
+{
+    display: none;
+}
+body
+{
+    background-image: url("/assets/img/sfondo.jpg");
+    background-size: 100% 100%;
+
+}
+h2,h3,h4
+{
+    margin:0;
+    cursor: default;
+}
+h1
+{
+    font-family: 'Bebas Neue', cursive;
+    cursor: default;
+}
+a
+{
+    text-decoration: none;
+    color: black;
+}
+/*-----------------nav-bar---------------*/
+header
+{
+    height: 151px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px -35px 50px 5px;
+    background-color: white;
+}
+.title_nav
+{
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    font-size: 40px;
+    margin-bottom: 0;
+    cursor: default;
+}
+.linea
+{
+    width: 260px;
+}
+.voci_nav
+{
+    list-style: none;
+    display: flex;
+    width: 40vw;
+    margin: auto;
+    justify-content: space-evenly;
+    padding: 0;
+}
+.voci_nav li 
+{
+    margin: 0 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 23px;
+}
+.voci_nav li a
+{
+    text-decoration: none;
+    color: black;
+}
+.voci_nav li:hover
+{
+    transform: scale(1.2);
+    font-weight: bold;
+}
+/*-----------------content---------------*/
+#content
+{
+    width: 80vw;
+    height: max-content;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding-bottom: 100px;
+    background-color: white;
+    min-height: 450px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/*-----------------home---------------*/
+#sub_title_home
+{
+    width: max-content;
+    margin: auto;
+    position: relative;
+    top: 30px;
+    font-size: 30px;
+    animation: landingY 1s ease forwards;
+}
+#title_home
+{
+    width: max-content;
+    margin: auto;
+    position: relative;
+    top: 50px;
+    font-size: 70px;
+    opacity: 0;
+    animation: landingX 1.5s ease .8s forwards;
+}
+@keyframes landingX
+{
+    0%
+    {
+        transform: translateX(-160px);
+        opacity: 0;
+    }
+    100%
+    {
+        transform: translateX(0);
+        opacity: 1; 
+    }
+}
+@keyframes landingY
+{
+    0%
+    {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
+    100%
+    {
+        transform: translateY(0);
+        opacity: 1; 
+    }
+}
+#img_home
+{
+    display: block;
+    position: relative;
+    top: 70px;
+    margin: auto;
+    height: 110px;
+}
+#container_home
+{
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: max-content;
+    height: max-content;
+}
+/*-----------------articoli---------------*/
+.link_article
+{
+    width: 90%;
+    margin-top: 15px;
+}
+.article
+{
+    margin: auto;
+    box-sizing: border-box;
+    background-color: rgb(224, 224, 224);
+    width: 90%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: 0.3s; 
+}
+.link_article:hover .article
+{
+    
+    transform: translateX(5%);
+    background-color: rgb(187, 187, 187);
+}
+.page_title
+{
+    margin-bottom: 0;
+    font-size: 45px;
+}
+.img_article
+{
+    display: block;
+    height: 100%;
+    width: 100px;
+}
+.data_article
+{
+    margin-left: 20px;
+}
+.price_article
+{
+    font-size: 23px;
+    position: absolute;
+    right: 50px;
+}
+.title_article
+{
+    font-size: 25px;
+}
+.description_article
+{
+    line-height: 10px;
+    font-size: 17px;
+    margin-top: 18px;
+    font-weight: normal;
+}
+/*-----------------notizie---------------*/
+.news
+{
+    margin-top: 20px;
+    width: 80%;
+    height: max-content;
+    border-bottom: black solid 1px;
+}
+.news h2
+{
+    font-size: 25px;
+}
+.news p
+{
+    font-size: 19px;
+}
+.author_news
+{
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+/*-----------------about---------------*/
+#img_about
+{
+    margin: 30px;
+    width: 60%;
+    border-radius: 30px;
+}
+#text_about
+{
+    width: 80%;
+    font-size: 20px;
+}
+#text_about::first-letter
+{
+    font-size: 40px;
+}
+/*-----------------gallery---------------*/
+.img_gallery
+{
+    min-height: 391px;
+    height: 35vw;
+    border-radius: 40px;
+}
+.title_gallery
+{
+    font-size: 31px;
+    margin-top: 60px;
+}
+.linea_gallery
+{
+    width: 60px;
+    margin: 15px 0;
+}
+/*-----------------footer---------------*/
+footer
+{
+    margin-top: 50px;
+    width: 100vw;
+    height: 40vh;
+    background-color: rgb(139, 138, 138);
+}
+#logo_footer
+{
+    display: flex;
+    align-items: center;
+}
+#img_logo_footer
+{
+    height: 70px;
+    margin: 10px;
+}
+#title_logo_footer
+{
+    font-size: 35px;
+}
+#container_col_footer
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+.col_footer ul
+{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+.col_footer ul li
+{
+    margin: 10px 0;
+    font-size: 16px;
+}
+.col_footer ul li a:hover
+{   
+    text-decoration: underline;
+}
+.col_footer h1
+{
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+}
+
