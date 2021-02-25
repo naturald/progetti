@@ -31,7 +31,7 @@ public class ModelRela
                     return true;
         return false;
     }
-    public void addRela(String tipoRela,String[] R,float Rxy)
+    public void addVoce(String tipoRela,String[] R,float Rxy)
     {
         String[] traR = new String[] {R[0],R[1]};
         String segnoI = "=",segnoV = "=";
@@ -42,7 +42,7 @@ public class ModelRela
         contenuto[nCirc] = new Voci(nCirc+1,tipoRela,traR,"I"+traR[0].replaceFirst("^R","")+" "+segnoI+"= I"+traR[1].replaceFirst("^R",""),"V"+traR[0].replaceFirst("^R","")+" "+segnoV+"= V"+traR[1].replaceFirst("^R",""),Rxy);
         this.nCirc++;
     }
-    public int getnCirc() {return this.nCirc;}
+    public int getNcirc() {return this.nCirc;}
     public Voci[] getAllVoci() {return contenuto;}
     private Voci[] remVoceFormArray(Voci[] voci,int index)
     {
