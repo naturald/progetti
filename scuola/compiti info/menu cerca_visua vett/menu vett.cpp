@@ -88,22 +88,26 @@ int ricercaDico(int vet[],int ele,char ord)
 	{
 		if(((min+1) == max || min == max) || ((max-1) == min || max == min))
 			fine = true;
-		sele = (max + min)/2;
-		if(vet[sele] != ele)
+		else
 		{
-			if(vet[sele]>ele)
+		
+			sele = (max + min)/2;
+			if(vet[sele] != ele)
 			{
-				if(vet[sele] == 'C')
-					min = sele;
+				if(vet[sele]>ele)
+				{
+					if(vet[sele] == 'C')
+						min = sele;
+					else
+						max = sele;
+				}
 				else
-					max = sele;
-			}
-			else
-			{
-				if(vet[sele] == 'C')
-					max = sele;
-				else
-					min = sele;
+				{
+					if(vet[sele] == 'C')
+						max = sele;
+					else
+						min = sele;
+				}
 			}
 		}
 
