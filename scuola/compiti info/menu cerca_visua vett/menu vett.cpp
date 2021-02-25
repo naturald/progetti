@@ -32,6 +32,13 @@
 #define KO -1
 #define GRAD 248
 
+void swap(int vett[],int a,int b)
+{
+	int tmp = vett[a];
+	vett[a] = vett[b];
+	vett[b] = tmp;
+}
+
 void menu(int *scelta, bool caricato)
 {
   bool err;
@@ -43,10 +50,12 @@ void menu(int *scelta, bool caricato)
 	printf("2) visualizza il vettore\n");
 	printf("3) carica la prima occorrenza del valore nel vettore\n");
     printf("4) tutte le occorrenze del valore nel vettore\n");
-	printf("5) esci\n");
+    printf("5) ordina crescente\n");
+    printf("6) ordina decrescente\n");
+	printf("7) esci\n");
     printf("scegli l'operazione da eseguire: ");
 	scanf("%d",scelta);
-    if((*scelta<=4&&*scelta>=2)&&caricato==false)
+    if((*scelta<=7&&*scelta>=2)&&caricato==false)
     {
       	err=true;
       	system("cls");
@@ -54,7 +63,7 @@ void menu(int *scelta, bool caricato)
 		getch();
       	system("cls");
     }
-    if(*scelta<1||*scelta>5)
+    else if(*scelta<1||*scelta>7)
     {
       	err=true;
       	system("cls");
@@ -64,7 +73,7 @@ void menu(int *scelta, bool caricato)
   }while(err==true);
 }
 
-void caricaVet(int vet[], bool * caricato)
+void caricaVet(int vet[], bool * caricato)//cerca nel vettore 
 {
 	system("cls");
   	int i;
@@ -102,6 +111,24 @@ void cercaPlusVet(int vet[], int val)//cerca anche dopo la prima occorrenza il v
     system("cls");
     printf("il numero %d non e' presente nel vettore",val);
   }
+}
+
+void ordinaVet(int vet[])//ordina l'array in modo crescente
+{
+	int i,j;
+	for(i = 0;i<DIM-1;i++)
+		for(j = i+1;j<DIM;j++)
+			if(vet[i]>vet[j])
+				swap(vet,i,j);
+}
+
+void ordinaVetRev(int vet[])//ordina l'array in modo decrescente
+{
+	int i,j;
+	for(i = 0;i<DIM-1;i++)
+		for(j = i+1;j<DIM;j++)
+			if(vet[i]<vet[j])
+				swap(vet,i,j);
 }
 
 
@@ -149,9 +176,25 @@ int main()
         getch();
         break;
       }
+      case 5:
+      {
+        system("cls");
+        ordinaVet(vet);
+        visVet(vet);
+        getch();
+        break;
+      }
+      case 6:
+      {
+        system("cls");
+        ordinaVetRev(vet);
+        visVet(vet);
+        getch();
+        break;
+      }
     }
   }
-  while(scelta != 5); 
+  while(scelta != 7); 
 
 	return 0;
 } 
