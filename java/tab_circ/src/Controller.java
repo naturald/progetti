@@ -53,8 +53,8 @@ public class Controller
         }
         while(err == true);
         float Rxy = modelRes.rEqi(tipoRela,R);
-        modelRela.addRela(tipoRela,R,Rxy);
-        modelRes.addRes(R,Rxy,modelRela.getnCirc());
+        modelRela.addVoce(tipoRela,R,Rxy);
+        modelRes.addRes(R,Rxy,modelRela.getNcirc());
         modelRes.setStatusByNome(R[0]);
         modelRes.setStatusByNome(R[1]);
     }
