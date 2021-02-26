@@ -60,14 +60,14 @@ void menu(int *scelta, bool caricato, char ordinato)
     {
       	err=true;
       	system("cls");
-		printf("dato inserito incorretto\ndevi prima caricare il vettore");
+		printf("dato inserito incorretto\ndevi prima caricare il vettore\n");
 		getch();
     }
     else if(*scelta == 8 && ordinato==' ')
     {
     	err=true;
       	system("cls");
-		printf("il vettore devo essere prima ordinato");
+		printf("il vettore devo essere prima ordinato\n");
 		getch();
 	}
 	else if(*scelta<1||*scelta>9)
@@ -86,29 +86,39 @@ int ricercaDico(int vet[],int ele,char ord)
 	bool fine = false;
 	do
 	{
-		if(((min+1) == max || min == max) || ((max-1) == min || max == min))
-			fine = true;
+		if((min+1) == max  || (max-1) == min)
+		{
+			if((min+1) == max)
+				min++;
+				
+			if(vet[min] == ele)
+				sele = min;
+			else
+				sele = -1;	
+		}
 		else
 		{
 			sele = (max + min)/2;
 			if(vet[sele] != ele)
 			{
-				if(vet[sele]>ele)
+				if(vet[sele]<ele)
 				{
-					if(vet[sele] == 'C')
+					if(ord == 'C')
 						min = sele;
 					else
 						max = sele;
+				
 				}
 				else
 				{
-					if(vet[sele] == 'C')
+					if(ord == 'C')
 						max = sele;
 					else
 						min = sele;
 				}
 			}
 		}
+		
 
 	}
 	while(vet[sele] != ele && fine == false);
@@ -130,36 +140,48 @@ void caricaVet(int vet[])//cerca nel vettore
   	int i;
 	for(i=0;i<DIM;i++)
 	{
-		printf("inserisci il numero %d: ",i+1);
+		printf("inserisci il numero %d : ",i+1);
 		scanf("%d",&vet[i]);
 	}
 }
 
 int cercaVet(int vet[],int val)//cerca nel vettore la prima occorrenza e ritorna l'indice 
 {
-  int i;
-  for(i = 0;i<DIM;i++)
-    if(vet[i] == val)
-      return i;
+	int i;
+	for(i = 0;i<DIM;i++)
+		if(vet[i] == val)
+	  		return i;
+	return  -1;
 }
 
 void visVet(int vet[])//visita vettore
 {
   int i;
+  printf("o-----o-----o\n");
+  printf("|index| val |\n");
+  printf("o-----o-----o\n");
   for(i = 0;i<DIM;i++)
-    printf("il %d %c valore del'array %d\n",i+1,GRAD,vet[i]);
+  {
+  	printf("| %3d | %3d |\n",i,vet[i]);	
+  	printf("o-----o-----o\n");
+  }
 }
 
 void cercaPlusVet(int vet[], int val)//cerca anche dopo la prima occorrenza il valore coluto e ritorna gl'indici
 {
-  int i;
+  int i,pos= -1;
   for(i=0;i<DIM;i++)
     if(vet[i]==val) 
-      printf(" %d",i);
-  if(i==0)
+    {
+    	pos = i;
+    	printf(" %d",pos);	
+	}
+      
+  if(pos == -1)
   {
-    system("cls");
-    printf("il numero %d non e' presente nel vettore",val);
+	system("cls");  
+	printf("inserisci quale valore voui cercare nel vettore : %d\n",val);
+    printf("il numero %d non e' presente nel vettore\n",val);
   }
 }
 
@@ -206,6 +228,7 @@ int main()
 		  	system("cls");
 		    caricaVetRand(vet);
 		    caricato = true;
+		    visVet(vet);
 		    getch();
 		    break;
 		  }
@@ -219,17 +242,20 @@ int main()
 		  case 4:
 		  {
 		    system("cls");
-		    printf("metti il valore da cercare :");
+		    printf("metti il valore da cercare : ");
 		    scanf("%d",&val);
 		    int index = cercaVet(vet,val);
-		    printf("il valore e' in posizione : %d",index);
+		    if(index == -1)
+		    	printf("il valore non e' presente nell'array\n");
+			else
+		    	printf("il valore e' in posizione : %d",index);
 		    getch();
 		    break;
 		  }
 		  case 5:
 		  {
 		    system("cls");
-		    printf("inserisci quale valore voui cercare nel vettore: ");
+		    printf("inserisci quale valore voui cercare nel vettore : ");
 		    scanf("%d",&val);
 		    printf("il numero %d si trova alla posizione : ",val);
 		    cercaPlusVet(vet,val);
@@ -257,7 +283,7 @@ int main()
 		  case 8:
 		  {
 		  	system("cls");
-		    printf("metti il valore da cercare :");
+		    printf("metti il valore da cercare : ");
 		    scanf("%d",&val);
 		    int index = ricercaDico(vet,val,ordinato);
 		    printf("il valore e' in posizione : %d",index);
