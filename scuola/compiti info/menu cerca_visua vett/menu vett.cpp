@@ -90,7 +90,6 @@ int ricercaDico(int vet[],int ele,char ord)
 			fine = true;
 		else
 		{
-		
 			sele = (max + min)/2;
 			if(vet[sele] != ele)
 			{
