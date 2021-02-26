@@ -29,6 +29,7 @@
 #define DIM 5
 #define GRAD 248
 
+// dato un array prende due valori e li scambia con ausilio di una variabile temporanea
 void swap(int vett[],int a,int b)
 {
 	int tmp = vett[a];
@@ -80,7 +81,7 @@ void menu(int *scelta, bool caricato, char ordinato)
   }while(err==true);
 }
 
-int ricercaDico(int vet[],int ele,char ord)
+int ricercaDico(int vet[],int ele,char ord)//pratica 
 {
 	int min = 0,max = DIM-1,sele;
 	bool fine = false;
