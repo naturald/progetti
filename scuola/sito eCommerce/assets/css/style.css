@@ -92,7 +92,8 @@ a > .title_nav
     width: 80vw;
     height: max-content;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 100px;
     border-radius: 10px;
     padding-bottom: 100px;
     background-color: white;
@@ -182,6 +183,7 @@ a > .title_nav
     align-items: center;
     position: relative;
     transition: 0.3s; 
+    min-width: 440px;
 }
 .link_article:hover .article
 {
@@ -216,10 +218,11 @@ a > .title_nav
 }
 .description_article
 {
-    line-height: 10px;
+    line-height: 13px;
     font-size: 17px;
     margin-top: 18px;
     font-weight: normal;
+    width: 29vw;
 }
 /*-----------------notizie---------------*/
 .news
@@ -242,6 +245,46 @@ a > .title_nav
     font-size: 16px;
     font-weight: normal;
     margin-bottom: 15px;
+}
+/*-----------------pag_articoli---------------*/
+#container_pag_article
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 20vw;
+}
+#data_pag_article
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+#title_pag_article
+{
+    margin: 0;
+}
+#img_pag_article
+{
+    height: 20vw;
+}
+#descr_pag_article
+{
+    font-size: 19px;
+    width: 100%;
+}
+#linea_pag_article
+{
+    width: 15vw;
+    min-width: 125px;
+    margin: 0;
 }
 /*-----------------about---------------*/
 #img_about
@@ -279,9 +322,9 @@ a > .title_nav
 /*-----------------footer---------------*/
 footer
 {
-    margin-top: 50px;
+    margin-top: 210px;
     width: 100vw;
-    height: 40vh;
+    height: 270px;
     background-color: rgb(139, 138, 138);
 }
 #logo_footer
