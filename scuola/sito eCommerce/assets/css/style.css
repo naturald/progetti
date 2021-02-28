@@ -183,7 +183,6 @@ a > .title_nav
     align-items: center;
     position: relative;
     transition: 0.3s; 
-    min-width: 440px;
 }
 .link_article:hover .article
 {
@@ -210,7 +209,7 @@ a > .title_nav
 {
     font-size: 23px;
     position: absolute;
-    right: 50px;
+    right: 4vw;
 }
 .title_article
 {
@@ -218,11 +217,14 @@ a > .title_nav
 }
 .description_article
 {
-    line-height: 13px;
+    line-height: 17px;
     font-size: 17px;
     margin-top: 18px;
     font-weight: normal;
-    width: 29vw;
+    width: 28vw;
+    height: 18px;
+    overflow: hidden;
+    word-break: break-all;
 }
 /*-----------------notizie---------------*/
 .news
@@ -255,9 +257,9 @@ a > .title_nav
     transform: translate(-50%,-50%);
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 80%;
-    height: 20vw;
+    justify-content: space-around;
+    width: 90%;
+    height: 60%;
 }
 #data_pag_article
 {
@@ -305,8 +307,8 @@ a > .title_nav
 /*-----------------gallery---------------*/
 .img_gallery
 {
-    min-height: 391px;
-    height: 35vw;
+    min-height: 200px;
+    height: 30vw;
     border-radius: 40px;
 }
 .title_gallery
