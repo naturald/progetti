@@ -276,6 +276,7 @@ a > .title_nav
 #img_pag_article
 {
     height: 20vw;
+    min-height: 150px;
 }
 #descr_pag_article
 {
@@ -293,6 +294,7 @@ a > .title_nav
 {
     margin: 30px;
     width: 60%;
+    min-width: 300px;
     border-radius: 30px;
 }
 #text_about
@@ -303,6 +305,7 @@ a > .title_nav
 #text_about::first-letter
 {
     font-size: 40px;
+    padding: 3px;
 }
 /*-----------------gallery---------------*/
 .img_gallery
@@ -326,7 +329,7 @@ footer
 {
     margin-top: 210px;
     width: 100vw;
-    height: 270px;
+    height: max-content;
     background-color: rgb(139, 138, 138);
 }
 #logo_footer
@@ -359,6 +362,7 @@ footer
 {
     margin: 10px 0;
     font-size: 16px;
+    
 }
 .col_footer ul li a:hover
 {   
