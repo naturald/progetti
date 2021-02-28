@@ -84,45 +84,35 @@ void menu(int *scelta, bool caricato, char ordinato)
 int ricercaDico(int vet[],int ele,char ord)//pratica 
 {
 	int min = 0,max = DIM-1,sele;
-	bool fine = false;
 	do
 	{
-		if((min+1) == max  || (max-1) == min)
+		sele = (max + min)/2;
+		
+		if(vet[sele] != ele)
 		{
-			if((min+1) == max)
-				min++;
-				
-			if(vet[min] == ele)
-				sele = min;
+			if(min == max)
+				sele = -1;
 			else
-				sele = -1;	
-		}
-		else
-		{
-			sele = (max + min)/2;
-			if(vet[sele] != ele)
 			{
 				if(vet[sele]<ele)
 				{
 					if(ord == 'C')
-						min = sele;
+						min = sele+1;
 					else
-						max = sele;
+						max = sele-1;
 				
 				}
 				else
 				{
 					if(ord == 'C')
-						max = sele;
+						max = sele-1;
 					else
-						min = sele;
+						min = sele+1;
 				}
 			}
 		}
-		
-
 	}
-	while(vet[sele] != ele && fine == false);
+	while(vet[sele] != ele && sele != -1 );
 	return sele;
 }
 
@@ -287,7 +277,10 @@ int main()
 		    printf("metti il valore da cercare : ");
 		    scanf("%d",&val);
 		    int index = ricercaDico(vet,val,ordinato);
-		    printf("il valore e' in posizione : %d",index);
+		    if(index == -1)
+		    	printf("il valore non e' nell'array \n");
+		    else
+		    	printf("il valore e' in posizione : %d",index);
 		    getch();
 		    break;
 		  }
