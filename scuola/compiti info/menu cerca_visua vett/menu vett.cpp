@@ -2,24 +2,15 @@
 	Marco Schiavello 3^CI 11/02/2021
 	
 	Scrivere un programma che:
-	- definisce un vettore di interi  di dimensione a piacere
-	- definisce una variabile di stato per per indicare se il vettore è stato caricato  o meno.
-	- visualizza un menu che permette di scegliere i valori 1,2,3,4,5
-	-In base al valore scelto: 
-	se scelto 1: effettua il caricamento del vettore e la variabile di stato viene posta a 1
-	se scelto 2: visualizza il contenuto del vettore (se il vettore era caricato)  oppure
-	                    richiede il caricamento del vettore  (se il vettore non era caricato)
-	se scelto 3: effettua la ricerca del primo elemento :
-	                    ovvero, passato un numero intero input, ricerca quel numero nel vettore e ritorna un messaggio 
-	                     con:
-	                    - la posizione del primo elemento del vettore che contiene quel numero (se trovato)
-	                    -  l'indicazione che quel numero non è presente nel vettore
-	se scelto 4: effettua la ricerca di tutti gli elementi:
-	                    ovvero, passato un numero intero input, ricerca quel numero nel vettore e ritorna un messaggio 
-	                     con:
-	                    - le posizioni degli elementi del vettore che contengono quel numero(se trovati)
-	                    - l'indicazione che quel numero non è presente nel vettore
-	se scelto 5: effettua l'uscita da programma
+	1) Caricare un vettore di interi (con valori generati in modo random)
+	2) Stampare il vettore
+	3) Ricerca di un elemento nell'array (primo trovato)
+	4) Ricerca di un elemento nell'array (trova tutti)
+	Nota: usare la ricerca dicotomica se il vettore è ordinato
+	          usare la ricerca sequenziale altrimenti
+	5) Ordinamento del vettore in ordine decrescente
+	6) Ordinare il vettore in ordine crescente
+	7) Uscita da programma
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,44 +66,47 @@ void menu(int *scelta, bool caricato, char ordinato)
     {
       	err=true;
       	system("cls");
-		printf("dato inserito incorretto\nla scelta deve essere compresa tra 1 e 5");
+		printf("dato inserito incorretto\nla scelta deve essere compresa tra 1 e 9");
 		getch();
     }
-  }while(err==true);
+  }
+  while(err==true);
 }
 
-int ricercaDico(int vet[],int ele,char ord)//pratica 
+/*
+	pratica una ricerca dicotomica prendendo la meta di un range e confrontandolo il calore
+	con il valore da cercare il base alla grandezza del valore alla metà del range esso prendera 
+	una parte o l'atra di esso in base alla sua grandezza e all'ordinamento fatto
+	
+*/
+int ricercaDico(int vet[],int ele,char ord)
 {
-	int min = 0,max = DIM-1,sele;
-	do
+	int min = 0,max = DIM-1,sele = (max + min)/2;
+	
+	while(vet[sele] != ele && sele != -1)
 	{
-		sele = (max + min)/2;
-		
-		if(vet[sele] != ele)
+		if(min == max)
+			sele = -1;
+		else
 		{
-			if(min == max)
-				sele = -1;
+			if(vet[sele]<ele)
+			{
+				if(ord == 'C')
+					min = sele+1;
+				else
+					max = sele-1;
+			
+			}
 			else
 			{
-				if(vet[sele]<ele)
-				{
-					if(ord == 'C')
-						min = sele+1;
-					else
-						max = sele-1;
-				
-				}
+				if(ord == 'C')
+					max = sele-1;
 				else
-				{
-					if(ord == 'C')
-						max = sele-1;
-					else
-						min = sele+1;
-				}
+					min = sele+1;
 			}
+			sele = (max + min)/2;
 		}
 	}
-	while(vet[sele] != ele && sele != -1 );
 	return sele;
 }
 
@@ -280,7 +274,7 @@ int main()
 		    if(index == -1)
 		    	printf("il valore non e' nell'array \n");
 		    else
-		    	printf("il valore e' in posizione : %d",index);
+		    	printf("il valore e' in posizione : %d \n",index);
 		    getch();
 		    break;
 		  }
