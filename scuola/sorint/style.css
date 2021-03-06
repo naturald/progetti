@@ -1,0 +1,38 @@
+body {
+  font: 16px Arial, Helvetica, sans-serif;
+  padding: 1em;
+}
+input[type="text"] {
+  border: 1px solid royalblue;
+  border-radius: 100px 0 0 100px;
+  padding: 0.5em 1em;
+  outline: none;
+}
+button {
+  border: 1px solid royalblue;
+  border-left: none;
+  background: royalblue;
+  font-weight: bold;
+  color: white;
+  border-radius: 0 100px 100px 0;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: dodgerblue;
+  text-shadow: 0 0 2px darkblue;
+}
+.todo-list {
+  list-style: none;
+}
+.todo-list-item {
+  margin-bottom: 0.25em;
+}
+.todo-list-item * {
+  vertical-align: middle;
+}
+.todo-list-item.done {
+  color: gray;
+  text-decoration: line-through;
+}

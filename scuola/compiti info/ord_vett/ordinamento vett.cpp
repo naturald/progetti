@@ -17,5 +17,4 @@ int main ()
 		for(j = i+1;j<DIM;j++)
 			if(vett[i]>vett[j])
 				swap(vett,i,j);
-	
 }
