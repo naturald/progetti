@@ -1,6 +1,6 @@
 /*
 	Marco Schiavello 3^CI 11/02/2021
-	
+
 	Scrivere un programma che:
 	1) Caricare un vettore di interi (con valori generati in modo random)
 	2) Stampare il vettore
@@ -18,6 +18,8 @@
 #include <conio.h>
 #include "../marcoLib.h"
 #define DIM 5
+#define DIM_MERGE1 5
+#define DIM_MERGE2 6
 #define GRAD 248
 
 // dato un array prende due valori e li scambia con ausilio di una variabile temporanea
@@ -31,7 +33,7 @@ void swap(int vett[],int a,int b)
 void menu(int *scelta, bool caricato, char ordinato)
 {
   bool err;
-	
+
   do
   {
     err=false;
@@ -44,11 +46,12 @@ void menu(int *scelta, bool caricato, char ordinato)
     printf("6) ordina crescente\n");
     printf("7) ordina decrescente\n");
     printf("8) ricerca dicotomica\n");
-	printf("9) esci\n");
+    printf("9) unisci due array generati random in uno ordinato e pulito\n");
+	printf("10) esci\n");
     printf("scegli l'operazione da eseguire: ");
 	scanf("%d",scelta);
-	
-    if((*scelta<=9 && *scelta>=3) && caricato==false)
+
+    if((*scelta<=8 && *scelta>=3) && caricato==false)
     {
       	err=true;
       	system("cls");
@@ -62,7 +65,7 @@ void menu(int *scelta, bool caricato, char ordinato)
 		printf("il vettore devo essere prima ordinato\n");
 		getch();
 	}
-	else if(*scelta<1||*scelta>9)
+	else if(*scelta<1||*scelta>10)
     {
       	err=true;
       	system("cls");
@@ -74,15 +77,61 @@ void menu(int *scelta, bool caricato, char ordinato)
 }
 
 /*
+    dati piu valori uguali in un array  toglie quelli aggiuntivi vistitandolo
+    e ricopiando solo la parter diversa su quella uguale
+    Parametri:
+    int vett[] : input/output
+    int len : input
+*/
+int pulisciVet(int vett[],int len)
+{
+    int newLen = 0;
+    for(int i = 0;i<len && vett[i] != vett[len-1]; i++)
+    {
+        int j = i + 1;
+        if(vett[i] != vett[j])
+            continue;
+
+        while(vett[i] == vett[j] && j != len)
+            j++;
+        for(int dest = i+1,src = j;src < len;src++,dest++)
+            vett[dest] = vett[src];
+
+        newLen++;
+    }
+
+    return newLen+2;
+}
+
+/*
+    prendendo tre array di cui due di input e l'ultimo di output che
+    sarebbbe l'unione dei due di input
+    Parametri:
+    int ris[] : output
+    int vet[] : input
+    int vet2[] : input
+*/
+void mergeVet(int vet[],int vet2[],int ris[])
+{
+	for(int i = 0;i<(DIM_MERGE1+DIM_MERGE2);i++)
+	{
+		if(i<DIM_MERGE1)
+			ris[i] = vet[i];
+		else
+			ris[i] = vet2[i-DIM_MERGE1];
+	}
+}
+
+/*
 	pratica una ricerca dicotomica prendendo la meta di un range e confrontandolo il calore
-	con il valore da cercare il base alla grandezza del valore alla metà del range esso prendera 
+	con il valore da cercare il base alla grandezza del valore alla metà del range esso prendera
 	una parte o l'atra di esso in base alla sua grandezza e all'ordinamento fatto
-	
+
 */
 int ricercaDico(int vet[],int ele,char ord)
 {
 	int min = 0,max = DIM-1,sele = (max + min)/2;
-	
+
 	while(vet[sele] != ele && sele != -1)
 	{
 		if(min == max)
@@ -95,7 +144,7 @@ int ricercaDico(int vet[],int ele,char ord)
 					min = sele+1;
 				else
 					max = sele-1;
-			
+
 			}
 			else
 			{
@@ -110,16 +159,16 @@ int ricercaDico(int vet[],int ele,char ord)
 	return sele;
 }
 
-void caricaVetRand(int vet[])//cerca nel vettore numeri random
+void caricaVetRand(int vet[],int len)//cerca nel vettore numeri random
 {
 	system("cls");
 	srand(time(0));
   	int i;
-	for(i=0;i<DIM;i++)
+	for(i=0;i<len;i++)
 		vet[i] = rand()%100;
 }
 
-void caricaVet(int vet[])//cerca nel vettore 
+void caricaVet(int vet[])//cerca nel vettore
 {
 	system("cls");
   	int i;
@@ -130,7 +179,7 @@ void caricaVet(int vet[])//cerca nel vettore
 	}
 }
 
-int cercaVet(int vet[],int val)//cerca nel vettore la prima occorrenza e ritorna l'indice 
+int cercaVet(int vet[],int val)//cerca nel vettore la prima occorrenza e ritorna l'indice
 {
 	int i;
 	for(i = 0;i<DIM;i++)
@@ -139,15 +188,15 @@ int cercaVet(int vet[],int val)//cerca nel vettore la prima occorrenza e ritorna
 	return  -1;
 }
 
-void visVet(int vet[])//visita vettore
+void visVet(int vet[],int len)//visita vettore
 {
   int i;
   printf("o-----o-----o\n");
   printf("|index| val |\n");
   printf("o-----o-----o\n");
-  for(i = 0;i<DIM;i++)
+  for(i = 0;i<len;i++)
   {
-  	printf("| %3d | %3d |\n",i,vet[i]);	
+  	printf("| %3d | %3d |\n",i,vet[i]);
   	printf("o-----o-----o\n");
   }
 }
@@ -156,25 +205,25 @@ void cercaPlusVet(int vet[], int val)//cerca anche dopo la prima occorrenza il v
 {
   int i,pos= -1;
   for(i=0;i<DIM;i++)
-    if(vet[i]==val) 
+    if(vet[i]==val)
     {
     	pos = i;
-    	printf(" %d",pos);	
+    	printf(" %d",pos);
 	}
-      
+
   if(pos == -1)
   {
-	system("cls");  
+	system("cls");
 	printf("inserisci quale valore voui cercare nel vettore : %d\n",val);
     printf("il numero %d non e' presente nel vettore\n",val);
   }
 }
 
-void ordinaVet(int vet[])//ordina l'array in modo crescente
+void ordinaVet(int vet[],int len)//ordina l'array in modo crescente
 {
 	int i,j;
-	for(i = 0;i<DIM-1;i++)
-		for(j = i+1;j<DIM;j++)
+	for(i = 0;i<len-1;i++)
+		for(j = i+1;j<len;j++)
 			if(vet[i]>vet[j])
 				swap(vet,i,j);
 }
@@ -189,12 +238,12 @@ void ordinaVetRev(int vet[])//ordina l'array in modo decrescente
 }
 
 
-int main() 
+int main()
 {
 	int vet[DIM], scelta, val;
 	bool caricato;
 	char ordinato = ' ';
-	
+
 	do
 	{
 		menu(&scelta,caricato,ordinato);
@@ -211,16 +260,16 @@ int main()
 		  case 2:
 		  {
 		  	system("cls");
-		    caricaVetRand(vet);
+		    caricaVetRand(vet,DIM);
 		    caricato = true;
-		    visVet(vet);
+		    visVet(vet,DIM);
 		    getch();
 		    break;
 		  }
 		  case 3:
 		  {
 		  	system("cls");
-		    visVet(vet);
+		    visVet(vet,DIM);
 		    getch();
 		    break;
 		  }
@@ -250,9 +299,9 @@ int main()
 		  case 6:
 		  {
 		    system("cls");
-		    ordinaVet(vet);
+		    ordinaVet(vet,DIM);
 		    ordinato = 'C';
-		    visVet(vet);
+		    visVet(vet,DIM);
 		    getch();
 		    break;
 		  }
@@ -261,7 +310,7 @@ int main()
 		    system("cls");
 		    ordinaVetRev(vet);
 		    ordinato = 'D';
-		    visVet(vet);
+		    visVet(vet,DIM);
 		    getch();
 		    break;
 		  }
@@ -278,9 +327,37 @@ int main()
 		    getch();
 		    break;
 		  }
+          case 9:
+		  {
+            system("cls");
+            int vet[DIM_MERGE1],vet2[DIM_MERGE2],ris[DIM_MERGE1+DIM_MERGE2];
+            caricaVetRand(vet,DIM_MERGE1);
+            caricaVetRand(vet2,DIM_MERGE2);
+
+            printf("vattore 1\n\n");
+            visVet(vet,DIM_MERGE1);
+
+            printf("\n");
+            printf("vattore 2\n\n");
+            visVet(vet2,DIM_MERGE2);
+
+            mergeVet(vet,vet2,ris);
+            ordinaVet(ris,DIM_MERGE1+DIM_MERGE2);
+
+            printf("\n");
+            printf("vattore unito e ordianto ma non pulito\n\n");
+            visVet(ris,DIM_MERGE1+DIM_MERGE2);
+
+            printf("\n");
+            int newLen = pulisciVet(ris,DIM_MERGE1+DIM_MERGE2);
+            printf("vattore unito,ordianto e pulito \n\n");
+            visVet(ris,newLen);
+
+            getch();
+		  }
 		}
 	}
-	while(scelta != 9); 
+	while(scelta != 10);
 
 	return 0;
-} 
+}

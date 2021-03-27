@@ -5,6 +5,11 @@
 #define IEE_LEN 32
 #define BIN_LEN 32
 
+/*
+    funzione che permette di cambiare il colore
+    delle scritte funziona su windows (credo)
+    comunque e stata compiata percio non so cosa piu precisamente faccia
+*/
 void textcolor(int color)
 {
     static int __BACKGROUND;
@@ -16,6 +21,24 @@ void textcolor(int color)
     GetConsoleScreenBufferInfo(h, &csbiInfo);
 
     SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE),color + (__BACKGROUND << 4));
+}
+
+/*
+    data una lunghezza stampa un array di
+    caratteri di lunghezza len
+*/
+void printArrChar(char arr[],int len)
+{
+    for(int i = 0;i<len;i++)
+        printf("%c",arr[i]);
+}
+
+int charToInt(char letter)
+{
+    if(letter>= 48 && letter<= 57)
+        return letter - 48;
+    if(letter>= 65 && letter<= 70)
+        return letter - (65 - 10);
 }
 
 /*
@@ -34,14 +57,19 @@ int getBitNumDec(int bina,int cifra)
 }
 
 /*
-    dato un numero intero dice quanti bit occuperà
+    dato un numero float prende la parte intera
+    e dice quanti bit occuperà continuado a shiftare
+    il nuero a destra finche non sarà ugale a 0
 */
 int nIntBina(float numDeci)
 {
-    int partInt = (int)numDeci,nBitInt = 0;
-    for(int n = partInt;n != 0;n/=BASE)
-        nBitInt++;
-    return nBitInt;
+   int partInt = (int)numDeci,nBitInt = 0;
+   while(partInt)
+   {
+     partInt >>= 2;
+     nBitInt++;
+   }
+   return nBitInt;
 }
 
 /*
@@ -53,14 +81,14 @@ int nIntBina(float numDeci)
 */
 int decToBina(int num_bina[],float deci)
 {
-	int i = 0,partInt,nBitInt = nIntBina(deci);;
+	int i = 0,partInt,nBitInt = nIntBina(deci);
 	float n,partDec;
     partInt = (int)deci;
     partDec = deci - partInt;
 
-    for(int i = nBitInt;partInt!=0;i--)
+    for(int i = nBitInt-1;partInt!=0;i--)
     {
-        num_bina[i-1] = partInt % BASE;
+        num_bina[i] = partInt % BASE;
         partInt /= BASE;
     }
 
@@ -79,15 +107,44 @@ int decToBina(int num_bina[],float deci)
     return nBitInt-1;
 }
 
+char HexDigit(int hexDigit)
+{
+    if(hexDigit>=0 && hexDigit<=9)
+        return 48+hexDigit;
+    if(hexDigit >= 10)
+        return (65-10) + hexDigit;
+}
+
+void IeeeHex(int ieeeFormat[],char ieeeFormatHex[])
+{
+    int hexDigit = 0;
+    for(int i = 0, j = 0;i<IEE_LEN;i++)
+    {
+        if((i % 4 == 0 && i != 0) || i == IEE_LEN-1)
+        {
+            ieeeFormatHex[j] = HexDigit(hexDigit);
+            j++;
+            hexDigit = 0;
+        }
+        hexDigit += pow(2,3 - (i%4)) * ieeeFormat[i];
+    }
+}
+
+//---------------------------main------------------
 int main()
 {
     float deci;
     int ieeeFormat[IEE_LEN],num_bina[BIN_LEN],offset = 0,espo;
+    char ieeeFormatHex[(IEE_LEN/4)*2];
+
+
     //inizializazione a 0
     for(int i = 0;i<40;i++)
     {
         if(i<IEE_LEN)
-            ieeeFormat[i] = 0;
+
+        if(i<((IEE_LEN/4)*2))
+            ieeeFormatHex[i] = 0;
 
         num_bina[i] = 0;
     }
@@ -127,28 +184,39 @@ int main()
     }
 
     //tracopiatura dell'array numero bianrio in quello notazione IEEE
-    for(int i = 0;i<IEE_LEN;i++)
-    {
-        textcolor(15);
-        if(i == 0)
-            textcolor(4);
-        if(i>0 && i<9)
-        {
-            textcolor(5);
-            ieeeFormat[i] = getBitNumDec(espo,8-i);
+   for(int i = 0; i<IEEE_LEN; i++)
+   {
+       printf("\u001b[37m");
+       if(i == 0)
+       {
+           printf("\u001b[31m");
+       }
+       if(i>0 && i<9)
+       {
+           printf("\u001b[35m");
+           ieeeFormat[i] = getBitNumDec(espo,8-i);
 
-        }
-        if(i>8)
-        {
-            textcolor(2);
-            ieeeFormat[i] = num_bina[(i-8)+offset];
-        }
+       }
+       if(i>8)
+       {
+           printf("\u001b[32m");
+           ieeeFormat[i] = num_bina[(i-8)+offset];
+       }
 
-        printf("%d ",ieeeFormat[i]);
-        if(i == 0 || i == 8)
-            printf(" ");
-    }
-    textcolor(15);
+       printf("%d ",ieeeFormat[i]);
+       if(i == 0 || i == 8)
+       {
+           printf(" ");
+       }
+   }
+
+    printf("\u001b[37m");
+
+    printf("\n\n");
+    IeeeHex(ieeeFormat,ieeeFormatHex);
+    printf("0x");
+    printArrChar(ieeeFormatHex,sizeof(ieeeFormatHex));
+    printf("\n\n");
 
     return 0;
 }

@@ -52,15 +52,33 @@ void ordina(int vett[],int len)
 }
 
 /*
-    dati piu valori uguali in un array  toglie quelli aggiuntivi creando un array
-    secondario dove viene salvati solo i valori differenti per poi essere riportati
-    su quello primìncipale
+    dati piu valori uguali in un array  toglie quelli aggiuntivi vistitandolo
+    e ricopiando solo la parter diversa su quella uguale
     Parametri:
     int vett[] : input/output
     int len : input
 */
 int pulisci(int vett[],int len)
 {
+    int newLen = 0;
+    for(int i = 0;i<len && vett[i] != vett[len-1]; i++)
+    {
+        int j = i + 1;
+        if(vett[i] != vett[j])
+            continue;
+
+        while(vett[i] == vett[j] && j != len)
+            j++;
+        for(int dest = i+1,src = j;src < len;src++,dest++)
+            vett[dest] = vett[src];
+
+        newLen++;
+    }
+
+    return newLen+2;
+
+    /* non ottimizato
+
     int ris[len],newLen = 0;
     for(int i = 0;i<len;i++)
     {
@@ -77,7 +95,7 @@ int pulisci(int vett[],int len)
         else
             vett[i] = 0;
     }
-    return newLen;
+    */
 }
 
 /*
