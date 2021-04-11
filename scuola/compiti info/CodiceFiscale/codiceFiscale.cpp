@@ -5,9 +5,54 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <conio.h>
 #define COD_lEN 16
 #define NOME_COGN_LEN 30
 const char vocali[5] = {'A','E','I','O','U'};
+const unsigned char accentate[10] = {133,138,161,149,151,183,212,222,227,235};// à è ì ò ù ...
+
+void toUpStr(char str[])
+{
+    for(int i = 0;i<strlen(str);i++)
+        str[i] = toupper(str[i]);
+}
+
+bool isAcent(char c)
+{
+    for(int i = 0;i<strlen((char*)accentate);i++)
+        if((unsigned char)c == accentate[i])
+            return true;
+    return false;
+}
+
+
+bool AcenToChar(char arr[],int index)
+{
+    if(isAcent(arr[index]))
+    {
+        switch((unsigned char)arr[index])
+        {
+            case 133:
+                arr[index] = 'a';
+            break;
+            case 138:
+                arr[index] = 'e';
+            break;
+            case 161:
+                arr[index] = 'i';
+            break;
+            case 149:
+                arr[index] = 'o';
+            break;
+            case 151:
+                arr[index] = 'u';
+            break;
+        }
+        return true;
+    }
+
+    return false;
+}
 
 /*
     dato un carattere controlla se è nell'array delle vocali
@@ -23,9 +68,23 @@ bool isVocale(char c)
     return false;
 }
 
-void insertCons(char str[],char codice[],int len,int start)
+/*
+    data un lunghezza del codice lo creerà
+    mettendo prima le consonanti della stringa
+    finite prende le vocali se finiscono pure quelle
+    mette le X come "cuscinetto"
+    Parametri:
+        -char str[] : input
+        -char codice[] : ouput
+        -int len : input
+        -int start : input
+*/
+void insertCons(char str[],char codice[],int len,int start,bool nome = false)
 {
     int nItera = 0,i = 0,letTrov = 0;
+    bool skip = false;
+    toUpStr(str);
+
     while(letTrov < len)
     {
         if(i == strlen(str))
@@ -37,18 +96,35 @@ void insertCons(char str[],char codice[],int len,int start)
         {
             case 0:
             {
-                if( (toupper(str[i])>='A'&&toupper(str[i])<='Z') && !isVocale(str[i]) )
+                if( (str[i]>='A'&&str[i]<='Z') && !isVocale(str[i]) )
                 {
-                    codice[start+letTrov] = toupper(str[i]);
-                    letTrov++;
+                    if(letTrov == 1 && nome == true && skip == false)
+                    {
+                        int trov = 0;
+
+                        for(int j = i+1;j<strlen(str) && trov < 2;j++)
+                            if( (str[j]>='A'&&str[j]<='Z') && !isVocale(str[j]) )
+                                trov++;
+
+                        if(trov >= 2)
+                            skip = true;
+                    }
+                    else
+                        skip = false;
+
+                    if(skip == false)
+                    {
+                        codice[start+letTrov] = str[i];
+                        letTrov++;
+                    }
                 }
                 break;
             }
             case 1:
             {
-                if( (toupper(str[i])>='A'&&toupper(str[i])<='Z') && isVocale(str[i]) )
+                if( (str[i]>='A'&&str[i]<='Z') && isVocale(str[i]) )
                 {
-                    codice[start+letTrov] = toupper(str[i]);
+                    codice[start+letTrov] = str[i];
                     letTrov++;
                 }
                 break;
@@ -62,6 +138,7 @@ void insertCons(char str[],char codice[],int len,int start)
         }
         i++;
     }
+    codice[start+letTrov] = 0;
 }
 /*
     data una stringa controlla che tutti
@@ -72,10 +149,13 @@ void insertCons(char str[],char codice[],int len,int start)
     Parametri:
         -char cognome[] : input
 */
-int checkCognome(char cognome[])
+bool checkCognome(char cognome[])
 {
     int checked = 0;
-	while( cognome[checked] && ( (toupper(cognome[checked])>='A' && toupper(cognome[checked])<='Z') || cognome[checked] == ' ' || cognome[checked] == '\'') )
+	while(
+           cognome[checked] &&
+           ( (toupper(cognome[checked])>='A' && toupper(cognome[checked])<='Z') || cognome[checked] == ' ' || (cognome[checked] == '\'' && checked !=0) || AcenToChar(cognome,checked) )
+         )
 		checked++;
     if(checked < strlen(cognome))
     {
@@ -103,6 +183,7 @@ void getCognome(char cognome[])
         err = checkCognome(cognome);
     }
     while(err);
+
 }
 
 /*
@@ -140,7 +221,7 @@ void getNome(char nome[])
     bool err = false;
     do
     {
-        printf("metti il tuo cognome : ");
+        printf("metti il tuo nome : ");
         gets(nome);
         err = checkNome(nome);
     }
@@ -154,6 +235,7 @@ int main()
     getCognome(cognome);
     getNome(nome);
     insertCons(cognome,codice,3,0);
+    insertCons(nome,codice,3,3,true);
     printf("%s",codice);
 
     return 0;

@@ -57,9 +57,8 @@ bool isAllow(char c)
 float parsFunz(string funz,int * skip = 0)
 {
     int numBound[2] = {0,0};// inizio num e len
-    float num[2];
+    float num[2] = {0,0};
     int operazione,nNum = 0,ris;
-    bool numTrov = false; // indica se è stato trovato l'inizio del numero
     for(int i = 0;i<funz.length() && isAllow(funz[i]);i++)
     {
         if(isNum(funz[i]) && i != funz.length()-1)
@@ -76,22 +75,44 @@ float parsFunz(string funz,int * skip = 0)
         {
             if (isOpera(funz[i]))
                 operazione = i;
-            if(isNum(funz[i-1]) || (isNum(funz[i]) && i == funz.length()-1))
+
+            if(funz[i] == ')')
             {
-                if(isNum(funz[i]) && i == funz.length()-1)
+                if(isNum(funz[i-1]))
                 {
-                    numBound[0] = i;
+
+                    numBound[0] = i-1;
                     numBound[1] = 1;
+
+                    string str = funz.substr(numBound[0],numBound[1]);
+
+                    char * substring = &(funz.substr(numBound[0],numBound[1])[0]);
+
+                    if(substring[0] == 'x')
+                        num[nNum] = 4;
+                    else
+                        num[nNum] = atof(substring);
+                    cout<<"    "<<num[0]<<funz[operazione]<<num[1]<<" = "<<num[0]+num[1];
+                    if(nNum == 1)
+                    {
+                        ris = calcolo(num[0],funz[operazione],num[1]);
+                        num[0] = ris;
+                    }
+                    else
+                        nNum++;
                 }
-                string str = funz.substr(numBound[0],numBound[1]);
-                //cout<<numBound[0]<<" "<<numBound[1]<<" "<<nNum<<" "<<funz[0]<<" "<<i<<endl;
 
-                char * substring = &(funz.substr(numBound[0],numBound[1])[0]);
 
-                if(substring[0] == 'x')
-                    num[nNum] = 4;
-                else
-                    num[nNum] = atof(substring);
+                int pos = *skip;
+                //cout<<" "<<i;
+                *skip = pos + i+1;
+                return ris;
+
+
+            }
+            if(funz[i] == '(')
+            {
+                num[nNum] =  parsFunz(funz.substr(i+1),&i);
                 cout<<"    "<<num[0]<<funz[operazione]<<num[1]<<" = "<<num[0]+num[1];
                 if(nNum == 1)
                 {
@@ -101,27 +122,33 @@ float parsFunz(string funz,int * skip = 0)
                 else
                     nNum++;
             }
+            else if(isNum(funz[i-1]) || (isNum(funz[i]) && i == funz.length()-1))
+            {
+                if(isNum(funz[i]) && i == funz.length()-1)
+                {
+                    numBound[0] = i;
+                    numBound[1] = 1;
+                }
+                string str = funz.substr(numBound[0],numBound[1]);
 
-        }
-        if(funz[i] == '(')
-            num[nNum] =  parsFunz(funz.substr(i+1),&i);
-        else if(funz[i] == ')')
-        {
-
-             /*string str = funz.substr(numBound[0],numBound[1]);
-                //cout<<numBound[0]<<" "<<numBound[1]<<" "<<nNum<<" "<<funz[0]<<" "<<i<<endl;
 
                 char * substring = &(funz.substr(numBound[0],numBound[1])[0]);
-            num[nNum] = atof(substring);
-            if(nNum == 1)
-                ris = calcolo(num[0],funz[operazione],num[1]);
-            cout<<"   | "<<num[0]<<funz[operazione]<<num[1]<<" = "<<num[0]+num[1];*/
-            //(*skip) += i;
-            int pos = *skip;
-            *skip = pos + i;
-            return ris;
 
+                if(substring[0] == 'x')
+                    num[nNum] = 4;
+                else
+                    num[nNum] = atof(substring);
 
+                 cout<<"    "<<num[0]<<funz[operazione]<<num[1]<<" = "<<num[0]+num[1];
+                if(nNum == 1)
+                {
+                    ris = calcolo(num[0],funz[operazione],num[1]);
+                    num[0] = ris;
+                }
+                else
+                    nNum++;
+
+            }
         }
 
     }
@@ -130,7 +157,7 @@ float parsFunz(string funz,int * skip = 0)
 
 int main()
 {
-    int ris = parsFunz("2+ (5+4) + 2");
+    int ris = parsFunz(" 2+ (5+4+(5+4) ) + 2");
     cout<<endl<<ris;
 
     return 0;

@@ -1,28 +1,8 @@
 #include <stdio.h>
 #include <math.h>
-#include <windows.h>
 #define BASE 2
-#define IEE_LEN 32
+#define IEEE_LEN 32
 #define BIN_LEN 32
-
-/*
-    funzione che permette di cambiare il colore
-    delle scritte funziona su windows (credo)
-    comunque e stata compiata percio non so cosa piu precisamente faccia
-*/
-void textcolor(int color)
-{
-    static int __BACKGROUND;
-
-    HANDLE h = GetStdHandle ( STD_OUTPUT_HANDLE );
-    CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
-
-
-    GetConsoleScreenBufferInfo(h, &csbiInfo);
-
-    SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE),color + (__BACKGROUND << 4));
-}
-
 /*
     data una lunghezza stampa un array di
     caratteri di lunghezza len
@@ -66,7 +46,7 @@ int nIntBina(float numDeci)
    int partInt = (int)numDeci,nBitInt = 0;
    while(partInt)
    {
-     partInt >>= 2;
+     partInt >>= 1;
      nBitInt++;
    }
    return nBitInt;
@@ -118,9 +98,9 @@ char HexDigit(int hexDigit)
 void IeeeHex(int ieeeFormat[],char ieeeFormatHex[])
 {
     int hexDigit = 0;
-    for(int i = 0, j = 0;i<IEE_LEN;i++)
+    for(int i = 0, j = 0;i<IEEE_LEN;i++)
     {
-        if((i % 4 == 0 && i != 0) || i == IEE_LEN-1)
+        if((i % 4 == 0 && i != 0) || i == IEEE_LEN-1)
         {
             ieeeFormatHex[j] = HexDigit(hexDigit);
             j++;
@@ -134,16 +114,16 @@ void IeeeHex(int ieeeFormat[],char ieeeFormatHex[])
 int main()
 {
     float deci;
-    int ieeeFormat[IEE_LEN],num_bina[BIN_LEN],offset = 0,espo;
-    char ieeeFormatHex[(IEE_LEN/4)*2];
+    int ieeeFormat[IEEE_LEN],num_bina[BIN_LEN],offset = 0,espo;
+    char ieeeFormatHex[(IEEE_LEN/4)*2];
 
 
     //inizializazione a 0
     for(int i = 0;i<40;i++)
     {
-        if(i<IEE_LEN)
+        if(i<IEEE_LEN)
 
-        if(i<((IEE_LEN/4)*2))
+        if(i<((IEEE_LEN/4)*2))
             ieeeFormatHex[i] = 0;
 
         num_bina[i] = 0;
@@ -220,3 +200,5 @@ int main()
 
     return 0;
 }
+
+

@@ -1,9 +1,20 @@
+/*
+  Marco Schiavello & Alessandro yang 3^CI
+  Realizzare un programma in C Language che implementi il gioco del tris.
+  Nella scacchiera (3x3) si sfidano due giocatori (il Giocatore A inserisce il simbolo 'X',il Giocatore B inserisce il simbolo 'O' ) che inseriscono le loro mosse in sequenza, fino a che non si raggiunge la vittoria di una delle due squadre.
+  Consegnare una breve analisi in formato pdf e il codice sorgente in C Language
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdbool.h>
 #define DIM 3
 
+/*
+  dato un array mette una X dove non ce ninte la posizione
+  precisa e random negli spazi vuoti
+  parametri:
+    -char campo[][] = output
+*/
 void seleAuto(char campo[][DIM])
 {
   int i,j;
@@ -16,6 +27,13 @@ void seleAuto(char campo[][DIM])
   campo[i][j]='O';
 }
 
+/*
+  dato un array fa selezionare dove mettere il segno
+  che sarà indicato come secondo parametro
+  parametri:
+    -char campo[][] = output
+    -cahr segno = input
+*/
 void seleManu(char campo[][DIM],char segno)
 {
   int i,j;
@@ -43,6 +61,13 @@ void seleManu(char campo[][DIM],char segno)
   campo[i][j]=segno;
 }
 
+/*
+  dato un array controlla tutte le combinazioni possibili
+  per vincere di un determinato segno scelto come secondo parametro
+  parametri:
+    -char campo[][] = input
+    -char segno = input
+*/
 int cotrollo(char campo[][DIM],char segno)
 {
   int i, fine = 0;
@@ -80,23 +105,32 @@ int cotrollo(char campo[][DIM],char segno)
   return 0;
 }
 
+/*
+  stampa il campo di gioco
+  parametri:
+    -char campo[][] = input
+*/
 void dis_campo(char campo[DIM][DIM])
 {
   printf("   1   2   3 \n");
   printf(" o---o---o---o \n");
 	for(int i=0;i<DIM;i++)
 	{
-			printf("%d",i+1);
-			for(int j=0;j<DIM;j++)
-			{
-				printf("| %c ",campo[i][j]);
+        printf("%d",i+1);
+        for(int j=0;j<DIM;j++)
+        {
+            printf("| %c ",campo[i][j]);
 
-			}
-			printf("|\n");
-      printf(" o---o---o---o \n");
+        }
+        printf("|\n");
+        printf(" o---o---o---o \n");
 	}
 }
 
+/*
+  ripulisce lo schermo con qualuncue funzione
+  a scelta
+*/
 void ripulisci()
 {
   system("cls");
@@ -127,7 +161,7 @@ int  main()
 	{
 	  seleManu(campo,'X');
 
-    //-----------------controllo combinazioni X------------------
+        //-----------------controllo combinazioni X------------------
 		if(turno>=2)
 			fine = cotrollo(campo,'X');
 		//----------------------------------------------------------------
@@ -147,15 +181,15 @@ int  main()
 				break;
 			}
 
-    //-----------------controllo combinazioni O------------------
+        //-----------------controllo combinazioni O------------------
 		if(turno>=2)
 			fine = cotrollo(campo,'O');
 		//----------------------------------------------------------------
 		}
 
 	  ripulisci();
-		dis_campo(campo);
-		turno++;
+      dis_campo(campo);
+      turno++;
 	}
 	while(turno<5 && fine == 0);
 

@@ -4,6 +4,12 @@
 #define IEEE_LEN 32
 
 /*
+  dato un numero intero restituisce il numero nella vensione
+  eccesso 127 utile per l'esponente della codifica IEEE-P754
+*/
+int ecc127(int numDec) {return numDec+127;}
+
+/*
    prende un numero decimale e data una cifra farà il bitwise and tra il numero
    e la potenza perfetta che sarà 2 elevato la cifra da cercare
    in modo da prendere solo la cifra richiesta se tutto il numero sara
@@ -24,19 +30,51 @@ int getBitNumDec(int bina,int cifra)
 }
 
 /*
-    dato un numero float prende la parte intera
-    e dice quanti bit occuperà continuado a shiftare
-    il nuero a destra finche non sarà ugale a 0
+  dato la parte intera del numero e l'array che dovrà contenere
+  la versione binaria del numero deciamle reale, calcola la
+  rappresentazioen binaria della parte intera tramite una ricorsione
+  ridando al chiamante il numero di bit che occupa la parte intera
+  e assegando nel array la configuarazione binaria di esso
 */
-int nIntBina(float numDeci)
+int IntToBina(int partInt,int num_bina[],int nBitInt = 0)
 {
-   int partInt = (int)numDeci,nBitInt = 0;
-   while(partInt)
-   {
-     partInt >>= 2;
-     nBitInt++;
-   }
-   return nBitInt;
+  if(!partInt)          // elemento determinante per la fine
+  {                     // della catena di ricorsioni
+    return nBitInt;
+  }
+
+  int cifraBina = partInt%2;  // resto del numero diviso per 2 ovvero la cifra binaria
+  partInt >>= 1;  //shift di uno verso destra = divisione per 2
+  nBitInt++;  //contatore che conta il numero di bit che occuppa il numero
+
+  /*
+    indica la lunghezza massima del nuemro bianrio,
+    questo e dato dal ritorno dal'ultima ricorsione
+    che tornando indietro si "trascinerà" il numero
+    ritornato alla fine della catena fino a poi restiruirlo
+    al chiamante
+  */
+  int lenMax = IntToBina(partInt,num_bina,nBitInt);
+
+  /*
+    essendo posto dopo alla chiamata questa istruzione
+    verrà eseguita quando la chain di chiamate sarà finità
+    e quindi tornerà indietro sapendo gia quanto e lungo il
+    numero in bianrio, sotrarrà il contatore nBitInt-1
+    (che avrà il valore descrescente tornando indietro nelle chiamate)
+    alla lunghezza massima meno 1(perche a noi serve indice che parte da 0),
+    posizionando cosi la configuarazione di bit in modo inverso nell'array
+    es.
+    chiamata 1
+    nBitInt = 1
+    lenMax = 5
+    num_bina[(5-1) - (1-1)] = num_bina[4]
+    cosi il primo bit della configuarazione sara messo
+    nell'ultima posizione e andra avanti all'incontrario
+  */
+  num_bina[(lenMax-1) - (nBitInt-1)] = cifraBina;
+
+  return lenMax;
 }
 
 /*
@@ -48,17 +86,12 @@ int nIntBina(float numDeci)
 */
 int decToBina(int num_bina[],float deci)
 {
-   int i = 0,partInt,nBitInt = nIntBina(deci);
-   float n,partDec;
+   int partInt = (int)deci;
+   float partDec = deci - partInt;
 
-   partInt = (int)deci;
-   partDec = deci - partInt;
-
-   for(int i = nBitInt-1; partInt!=0; i--)
-   {
-       num_bina[i] = partInt % BASE;
-       partInt /= BASE;
-   }
+   int i = 0;
+   int nBitInt = IntToBina(deci,num_bina);
+   float n;
 
    if(nBitInt == 0)
     {
@@ -74,9 +107,31 @@ int decToBina(int num_bina[],float deci)
        partDec *= BASE;
        num_bina[i+j] = (int)partDec;
        partDec -= (int)partDec;
-   }
 
-   return nBitInt-1;
+   }
+/*---------------------------- calcolo esponente -------------------
+  calcolo qua l'esponente perchè ho già il numero di interi che è utile
+  per calcolare l'esponente perciò faccio che calcolarlo anche se so che
+  è molto delocalizzato
+*/
+  if(nBitInt == 0)
+  {
+    /*
+      in caso non abbia parte intera si andrà indietro nel numero
+      finche non si trovera un bit a 1 che diventerà il hidden bit.
+      nel procedimanto di andare all indietro la potenza che dovra
+      esse calcolata sul 2,la potenza verra descrementata in modo che
+      2^esponente * 1.mantissa = numero iniziale
+    */
+    nBitInt = -1;
+    for(int x = 1; num_bina[x] != 1;x++)
+    {
+        nBitInt--;
+    }
+    return nBitInt;
+  }
+  return nBitInt-1;
+//------------------------------------------------------------------
 }
 
 //---------------------------main------------------
@@ -86,7 +141,6 @@ int main()
    int ieeeFormat[IEEE_LEN],num_bina[IEEE_LEN],offset = 0,espo;
    char ieeeFormatHex[(IEEE_LEN/4)*2];
 
-/*Perché arrivi fino a 40 se la dimensione dei tuoi array è 32? Questo genera errori.*/
    //inizializazione a 0
    for(int i = 0; i<IEEE_LEN; i++)
    {
@@ -109,34 +163,18 @@ int main()
    else
    {
        ieeeFormat[0] = 0;
-    }
+   }
 
    espo = decToBina(num_bina,deci);
 
    //calcolo sponente con eccesso 127
-   if(espo != -1)
-   {
-       espo += 127;
-   }
-   else
-   {
-       /*
-           in caso non abbia parte intera si andrà indietro nel numero
-           finche non si trovera un bit a 1 che diventerà il hidden bit.
-           nel procedimanto di andare all indietro la potenza che dovra
-           esse calcolata sul 2,la potenza verra descrementata in modo che
-           2^esponente * 1.mantissa = numero iniziale
-       */
-       offset = 1;
-       /*si mette un offset per capire da dove iniziare a copiare dall'array del numero binario
-       sull'array della notazione IEEE*/
-       for(int x = 1; num_bina[x] != 1; offset++,x++)
-       {
-           espo--;
-       }
 
-       espo += 127;
-   }
+  if(espo < 0)
+  {
+    offset = abs(espo);
+  }
+
+   espo = ecc127(espo);
 
    //tracopiatura dell'array numero bianrio in quello notazione IEEE
    for(int i = 0; i<IEEE_LEN; i++)
@@ -167,4 +205,5 @@ int main()
 
    return 0;
 }
+
 
