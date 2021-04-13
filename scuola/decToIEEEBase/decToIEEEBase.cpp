@@ -3,6 +3,84 @@
 #define BASE 2
 #define IEEE_LEN 32
 
+int ecc127(int numDec);
+int getBitNumDec(int bina,int cifra);
+int decToBina(int num_bina[],float deci);
+int IntToBina(int partInt,int num_bina[],int nBitInt = 0);
+int calcEspo(int nBitInt,int num_bina[]);
+
+int main()
+{
+   float deci;
+   int ieeeFormat[IEEE_LEN],num_bina[IEEE_LEN],offset = 0,espo;
+   char ieeeFormatHex[(IEEE_LEN/4)*2];
+
+   //inizializazione a 0
+   for(int i = 0; i<IEEE_LEN; i++)
+   {
+      if(i<((IEEE_LEN/4)*2))
+      {
+        ieeeFormatHex[i] = 0;
+      }
+      num_bina[i] = 0;
+      ieeeFormat[i] = 0;
+   }
+   printf("metti numero reale in base 10 : ");
+   scanf("%f",&deci);
+
+   //settagio bit segno mantissa
+   if(deci<0)
+   {
+       ieeeFormat[0] = 1;
+       deci*=-1;
+   }
+   else
+   {
+       ieeeFormat[0] = 0;
+   }
+
+   espo = decToBina(num_bina,deci);
+
+   //calcolo sponente con eccesso 127
+
+  if(espo < 0)
+  {
+    offset = abs(espo);
+  }
+
+  espo = ecc127(espo);
+
+  //tracopiatura dell'array numero bianrio in quello notazione IEEE
+  for(int i = 0; i<IEEE_LEN; i++)
+  {
+    printf("\u001b[37m");
+    if(i == 0)
+    {
+      printf("\u001b[31m");
+    }
+    if(i>0 && i<9)
+    {
+      printf("\u001b[35m");
+      ieeeFormat[i] = getBitNumDec(espo,8-i);
+    }
+    if(i>8)
+    {
+      printf("\u001b[32m");
+      ieeeFormat[i] = num_bina[(i-8)+offset];
+    }
+
+    printf("%d ",ieeeFormat[i]);
+    if(i == 0 || i == 8)
+    {
+      printf(" ");
+    }
+  }
+
+   return 0;
+}
+
+//---------------------------end-main---------------------------
+
 /*
   dato un numero intero restituisce il numero nella vensione
   eccesso 127 utile per l'esponente della codifica IEEE-P754
@@ -36,7 +114,7 @@ int getBitNumDec(int bina,int cifra)
   ridando al chiamante il numero di bit che occupa la parte intera
   e assegando nel array la configuarazione binaria di esso
 */
-int IntToBina(int partInt,int num_bina[],int nBitInt = 0)
+int IntToBina(int partInt,int num_bina[],int nBitInt)
 {
   if(!partInt)          // elemento determinante per la fine
   {                     // della catena di ricorsioni
@@ -86,34 +164,40 @@ int IntToBina(int partInt,int num_bina[],int nBitInt = 0)
 */
 int decToBina(int num_bina[],float deci)
 {
-   int partInt = (int)deci;
-   float partDec = deci - partInt;
+  int partInt = (int)deci;
+  float partDec = deci - partInt;
 
-   int i = 0;
-   int nBitInt = IntToBina(deci,num_bina);
-   float n;
+  int i = 0;
+  int nBitInt = IntToBina(deci,num_bina);
+  float n;
 
-   if(nBitInt == 0)
-    {
-      i = 1;
-    }
-   else
-    {
-      i = nBitInt;
-    }
+  if(nBitInt == 0)
+  {
+    i = 1;
+  }
+  else
+  {
+    i = nBitInt;
+  }
 
-   for(int j=0; j<(IEEE_LEN-i) && partDec != 0.0; j++)
-   {
-       partDec *= BASE;
-       num_bina[i+j] = (int)partDec;
-       partDec -= (int)partDec;
+  for(int j=0; j<(IEEE_LEN-i) && partDec != 0.0; j++)
+  {
+    partDec *= BASE;
+    num_bina[i+j] = (int)partDec;
+    partDec -= (int)partDec;
 
-   }
-/*---------------------------- calcolo esponente -------------------
+  }
+
+  return calcEspo(nBitInt,num_bina);
+}
+
+/*
   calcolo qua l'esponente perchè ho già il numero di interi che è utile
   per calcolare l'esponente perciò faccio che calcolarlo anche se so che
   è molto delocalizzato
 */
+int calcEspo(int nBitInt,int numBina[])
+{
   if(nBitInt == 0)
   {
     /*
@@ -124,86 +208,13 @@ int decToBina(int num_bina[],float deci)
       2^esponente * 1.mantissa = numero iniziale
     */
     nBitInt = -1;
-    for(int x = 1; num_bina[x] != 1;x++)
+    for(int x = 1; numBina[x] != 1;x++)
     {
-        nBitInt--;
+      nBitInt--;
     }
     return nBitInt;
   }
   return nBitInt-1;
-//------------------------------------------------------------------
-}
-
-//---------------------------main------------------
-int main()
-{
-   float deci;
-   int ieeeFormat[IEEE_LEN],num_bina[IEEE_LEN],offset = 0,espo;
-   char ieeeFormatHex[(IEEE_LEN/4)*2];
-
-   //inizializazione a 0
-   for(int i = 0; i<IEEE_LEN; i++)
-   {
-        if(i<((IEEE_LEN/4)*2))
-        {
-          ieeeFormatHex[i] = 0;
-        }
-       num_bina[i] = 0;
-       ieeeFormat[i] = 0;
-   }
-   printf("metti numero reale in base 10 : ");
-   scanf("%f",&deci);
-
-   //settagio bit segno mantissa
-   if(deci<0)
-   {
-       ieeeFormat[0] = 1;
-       deci*=-1;
-   }
-   else
-   {
-       ieeeFormat[0] = 0;
-   }
-
-   espo = decToBina(num_bina,deci);
-
-   //calcolo sponente con eccesso 127
-
-  if(espo < 0)
-  {
-    offset = abs(espo);
-  }
-
-   espo = ecc127(espo);
-
-   //tracopiatura dell'array numero bianrio in quello notazione IEEE
-   for(int i = 0; i<IEEE_LEN; i++)
-   {
-       printf("\u001b[37m");
-       if(i == 0)
-       {
-           printf("\u001b[31m");
-       }
-       if(i>0 && i<9)
-       {
-           printf("\u001b[35m");
-           ieeeFormat[i] = getBitNumDec(espo,8-i);
-
-       }
-       if(i>8)
-       {
-           printf("\u001b[32m");
-           ieeeFormat[i] = num_bina[(i-8)+offset];
-       }
-
-       printf("%d ",ieeeFormat[i]);
-       if(i == 0 || i == 8)
-       {
-           printf(" ");
-       }
-   }
-
-   return 0;
 }
 
 
