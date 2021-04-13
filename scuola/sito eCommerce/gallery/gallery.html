@@ -13,13 +13,33 @@
         <a href="index.html"><h1 class="title_nav" >Fisher Company</h1></a>
         <hr class="linea" >
         <ul class="voci_nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="articoli.html">Articoli</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="notizie.html">Notizie</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li id="articoli">
+                <a href="articoli/articoli.html">Articoli</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="../articoli/articoli.html">tutti</a></li>
+                        <li><a href="../articoli/cannePesca.html">canne da pesca</a></li>
+                        <li><a href="../articoli/equip.html">equipaggiamneto</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="gallery" >
+                <a href="gallery.html">Gallery</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="gallery.html">tutte</a></li>
+                        <li><a href="pesciPiccoli.html">pesci piccoli</a></li>
+                        <li><a href="pesciGrandi.html">pesci grandi</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="../notizie.html">Notizie</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contattaci.html">Contattaci</a></li>
         </ul>
     </header>
+
     <div id="content" >
         <h1 class="page_title">Gallery</h1>
         <hr class="linea" >
@@ -39,7 +59,7 @@
     </div>
     <footer>
         <div id="logo_footer">
-            <img src="assets/img/logo_sito.png" id="img_logo_footer">
+            <img src="/assets/img/logo_sito.png" id="img_logo_footer">
             <h1 id="title_logo_footer" >Fisher Company</h1>
         </div>
         <div id="container_col_footer" >

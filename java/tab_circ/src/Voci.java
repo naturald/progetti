@@ -2,11 +2,12 @@ public class Voci
 {
     private int nCirc;
     private String tipoCon;
-    private String[] traR= new String[2];
+    private String[] traR;
     private float Rxy;
     private String compV;
     private String compI;
-    public Voci(int nCirc,String tipoCon,String[] tra_r,String compV,String compI,float Rxy)
+    private float[] valR = new float [2];
+    public Voci(int nCirc,String tipoCon,String[] tra_r,String compV,String compI,float Rxy,float R1,float R2)
     {
         this.nCirc = nCirc;
         this.tipoCon = tipoCon;
@@ -14,6 +15,8 @@ public class Voci
         this.compV = compV;
         this.compI = compI;
         this.Rxy = Rxy;
+        this.valR[0] = R1;
+        this.valR[1] = R2;
     }
     public int getNcirc() {return this.nCirc;}
     public String getTipoCon() {return this.tipoCon;}
@@ -22,5 +25,7 @@ public class Voci
     public String getCompI() {return this.compI;}
     public float getRxy() {return this.Rxy;}
     public void setNcirc(int nCirc) {this.nCirc = nCirc;}
+    public float[] getValR() {return this.valR;}
+
 
 }

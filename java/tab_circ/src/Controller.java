@@ -53,7 +53,7 @@ public class Controller
         }
         while(err == true);
         float Rxy = modelRes.rEqi(tipoRela,R);
-        modelRela.addVoce(tipoRela,R,Rxy);
+        modelRela.addVoce(tipoRela,R,Rxy,modelRes.ValByNome(R[0]),modelRes.ValByNome(R[1]));
         modelRes.addRes(R,Rxy,modelRela.getNcirc());
         modelRes.setStatusByNome(R[0]);
         modelRes.setStatusByNome(R[1]);

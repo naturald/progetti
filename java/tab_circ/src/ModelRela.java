@@ -31,7 +31,7 @@ public class ModelRela
                     return true;
         return false;
     }
-    public void addVoce(String tipoRela,String[] R,float Rxy)
+    public void addVoce(String tipoRela,String[] R,float Rxy,float R1,float R2)
     {
         String[] traR = new String[] {R[0],R[1]};
         String segnoI = "=",segnoV = "=";
@@ -39,7 +39,7 @@ public class ModelRela
             segnoI = "!";
         else
             segnoV = "!";
-        contenuto[nCirc] = new Voci(nCirc+1,tipoRela,traR,"I"+traR[0].replaceFirst("^R","")+" "+segnoI+"= I"+traR[1].replaceFirst("^R",""),"V"+traR[0].replaceFirst("^R","")+" "+segnoV+"= V"+traR[1].replaceFirst("^R",""),Rxy);
+        contenuto[nCirc] = new Voci(nCirc+1,tipoRela,traR,"I"+traR[0].replaceFirst("^R","")+" "+segnoI+"= I"+traR[1].replaceFirst("^R",""),"V"+traR[0].replaceFirst("^R","")+" "+segnoV+"= V"+traR[1].replaceFirst("^R",""),Rxy,R1,R2);
         this.nCirc++;
     }
     public int getNcirc() {return this.nCirc;}

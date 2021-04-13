@@ -10,7 +10,11 @@ public class ViewRela
             if(i != null)
             {
                 String[] traR = i.getTraR();
-                System.out.print("| " + strLen(i.getNcirc()+"",4) + " | " + strLen(i.getTipoCon(),10) + " | " + strLen(traR[0] + "," + traR[1],13)+ " | " + strLen(i.getCompV() ,17)+ " | " + strLen(i.getCompI(),17) + " | " + strLen((Math.floor(i.getRxy() * 100) / 100)+"",6) + " | \n");
+                System.out.print("| " + strLen(i.getNcirc()+"",4) +
+                        " | " + strLen(i.getTipoCon(),10) +
+                        " | " + strLen(traR[0] + "," + traR[1],13)+
+                        " | " + strLen(i.getCompV() ,17)+ " | " + strLen(i.getCompI(),17) +
+                        " | " + strLen((" R1 = " +Math.floor(i.getValR()[0] * 100) / 100),12) + strLen((" R2 = " + Math.floor(i.getValR()[1] * 100) / 100),12) + strLen(("Rxy = " +Math.floor(i.getRxy() * 100) / 100),13) + " | \n");
                 System.out.println("--------------------------------------------------------------------------------------");
             }
         }
