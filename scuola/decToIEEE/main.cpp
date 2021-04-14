@@ -1,90 +1,220 @@
 #include <stdio.h>
 #include <math.h>
+#include <ctype.h>
 #define BASE 2
 #define IEEE_LEN 32
-#define BIN_LEN 32
+
+int ecc127(int numDec);
+int getBitNumDec(int bina,int cifra);
+int decToBina(int num_bina[],float deci);
+int IntToBina(int partInt,int num_bina[],int nBitInt = 0);
+int calcEspo(int nBitInt,int num_bina[]);
+char HexDigit(int hexDigit);
+void IeeeHex(int ieeeFormat[],char ieeeFormatHex[]);
+void printArrChar(char arr[],int len);
+void printIEEE(int ieee[], int len);
+void insertIeee(int ieee[], int numBina[], int espo, int offset);
+int hexToBin(char c);
+void insertIeeeFromHex(int ieee[],char ieeeHex[]);
+int binToDec(int start,int stop,int arr[],int vir = 0,bool hidBit = false);
+int ieeeToDec(int ieee[]);
+
+int main()
+{
+   float deci;
+   int ieeeFormat[IEEE_LEN],num_bina[IEEE_LEN],offset = 0,ieeeFromHex[IEEE_LEN],espo;
+   char ieeeFormatHex[(IEEE_LEN/4)*2];
+
+   //inizializazione a 0
+   for(int i = 0; i<IEEE_LEN; i++)
+   {
+      if(i<((IEEE_LEN/4)*2))
+      {
+        ieeeFormatHex[i] = 0;
+      }
+      num_bina[i] = 0;
+      ieeeFormat[i] = 0;
+   }
+
+   printf("metti numero reale in base 10 : ");
+   scanf("%f",&deci);
+
+   //settagio bit segno mantissa
+   if(deci<0)
+   {
+       ieeeFormat[0] = 1;
+       deci*=-1;
+   }
+   else
+   {
+       ieeeFormat[0] = 0;
+   }
+
+   espo = decToBina(num_bina,deci);
+
+   //calcolo sponente con eccesso 127
+
+  if(espo < 0)
+  {
+    offset = abs(espo);
+  }
+
+  espo = ecc127(espo);
+
+  //tracopiatura dell'array numero bianrio in quello notazione IEEE
+  insertIeee(ieeeFormat,num_bina,espo,offset);
+  printIEEE(ieeeFormat,IEEE_LEN);
+
+  printf("\n\n");
+  IeeeHex(ieeeFormat,ieeeFormatHex);
+  printf("0x");
+  printArrChar(ieeeFormatHex,sizeof(ieeeFormatHex));
+  printf("\n\n");
+
+  insertIeeeFromHex(ieeeFromHex,ieeeFormatHex);
+  printIEEE(ieeeFromHex,IEEE_LEN);
+
+  ieeeToDec(ieeeFromHex);
+
+   return 0;
+}
+
+//---------------------------end-main---------------------------
+
 /*
-    data una lunghezza stampa un array di
-    caratteri di lunghezza len
+  dato un numero intero restituisce il numero nella vensione
+  eccesso 127 utile per l'esponente della codifica IEEE-P754
 */
-void printArrChar(char arr[],int len)
-{
-    for(int i = 0;i<len;i++)
-        printf("%c",arr[i]);
-}
-
-int charToInt(char letter)
-{
-    if(letter>= 48 && letter<= 57)
-        return letter - 48;
-    if(letter>= 65 && letter<= 70)
-        return letter - (65 - 10);
-}
+int ecc127(int numDec) {return numDec+127;}
 
 /*
-    prende un numero decimale e data una cifra farà il bitwise and tra il numero
-    e la potenza perfetta che sarà 2 elevato la cifra da cercare
-    in modo da prendere solo la cifra richiesta se tutto il numero sara
-    composto da zeri allora la cifra cercata sarà 0 altrimenti se ci sara un solo 1
-    sarà sicuramente quello ricercato
+   prende un numero decimale e data una cifra farà il bitwise and tra il numero
+   e la potenza perfetta che sarà 2 elevato la cifra da cercare
+   in modo da prendere solo la cifra richiesta se tutto il numero sara
+   composto da zeri allora la cifra cercata sarà 0 altrimenti se ci sara un solo 1
+   sarà sicuramente quello ricercato
 */
 int getBitNumDec(int bina,int cifra)
 {
-	if(bina & (int)pow(BASE,(float)cifra))
-		return 1;
-	else
-		return 0;
-}
-
-/*
-    dato un numero float prende la parte intera
-    e dice quanti bit occuperà continuado a shiftare
-    il nuero a destra finche non sarà ugale a 0
-*/
-int nIntBina(float numDeci)
-{
-   int partInt = (int)numDeci,nBitInt = 0;
-   while(partInt)
+   if(bina & (int)pow(BASE,(float)cifra))
    {
-     partInt >>= 1;
-     nBitInt++;
+      return 1;
    }
-   return nBitInt;
+   else
+   {
+      return 0;
+   }
+
 }
 
 /*
-    prende come parametri un array dove metterà il numero binario una volta convertito
-    e come secondo parametro un numero reale.
-    Il programma determinerà prima la parte intera per poi andare a calcolare la parte frazzionaria
-    la funzione ritornera il numero di bit interi -1 poiche esso corrisponderà alla potenza da
-    applicare a 10 per far diventare il numero con era prima
+  dato la parte intera del numero e l'array che dovrà contenere
+  la versione binaria del numero deciamle reale, calcola la
+  rappresentazioen binaria della parte intera tramite una ricorsione
+  ridando al chiamante il numero di bit che occupa la parte intera
+  e assegando nel array la configuarazione binaria di esso
+*/
+int IntToBina(int partInt,int num_bina[],int nBitInt)
+{
+  if(!partInt)          // elemento determinante per la fine
+  {                     // della catena di ricorsioni
+    return nBitInt;
+  }
+
+  int cifraBina = partInt%2;  // resto del numero diviso per 2 ovvero la cifra binaria
+  partInt >>= 1;  //shift di uno verso destra = divisione per 2
+  nBitInt++;  //contatore che conta il numero di bit che occuppa il numero
+
+  /*
+    indica la lunghezza massima del nuemro bianrio,
+    questo e dato dal ritorno dal'ultima ricorsione
+    che tornando indietro si "trascinerà" il numero
+    ritornato alla fine della catena fino a poi restiruirlo
+    al chiamante
+  */
+  int lenMax = IntToBina(partInt,num_bina,nBitInt);
+
+  /*
+    essendo posto dopo alla chiamata questa istruzione
+    verrà eseguita quando la chain di chiamate sarà finità
+    e quindi tornerà indietro sapendo gia quanto e lungo il
+    numero in bianrio, sotrarrà il contatore nBitInt-1
+    (che avrà il valore descrescente tornando indietro nelle chiamate)
+    alla lunghezza massima meno 1(perche a noi serve indice che parte da 0),
+    posizionando cosi la configuarazione di bit in modo inverso nell'array
+    es.
+    chiamata 1
+    nBitInt = 1
+    lenMax = 5
+    num_bina[(5-1) - (1-1)] = num_bina[4]
+    cosi il primo bit della configuarazione sara messo
+    nell'ultima posizione e andra avanti all'incontrario
+  */
+  num_bina[(lenMax-1) - (nBitInt-1)] = cifraBina;
+
+  return lenMax;
+}
+
+/*
+   prende come parametri un array dove metterà il numero binario una volta convertito
+   e come secondo parametro un numero reale.
+   Il programma determinerà prima la parte intera per poi andare a calcolare la parte frazzionaria
+   la funzione ritornera il numero di bit interi -1 poiche esso corrisponderà alla potenza da
+   applicare a 10 per far diventare il numero con era prima
 */
 int decToBina(int num_bina[],float deci)
 {
-	int i = 0,partInt,nBitInt = nIntBina(deci);
-	float n,partDec;
-    partInt = (int)deci;
-    partDec = deci - partInt;
+  int partInt = (int)deci;
+  float partDec = deci - partInt;
 
-    for(int i = nBitInt-1;partInt!=0;i--)
+  int i = 0;
+  int nBitInt = IntToBina(deci,num_bina);
+  float n;
+
+  if(nBitInt == 0)
+  {
+    i = 1;
+  }
+  else
+  {
+    i = nBitInt;
+  }
+
+  for(int j=0; j<(IEEE_LEN-i) && partDec != 0.0; j++)
+  {
+    partDec *= BASE;
+    num_bina[i+j] = (int)partDec;
+    partDec -= (int)partDec;
+
+  }
+
+  return calcEspo(nBitInt,num_bina);
+}
+
+/*
+  calcolo qua l'esponente perchè ho già il numero di interi che è utile
+  per calcolare l'esponente perciò faccio che calcolarlo anche se so che
+  è molto delocalizzato
+*/
+int calcEspo(int nBitInt,int numBina[])
+{
+  if(nBitInt == 0)
+  {
+    /*
+      in caso non abbia parte intera si andrà indietro nel numero
+      finche non si trovera un bit a 1 che diventerà il hidden bit.
+      nel procedimanto di andare all indietro la potenza che dovra
+      esse calcolata sul 2,la potenza verra descrementata in modo che
+      2^esponente * 1.mantissa = numero iniziale
+    */
+    nBitInt = -1;
+    for(int x = 1; numBina[x] != 1;x++)
     {
-        num_bina[i] = partInt % BASE;
-        partInt /= BASE;
+      nBitInt--;
     }
-
-    if(nBitInt == 0)
-        i = 1;
-    else
-        i = nBitInt;
-
-    for(int j=0;j<(BIN_LEN-i) && partDec != 0.0;j++)
-    {
-        partDec *= BASE;
-        num_bina[i+j] = (int)partDec;
-        partDec -= (int)partDec;
-    }
-
-    return nBitInt-1;
+    return nBitInt;
+  }
+  return nBitInt-1;
 }
 
 char HexDigit(int hexDigit)
@@ -110,94 +240,93 @@ void IeeeHex(int ieeeFormat[],char ieeeFormatHex[])
     }
 }
 
-//---------------------------main------------------
-int main()
+void printArrChar(char arr[],int len)
 {
-    float deci;
-    int ieeeFormat[IEEE_LEN],num_bina[BIN_LEN],offset = 0,espo;
-    char ieeeFormatHex[(IEEE_LEN/4)*2];
+    for(int i = 0;i<len;i++)
+        printf("%c",arr[i]);
+}
 
+int hexToBin(char c)
+{
+    if(c >= '0' && c <='9')
+        return c-48;
+    else if(toupper(c) >= 'A' && toupper(c) <= 'Z')
+        return c-(65-10);
+}
 
-    //inizializazione a 0
-    for(int i = 0;i<40;i++)
+void insertIeeeFromHex(int ieee[],char ieeeHex[])
+{
+    for(int i = 0;i<IEEE_LEN/4;i++)
+        for(int j = 0;j<4;j++)
+            ieee[j+(i*4)] = getBitNumDec( hexToBin(ieeeHex[i]) , 3-j);
+}
+
+void insertIeee(int ieee[], int numBina[], int espo, int offset)
+{
+  for(int i = 0; i<IEEE_LEN; i++)
+  {
+    if(i>0 && i<9)
     {
-        if(i<IEEE_LEN)
-
-        if(i<((IEEE_LEN/4)*2))
-            ieeeFormatHex[i] = 0;
-
-        num_bina[i] = 0;
+      ieee[i] = getBitNumDec(espo,8-i);
     }
-    printf("metti numero reale in base 10 : ");
-    scanf("%f",&deci);
-
-    //settagio big segno mantissa
-    if(deci<0)
+    if(i>8)
     {
-        ieeeFormat[0] = 1;
-        deci*=-1;
+      ieee[i] = numBina[(i-8)+offset];
     }
-    else
-        ieeeFormat[0] = 0;
+  }
 
-    espo = decToBina(num_bina,deci);
+}
 
-    //calcolo sponente con eccesso 127
-    if(espo != -1)
-    {
-        espo += 127;
-    }
-    else
-    {
-        /*
-            in caso non abbia parte intera si andrà indietro nel numero
-            finche non si trovera un bit a 1 che diventerà il hidden bit.
-            nel procedimanto di andare all indietro la potenza che dovra
-            esse calcolata sul 10 verra descrementata in modo che
-            10^esponente * 1.mantissa = numero iniziale
-        */
-        offset = 1;
-        //si mette un offset per capire da dove iniziare a copiare dall'array del numero binario sull'array della notazione IEEE
-        for(int x = 1;num_bina[x] != 1;offset++,x++)
-            espo--;
-        espo += 127;
-    }
-
-    //tracopiatura dell'array numero bianrio in quello notazione IEEE
-   for(int i = 0; i<IEEE_LEN; i++)
-   {
-       printf("\u001b[37m");
-       if(i == 0)
-       {
-           printf("\u001b[31m");
-       }
-       if(i>0 && i<9)
-       {
-           printf("\u001b[35m");
-           ieeeFormat[i] = getBitNumDec(espo,8-i);
-
-       }
-       if(i>8)
-       {
-           printf("\u001b[32m");
-           ieeeFormat[i] = num_bina[(i-8)+offset];
-       }
-
-       printf("%d ",ieeeFormat[i]);
-       if(i == 0 || i == 8)
-       {
-           printf(" ");
-       }
-   }
-
+void printIEEE(int ieee[], int len)
+{
+  for(int i = 0; i<IEEE_LEN; i++)
+  {
     printf("\u001b[37m");
+    if(i == 0)
+    {
+      printf("\u001b[31m");
+    }
+    if(i>0 && i<9)
+    {
+      printf("\u001b[35m");
+    }
+    if(i>8)
+    {
+      printf("\u001b[32m");
+    }
 
-    printf("\n\n");
-    IeeeHex(ieeeFormat,ieeeFormatHex);
-    printf("0x");
-    printArrChar(ieeeFormatHex,sizeof(ieeeFormatHex));
-    printf("\n\n");
+    printf("%d ",ieee[i]);
+    if(i == 0 || i == 8)
+    {
+      printf(" ");
+    }
+  }
 
+  printf("\u001b[37m");
+}
+
+int binToDec(int start,int stop,int arr[],int vir,bool hidBit)
+{
+    int ris = 0;
+    if(hidBit)
+        ris += ((stop-vir)-start)+1;
+    for(int i = start;i<=stop;i++)
+    {
+        ris += (arr[i] * pow(2,((stop-vir)-start)-i));
+    }
+    return ris;
+}
+
+int ieeeToDec(int ieee[])
+{
+    int espo = binToDec(1,9,ieee) - 127;
+
+    if(espo > 0)
+    {
+        binToDec
+    }
+
+    printf("%d",espo);
     return 0;
 }
 
