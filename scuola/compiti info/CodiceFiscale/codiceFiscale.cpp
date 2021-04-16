@@ -4,12 +4,15 @@
 */
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <ctype.h>
-#include <conio.h>
-#define COD_lEN 16
+
+#define LUOGO_LEN 4
+#define COD_lEN 17
 #define NOME_COGN_LEN 30
 const char vocali[5] = {'A','E','I','O','U'};
 const unsigned char accentate[10] = {133,138,161,149,151,183,212,222,227,235};// à è ì ò ù ...
+
 
 void toUpStr(char str[])
 {
@@ -25,6 +28,130 @@ bool isAcent(char c)
     return false;
 }
 
+int valPari(char c)
+{
+  if(c <= '9')
+    return c-48;
+  else
+    return c-65;
+}
+
+int valDisp(char c)
+{
+  int val;
+  switch(c)
+  {
+    case '0':
+      val = 1;
+    break;
+    case '1':
+      val = 0;
+    break;
+    case '2':
+      val = 5;
+    break;
+    case '3':
+      val = 7;
+    break;
+    case '4':
+      val = 9;
+    break;
+    case '5':
+      val = 13;
+    break;
+    case '6':
+      val = 15;
+    break;
+    case '7':
+      val = 17;
+    break;
+    case '8':
+      val = 19;
+    break;
+    case '9':
+      val = 21;
+    break;
+    case 'A':
+      val = 1;
+    break;
+    case 'B':
+      val = 0;
+    break;
+    case 'C':
+      val = 5;
+    break;
+    case 'D':
+      val = 7;
+    break;
+    case 'E':
+      val = 9;
+    break;
+    case 'F':
+      val = 13;
+    break;
+    case 'G':
+      val = 15;
+    break;
+    case 'H':
+      val = 17;
+    break;
+    case 'I':
+      val = 19;
+    break;
+    case 'J':
+      val = 21;
+    break;
+    case 'K':
+      val = 2;
+    break;
+    case 'L':
+      val = 4;
+    break;
+    case 'M':
+      val = 18;
+    break;
+    case 'N':
+      val = 20;
+    break;
+    case 'O':
+      val = 11;
+    break;
+    case 'P':
+      val = 3;
+    break;
+    case 'Q':
+      val = 6;
+    break;
+    case 'R':
+      val = 8;
+    break;
+    case 'S':
+      val = 12;
+    break;
+    case 'T':
+      val = 14;
+    break;
+    case 'U':
+      val = 16;
+    break;
+    case 'V':
+      val = 10;
+    break;
+    case 'W':
+      val = 22;
+    break;
+    case 'X':
+      val = 25;
+    break;
+    case 'Y':
+      val = 24;
+    break;
+    case 'Z':
+      val = 23;
+    break;
+  }
+  return val;
+}
 
 bool AcenToChar(char arr[],int index)
 {
@@ -228,14 +355,159 @@ void getNome(char nome[])
     while(err);
 }
 
+void getDataNasci(int data[])
+{
+    int gg,mm,aaaa;
+	  bool rep=false;
+    do
+    {
+        do
+        {
+            do
+            {
+                printf("immettere data:\n");
+                printf("    inserisci il giorno  --> ");
+                scanf("%d",&gg);
+            }
+            while(gg<1||gg>31);
+            do
+            {
+                printf("    inserisci il mese    --> ");
+                scanf("%d",&mm);
+            }
+            while(mm<1||mm>12);
+        }
+        while((mm==4||mm==6||mm==9||mm==11)&&gg==31);
+        do
+        {
+            printf("    inserisci l'anno     --> ");
+            scanf("%d",&aaaa);
+        }
+        while(aaaa<1);
+        if(mm==2&&gg>28)
+            if((aaaa%4==0&&aaaa<=1917)||(((aaaa%4==0&&aaaa%100!=0)||aaaa%400==0)&&aaaa>1917))
+                if(gg==29)
+                    rep=false;
+                else
+                    rep=true;
+            else
+                rep=true;
+        else
+            rep=false;
+
+    }
+    while(rep==true);
+
+    data[0] = gg;
+    data[1] = mm;
+    data[2] = aaaa;
+
+}
+
+void getSex(bool *femmina)
+{
+    char scelta;
+    do
+    {
+        printf("inserisci il tuo sesso (M o F): ");
+        scanf(" %c",&scelta);
+    }while(toupper(scelta) != 'M' && toupper(scelta) != 'F');
+    if(toupper(scelta) == 'F')
+      *femmina = true;
+    else
+      *femmina = false;
+}
+
+void insertData(int data[],char codice[], bool femmina)
+{
+    codice[6] = (data[2] % 100 / 10) + '0';
+    codice[7] = data[2] % 10 + '0';
+
+    if(data[1] < 6)
+        codice[8] = data[1] + 'A';
+    else
+      switch(data[1])
+        {
+            case 6:
+                codice[8] = 'H';
+            break;
+            case 7:
+                codice[8] = 'L';
+            break;
+            case 8:
+                codice[8] = 'M';
+            break;
+            case 9:
+                codice[8] = 'P';
+            break;
+            case 10:
+                codice[8] = 'R';
+            break;
+            case 11:
+                codice[8] = 'S';
+            break;
+            case 12:
+                codice[8] = 'T';
+            break;
+        }
+
+    if(femmina == true)
+        data[0] += 40;
+
+    codice[9] = data[0] / 10 + '0';
+    codice[10] = data[0] % 10 + '0';
+}
+
+void getluogoNasci(char luogoNasci[])
+{
+  printf("inserisci il codice del luogo di nascita: ");
+  gets(luogoNasci);
+}
+
+void insertLuogoNasci(char luogoNascita[],char codice[])
+{
+    for(int i = 0; i < LUOGO_LEN ; i++)
+    {
+      codice[11 + i] = luogoNascita[i];
+    }
+}
+
+void insertCIN(char codice[])
+{
+  int cin = 0,calc;
+  for(int i = 0;i<15;i++)
+  {
+    if(i%2 == 0)
+      calc = valDisp(codice[i]);
+    else
+      calc = valPari(codice[i]);
+
+      printf("%c %d\n",codice[i], calc);
+      cin += calc;
+  }
+  codice[15] = (cin % 26) + 65;
+  codice[16] = 0;
+}
+
 int main()
 {
+    char nome[NOME_COGN_LEN],cognome[NOME_COGN_LEN],codice[COD_lEN], luogoNascita[LUOGO_LEN];
+    int DataNasci[3];
+    bool femmina;
 
-    char nome[NOME_COGN_LEN],cognome[NOME_COGN_LEN],codice[COD_lEN];
     getCognome(cognome);
     getNome(nome);
+    getluogoNasci(luogoNascita);
+    getSex(&femmina);
+    getDataNasci(DataNasci);
+
     insertCons(cognome,codice,3,0);
     insertCons(nome,codice,3,3,true);
+    insertData(DataNasci,codice,femmina);
+    insertLuogoNasci(luogoNascita,codice);
+    insertCIN(codice);
+
+
     printf("%s",codice);
 
     return 0;

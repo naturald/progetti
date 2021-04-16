@@ -305,9 +305,9 @@ void printIEEE(int ieee[], int len)
   printf("\u001b[37m");
 }
 
-int binToDec(int start,int stop,int arr[],int vir,bool hidBit)
+float binToDec(int start,int stop,int arr[],int vir,bool hidBit)
 {
-    int ris = 0;
+    float ris = 0;
     if(hidBit)
         ris += ((stop-vir)-start)+1;
     for(int i = start;i<=stop;i++)
@@ -317,13 +317,13 @@ int binToDec(int start,int stop,int arr[],int vir,bool hidBit)
     return ris;
 }
 
-int ieeeToDec(int ieee[])
+float ieeeToDec(int ieee[])
 {
-    int espo = binToDec(1,9,ieee) - 127;
+    float espo = binToDec(1,9,ieee) - 127;
 
     if(espo > 0)
     {
-        binToDec
+        binToDec(10,9+espo,0,true);
     }
 
     printf("%d",espo);
