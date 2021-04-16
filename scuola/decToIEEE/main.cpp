@@ -16,8 +16,8 @@ void printIEEE(int ieee[], int len);
 void insertIeee(int ieee[], int numBina[], int espo, int offset);
 int hexToBin(char c);
 void insertIeeeFromHex(int ieee[],char ieeeHex[]);
-int binToDec(int start,int stop,int arr[],int vir = 0,bool hidBit = false);
-int ieeeToDec(int ieee[]);
+float binToDec(int start,int stop,int arr[],int vir = 0,bool hidBit = false);
+float ieeeToDec(int ieee[]);
 
 int main()
 {
@@ -71,10 +71,13 @@ int main()
   printArrChar(ieeeFormatHex,sizeof(ieeeFormatHex));
   printf("\n\n");
 
+  printf("IEEE da HEX:\n\n");
+
   insertIeeeFromHex(ieeeFromHex,ieeeFormatHex);
   printIEEE(ieeeFromHex,IEEE_LEN);
 
-  ieeeToDec(ieeeFromHex);
+  printf("\n\nin decimale:");
+  printf("%f \n\n",ieeeToDec(ieeeFromHex));
 
    return 0;
 }
@@ -305,29 +308,33 @@ void printIEEE(int ieee[], int len)
   printf("\u001b[37m");
 }
 
-int binToDec(int start,int stop,int arr[],int vir,bool hidBit)
+float binToDec(int start,int stop,int arr[],int vir,bool hidBit)
 {
-    int ris = 0;
+    float ris = 0;
+    if(vir == 0)
+        vir = stop;
     if(hidBit)
-        ris += ((stop-vir)-start)+1;
+        ris = (1 * pow(2,((stop-(stop-vir))-start)+1));
     for(int i = start;i<=stop;i++)
     {
-        ris += (arr[i] * pow(2,((stop-vir)-start)-i));
+        ris += (arr[i] * pow(2,((stop-(stop-vir))-start)-(i-start)));
     }
+
+    printf("\n");
     return ris;
 }
 
-int ieeeToDec(int ieee[])
+float ieeeToDec(int ieee[])
 {
-    int espo = binToDec(1,9,ieee) - 127;
+    float espo = binToDec(1,8,ieee) - 127;
+    float ris = 0;
 
-    if(espo > 0)
-    {
-        binToDec
-    }
+    ris = binToDec(9,31,ieee,8+espo,true);
 
-    printf("%d",espo);
-    return 0;
+    if(ieee[0])
+        ris *= -1;
+
+    return ris;
 }
 
 
