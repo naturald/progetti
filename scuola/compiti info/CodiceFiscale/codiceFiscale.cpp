@@ -1,6 +1,10 @@
 /*
-    Marco Schiavello 3^CI 25/03/2021
+    Marco Schiavello, Alberto Benedicenti 3^CI 25/03/2021
 
+    Realizzare  con il linguaggio C il programma che effettua il calcolo del codice fiscale,
+    in base a quanto spiegato nel documento allegato.
+    Il programma deve chiedere in input i dati per calcolare il codice fiscale ed infine
+    visualizzare il codice calcolato.
 */
 #include <stdio.h>
 #include <string.h>
@@ -14,12 +18,26 @@ const char vocali[5] = {'A','E','I','O','U'};
 const unsigned char accentate[10] = {133,138,161,149,151,183,212,222,227,235};// à è ì ò ù ...
 
 
+/*
+    fa un toupper() su ogni singolo
+    carattere della stringa.
+    Facendo cosi risurtare come un toupper
+    su tutta la stringa
+    Parametri:
+        -char str[] : input/output
+*/
 void toUpStr(char str[])
 {
     for(int i = 0;i<strlen(str);i++)
         str[i] = toupper(str[i]);
 }
 
+/*
+    va a verificare se il carattere
+    e accentato o no
+    Parametri:
+        -char c : input
+*/
 bool isAcent(char c)
 {
     for(int i = 0;i<strlen((char*)accentate);i++)
@@ -28,6 +46,15 @@ bool isAcent(char c)
     return false;
 }
 
+/*
+    dato un carattere alfanumerico
+    restituiste il suo valore
+    secondo la tabella di associazione
+    caratteri valori in posizione pari
+    per il calcolo del CIN
+    Parametri:
+        -char c : input
+*/
 int valPari(char c)
 {
   if(c <= '9')
@@ -36,6 +63,15 @@ int valPari(char c)
     return c-65;
 }
 
+/*
+    dato un carattere alfanumerico
+    restituiste il suo valore
+    secondo la tabella di associazione
+    caratteri valori in posizione dispari
+    per il calcolo del CIN
+    Parametri:
+        -char c : input
+*/
 int valDisp(char c)
 {
   int val;
@@ -153,6 +189,13 @@ int valDisp(char c)
   return val;
 }
 
+/*
+    prende un carattere accentato e lo trasforma
+    nella sua forma normale
+    Parametri:
+        -char arr[] : input/uotput
+        -int index : input
+*/
 bool AcenToChar(char arr[],int index)
 {
     if(isAcent(arr[index]))
@@ -305,7 +348,7 @@ void getCognome(char cognome[])
     bool err = false;
     do
     {
-        printf("metti il tuo cognome : ");
+        printf("metti il tuo cognome: ");
         gets(cognome);
         err = checkCognome(cognome);
     }
@@ -348,13 +391,20 @@ void getNome(char nome[])
     bool err = false;
     do
     {
-        printf("metti il tuo nome : ");
+        printf("metti il tuo nome: ");
         gets(nome);
         err = checkNome(nome);
     }
     while(err);
 }
 
+/*
+    chiede dove e nato l'utente
+    in formato gg/mm/aaaa
+    in un array [gg, mm, aaaa]
+    Parametri:
+        -int data[] : output
+*/
 void getDataNasci(int data[])
 {
     int gg,mm,aaaa;
@@ -378,12 +428,14 @@ void getDataNasci(int data[])
             while(mm<1||mm>12);
         }
         while((mm==4||mm==6||mm==9||mm==11)&&gg==31);
+
         do
         {
             printf("    inserisci l'anno     --> ");
             scanf("%d",&aaaa);
         }
         while(aaaa<1);
+
         if(mm==2&&gg>28)
             if((aaaa%4==0&&aaaa<=1917)||(((aaaa%4==0&&aaaa%100!=0)||aaaa%400==0)&&aaaa>1917))
                 if(gg==29)
@@ -404,6 +456,12 @@ void getDataNasci(int data[])
 
 }
 
+/*
+    chiede il sesso del utente per sapere se aggiungere
+    40 al giorno di nascita o no
+    Parametri:
+        -bool *femmina : output
+*/
 void getSex(bool *femmina)
 {
     char scelta;
@@ -411,6 +469,7 @@ void getSex(bool *femmina)
     {
         printf("inserisci il tuo sesso (M o F): ");
         scanf(" %c",&scelta);
+        fflush(stdin);
     }while(toupper(scelta) != 'M' && toupper(scelta) != 'F');
     if(toupper(scelta) == 'F')
       *femmina = true;
@@ -418,6 +477,15 @@ void getSex(bool *femmina)
       *femmina = false;
 }
 
+/*
+    prende la data di nascita dell'utente
+    e il sesso per cacolare il codice da mettere
+    nell'array del codice fiscale
+    Parametri:
+        -char data[] : input
+        -char codice[] : output
+        -bool femmina : input
+*/
 void insertData(int data[],char codice[], bool femmina)
 {
     codice[6] = (data[2] % 100 / 10) + '0';
@@ -458,12 +526,29 @@ void insertData(int data[],char codice[], bool femmina)
     codice[10] = data[0] % 10 + '0';
 }
 
+/*
+    prende in input una stringa che sarebbe
+    il codice della nazzione o provincia di provenienza
+    dentro a un array
+    Parametri:
+        -char luogoNasci[] : output
+*/
 void getluogoNasci(char luogoNasci[])
 {
   printf("inserisci il codice del luogo di nascita: ");
   gets(luogoNasci);
+  for(int i = 0;i<strlen(luogoNasci);i++)
+    luogoNasci[i] = toupper(luogoNasci[i]);
 }
 
+/*
+    inserisce dentro l'array del codice fiscale
+    la stringha che contiene il codice del comuno o
+    nazzione di provenienza
+    Parametri:
+        -char codice[] : output
+        -char luogoNascita[] : input
+*/
 void insertLuogoNasci(char luogoNascita[],char codice[])
 {
     for(int i = 0; i < LUOGO_LEN ; i++)
@@ -472,38 +557,44 @@ void insertLuogoNasci(char luogoNascita[],char codice[])
     }
 }
 
+/*
+    calcola e inserisce dentro l'array del codice fiscale
+    il CIN nelll'ultiuma posizione
+    Parametri:
+        -char codice[] : input
+*/
 void insertCIN(char codice[])
 {
   int cin = 0,calc;
   for(int i = 0;i<15;i++)
   {
-    if(i%2 == 0)
-      calc = valDisp(codice[i]);
-    else
+    if((i+1)%2 == 0)
       calc = valPari(codice[i]);
+    else
+      calc = valDisp(codice[i]);
 
-      printf("%c %d\n",codice[i], calc);
-      cin += calc;
+    cin += calc;
   }
-  codice[15] = (cin % 26) + 65;
+
+  codice[15] = (cin%26) + 65;
   codice[16] = 0;
 }
 
 int main()
 {
     char nome[NOME_COGN_LEN],cognome[NOME_COGN_LEN],codice[COD_lEN], luogoNascita[LUOGO_LEN];
-    int DataNasci[3];
+    int dataNasci[3];
     bool femmina;
 
     getCognome(cognome);
     getNome(nome);
     getluogoNasci(luogoNascita);
     getSex(&femmina);
-    getDataNasci(DataNasci);
+    getDataNasci(dataNasci);
 
     insertCons(cognome,codice,3,0);
     insertCons(nome,codice,3,3,true);
-    insertData(DataNasci,codice,femmina);
+    insertData(dataNasci,codice,femmina);
     insertLuogoNasci(luogoNascita,codice);
     insertCIN(codice);
 
