@@ -53,7 +53,6 @@ int main()
   //tracopiatura dell'array numero bianrio in quello notazione IEEE
   for(int i = 0; i<IEEE_LEN; i++)
   {
-    printf("\u001b[37m");
     if(i == 0)
     {
       printf("\u001b[31m");
@@ -75,6 +74,8 @@ int main()
       printf(" ");
     }
   }
+
+  printf("\u001b[37m");
 
    return 0;
 }
