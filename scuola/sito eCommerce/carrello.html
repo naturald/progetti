@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="icon" href="/assets/img/logo_sito.png">   
-    <title>Fisher Company - Articoli</title>
+    <link rel="icon" href="/assets/img/logo_sito.png">
+    <title>Fisher Company - Carrello</title>
+
 </head>
 <body>
-
     <header>
-        <a href="../index.html"><h1 class="title_nav" >Fisher Company</h1></a>
+        <a href="index.html"><h1 class="title_nav" >Fisher Company</h1></a>
         <hr class="linea" >
         <div id="menu_nav">
             <span id="arrow_nav">
@@ -19,54 +19,61 @@
             </span>
         </div>
         <ul class="voci_nav">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li id="articoli">
-                <a href="articoli.html">Articoli</a>
+                <a href="articoli/articoli.html">Articoli</a>
                 <div class="dropdown_content">
                     <ul>
-                        <li><a href="articoli.html">tutti</a></li>
-                        <li><a href="cannePesca.html">canne da pesca</a></li>
-                        <li><a href="equip.html">equipaggiamneto</a></li>
+                        <li><a href="articoli/articoli.html">tutti</a></li>
+                        <li><a href="articoli/cannePesca.html">canne da pesca</a></li>
+                        <li><a href="articoli/equip.html">equipaggiamneto</a></li>
                     </ul>
                 </div>
             </li>
             <li id="gallery" >
-                <a href="../gallery/gallery.html">Gallery</a>
+                <a href="gallery/gallery.html">Gallery</a>
                 <div class="dropdown_content">
                     <ul>
-                        <li><a href="../gallery/gallery.html">tutte</a></li>
-                        <li><a href="../gallery/pesciPiccoli.html">pesci piccoli</a></li>
-                        <li><a href="../gallery/pesciGrandi.html">pesci grandi</a></li>
+                        <li><a href="gallery/gallery.html">tutte</a></li>
+                        <li><a href="gallery/pesciPiccoli.html">pesci piccoli</a></li>
+                        <li><a href="gallery/pesciGrandi.html">pesci grandi</a></li>
                     </ul>
                 </div>
             </li>
-            <li><a href="../notizie.html">Notizie</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../contattaci.html">Contattaci</a></li>
+            <li><a href="notizie.html">Notizie</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contattaci.html">Contattaci</a></li>
             <li><a href="/carrello.html">Carrello</a></li>
         </ul>
     </header>
     
     <div id="content" >
-        <h1 class="page_title" >Articoli</h1>
-        <hr class="linea">
-        <div id="art_gallery">
-            <a href="pag_articoli/pag_canna_pesca.html" class="link_article">
-                <div class="article" >
-                    <img src="/assets/img/articoli/canna_da_pesca.png" class="img_article">
-                    <div class="data_article">
-                        <h2 class="title_article" >Canna da pesca</h2>
-                        <p class="description_article" >canna da pesca affidabile e resistente</p>
-                        <h3 class="price_article" >150 &euro;</h3>
-                    </div>
+        <h1 class="page_title">Carrello</h1>
+        <hr class="linea" >
+        <div id="cart">
+            <div class="cart_ele">
+                <img class="cart_ele_img" src="">
+                <h3 class="cart_ele_name"></h3>
+                <h3 class="cart_ele_prezzo"></h3>
+                <div class="cart_sele_quanti">
+                    <span><</span>
+                    <h3 class="cart_ele_quanti"></h3>
+                    <span>></span>
                 </div>
-            </a>
+                <span>✖</span>
+            </div>
         </div>
-    </div>
+        
+        <div id="buy_cart">
+            <h3>0 €</h3>
+            <h5>cancella</h5>
+            <button class="button">Compra</button>
+        </div>
 
+    </div>
     <footer>
         <div id="logo_footer">
-            <img src="/assets/img/logo_sito.png" id="img_logo_footer">
+            <img src="assets/img/logo_sito.png" id="img_logo_footer">
             <h1 id="title_logo_footer" >Fisher Company</h1>
         </div>
         <div id="container_col_footer" >
@@ -96,5 +103,8 @@
         </div>
     </footer>
     <script src="/assets/js/app.js"></script>
+    <script>
+        cart();
+    </script>
 </body>
 </html>

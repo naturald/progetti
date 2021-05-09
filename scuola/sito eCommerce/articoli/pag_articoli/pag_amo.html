@@ -43,6 +43,7 @@
             <li><a href="../../notizie.html">Notizie</a></li>
             <li><a href="../../about.html">About</a></li>
             <li><a href="../../contattaci.html">Contattaci</a></li>
+            <li><a href="/carrello.html">Carrello</a></li>
         </ul>
     </header>
     <div id="content" >
@@ -56,7 +57,11 @@
                         amo per pescare fatto in materiali resistenti e duratori
                     </p>
                 </div>
-                <h3>Prezzo: 5 €</h3>
+                <div id="buy_pag_article">
+                    <h3>Prezzo: 5 €</h3>
+                    <h5>Nel Carrello: 0</h5>
+                    <button class="button">Aquista</button> 
+                </div>
             </div>
         </div>
     </div>
@@ -92,5 +97,8 @@
         </div>
     </footer>
     <script src="/assets/js/app.js"></script>
+    <script>
+        displayQuantEle();
+    </script>
 </body>
 </html>
