@@ -227,6 +227,10 @@ a > .title_nav
         margin-top: 10px;
         height: max-content;
     }
+    .voci_nav > li :last-child
+    {
+        margin-bottom: 10px;
+    }
     .voci_nav > li > a
     {
         margin-left: 6px;

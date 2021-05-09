@@ -6,8 +6,57 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include <stdbool.h>
+#include <ctype.h>
+
 #define DIM 3
+#define OK_FILE 2
+#define OK 1
+#define ERR -1
+
+
+int leggiSalv(char campo[][DIM],int * turno,int * nGioc)
+{
+  FILE * file;
+  char datiFile[(DIM * DIM)+3];
+
+  file = fopen("SalvTris.txt", "r");
+
+  if(file == NULL)
+    return ERR;
+
+  fgets(datiFile,(DIM * DIM)+3,file);
+
+  *turno = datiFile[0]-48;
+
+  *nGioc = datiFile[1]-48;
+
+  for(int i = 0;i<DIM;i++)
+    for(int j = 0;j<DIM;j++)
+        campo[i][j] = datiFile[((i*DIM)+j)+2];
+}
+
+int creaSalv(char campo[][DIM],int turno,int gameMode)
+{
+  FILE * file;
+
+  file = fopen("SalvTris.txt", "w");
+
+  if(file == NULL)
+    return ERR;
+
+  fprintf(file,"%d",turno);
+
+  fprintf(file,"%d",gameMode);
+
+  for(int i = 0;i<DIM;i++)
+    for(int j = 0;j<DIM;j++)
+        fprintf(file,"%c",campo[i][j]);
+
+  return OK_FILE;
+}
 
 /*
   dato un array mette una X dove non ce ninte la posizione
@@ -34,31 +83,41 @@ void seleAuto(char campo[][DIM])
     -char campo[][] = output
     -cahr segno = input
 */
-void seleManu(char campo[][DIM],char segno)
+int seleManu(char campo[][DIM],char segno,int turno,int gameMode)
 {
-  int i,j;
+  int i,j,scelta;
   bool err = false;
-  printf("scegli cordinate dove mettere la %c\n",segno);
-  do
+  printf("1) scegli cordinate dove mettere la %c\n",segno);
+  printf("0) esci\n");
+  printf("scegli:");
+  scanf("%d",&scelta);
+  if(scelta)
   {
-    err = false;
-    printf("indice righa tra 1 e 3: ");
-    scanf ("%d", &i);
-    i--;
-    printf("indica colonna tra 1 e 3: ");
-    scanf ("%d", &j);
-    j--;
-
-    if(campo[i][j]!=' ' || (i<0 || i>2) ||  (j<0 || j>2))
+    do
     {
-      err = true;
-      printf("questa posizione e' gia' stata occupata o e' fuori dal campo rimetti \n");
-    }
+      err = false;
+      printf("indice righa tra 1 e 3: ");
+      scanf ("%d", &i);
+      i--;
+      printf("indica colonna tra 1 e 3: ");
+      scanf ("%d", &j);
+      j--;
 
-    printf("\n\n");
+      if(campo[i][j]!=' ' || (i<0 || i>2) ||  (j<0 || j>2))
+      {
+        err = true;
+        printf("questa posizione e' gia' stata occupata o e' fuori dal campo rimetti \n");
+      }
+
+      printf("\n\n");
+    }
+    while(err);
+    campo[i][j]=segno;
   }
-  while(err);
-  campo[i][j]=segno;
+  else
+    return creaSalv(campo,turno,gameMode);
+
+  return OK;
 }
 
 /*
@@ -116,14 +175,14 @@ void dis_campo(char campo[DIM][DIM])
   printf(" o---o---o---o \n");
 	for(int i=0;i<DIM;i++)
 	{
-        printf("%d",i+1);
-        for(int j=0;j<DIM;j++)
-        {
-            printf("| %c ",campo[i][j]);
+			printf("%d",i+1);
+			for(int j=0;j<DIM;j++)
+			{
+				printf("| %c ",campo[i][j]);
 
-        }
-        printf("|\n");
-        printf(" o---o---o---o \n");
+			}
+			printf("|\n");
+      printf(" o---o---o---o \n");
 	}
 }
 
@@ -138,60 +197,83 @@ void ripulisci()
 
 int  main()
 {
-	int i,j,turno=0,fine=0,n_gioc;
-	char campo[DIM][DIM];
+	int i,j,turno=0,fine=0,n_gioc,fileStatus = 0;
+	char campo[DIM][DIM],caricaParti;
 
 	srand(time(NULL));
 
-	printf("Benvenuto nel gioco del tris\n");
-	do
-	{
-		printf("quanti giocatori min 1 max 2: ");
-		scanf("%d", &n_gioc);
-	}
-	while(n_gioc<1||n_gioc>2);
+  do
+  {
+    ripulisci();
+    if(fileStatus == ERR)
+    {
+        printf("Impossibile trovare il file\n\n");
+        fileStatus = 0;
+    }
+    printf("Benvenuto nel gioco del tris\n");
+    printf("vuoi caricare una partita gia in processo (S o N): ");
+    scanf(" %c",&caricaParti);
+    if(toupper(caricaParti) == 'S')
+      fileStatus = leggiSalv(campo,&turno,&n_gioc);
 
-	for(i=0;i<3;i++)
-		for(j=0;j<3;j++)
-			campo[i][j]=' ';
+  }while((toupper(caricaParti) != 'S' && toupper(caricaParti) != 'N') || fileStatus == ERR);
+
+  if(toupper(caricaParti) != 'S')
+  {
+    do
+    {
+      printf("quanti giocatori min 1 max 2: ");
+      scanf("%d", &n_gioc);
+    }
+    while(n_gioc<1||n_gioc>2);
+
+    for(i=0;i<3;i++)
+      for(j=0;j<3;j++)
+        campo[i][j]=' ';
+  }
 
   ripulisci();
   dis_campo(campo);
-	do
-	{
-	  seleManu(campo,'X');
 
-        //-----------------controllo combinazioni X------------------
-		if(turno>=2)
-			fine = cotrollo(campo,'X');
-		//----------------------------------------------------------------
+    while(turno<9 && fine == 0)
+    {
+        if(turno%2 == 0)
+        {
+            if(seleManu(campo,'X',turno,n_gioc) == OK_FILE)
+            {
+              printf("\n\nil file e stato salvato, alla prossima");
+              return 0;
+            }
 
-		if(turno<4 && fine == 0)
-		{
-			switch(n_gioc)
-			{
-				case 1:
-				  seleAuto(campo);
-				break;
+            if(turno>=2)
+                fine = cotrollo(campo,'X');
+        }
+        else
+        {
+            switch(n_gioc)
+            {
+                case 1:
+                    seleAuto(campo);
+                break;
 
-				case 2:
-					ripulisci();
-					dis_campo(campo);
-					seleManu(campo,'O');
-				break;
-			}
+                case 2:
+                    ripulisci();
+                    dis_campo(campo);
+                    if(seleManu(campo,'O',turno,n_gioc) == OK_FILE)
+                    {
+                      printf("\n\nil file e stato salvato, alla prossima");
+                      return 0;
+                    }
+                break;
+            }
+            if(turno>=2)
+                fine = cotrollo(campo,'O');
+        }
+        turno++;
 
-        //-----------------controllo combinazioni O------------------
-		if(turno>=2)
-			fine = cotrollo(campo,'O');
-		//----------------------------------------------------------------
-		}
-
-	  ripulisci();
-      dis_campo(campo);
-      turno++;
-	}
-	while(turno<5 && fine == 0);
+        ripulisci();
+        dis_campo(campo);
+    }
 
   switch(fine)
   {
