@@ -812,13 +812,15 @@ a > .title_nav
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
-.auth_content > div
+.auth_content .forms
 {
     width: 100%;
     height: 100%;
-    position: absolute;
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .auth_content form
 {
@@ -848,7 +850,7 @@ a > .title_nav
 {
     border: 3px solid rgb(182, 182, 182);
 } 
-.auth_content > form > div > div
+.auth_content form > div > div
 {
    display: flex;
    flex-direction: column;
@@ -857,6 +859,14 @@ a > .title_nav
 .auth_wallpaper
 {
     width: 60%;
+}
+.auth_content_slider
+{
+    height: 100%;
+    width: max-content;
+    position: absolute;
+    display: flex;
+    left: 0;
 }
 /*-----------------footer---------------*/
 footer
