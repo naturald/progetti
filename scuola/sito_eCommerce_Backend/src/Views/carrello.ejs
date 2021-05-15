@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="/assets/img/logo_sito.png">
+    <title>Fisher Company - Carrello</title>
+
+</head>
+<body>
+    <%- include("partials/nav"); %>
+    
+    <div id="content" >
+        <h1 class="page_title">Carrello</h1>
+        <hr class="linea" >
+        <div id="cart">
+            <div class="cart_ele">
+                <img class="cart_ele_img" src="">
+                <h3 class="cart_ele_name"></h3>
+                <h3 class="cart_ele_prezzo"></h3>
+                <div class="cart_sele_quanti">
+                    <span><</span>
+                    <h3 class="cart_ele_quanti"></h3>
+                    <span>></span>
+                </div>
+                <span>✖</span>
+            </div>
+        </div>
+        
+        <div id="buy_cart">
+            <h3>0 €</h3>
+            <h5>cancella</h5>
+            <button class="button">Compra</button>
+        </div>
+
+    </div>
+   
+    <%- include("partials/footer"); %> 
+
+    <script>
+        cart();
+    </script>
+</body>
+</html>

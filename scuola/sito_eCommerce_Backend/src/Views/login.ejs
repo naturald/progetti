@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="/assets/img/logo_sito.png">
+    <title>Fisher Company - Login</title>
+</head>
+<body>
+    
+    <div class="auth">
+        <div class="auth_content">
+            <div class="login">
+                <form action="/login" method="POST">
+                    <img src="/assets/img/logo_sito.png">
+                    <div>
+                        <input type="text" name="email" placeholder="email" autocomplete="off">
+                        <input type="password"  name="pwd" placeholder="password" autocomplete="off">
+                    </div>
+                    <input type="submit" class="button" value="Login">
+                </form>
+            </div>
+            
+            <div class="signup">
+                <form action="/login" method="POST">
+                    <img src="/assets/img/logo_sito.png">
+                    <div>
+                        <input type="text" name="email" placeholder="email" autocomplete="off">
+                        <input type="password"  name="pwd" placeholder="password" autocomplete="off">
+                    </div>
+                    <input type="submit" class="button" value="Login">
+                </form>
+            </div>
+        </div>
+        <div class="auth_wallpaper">
+
+        </div>
+    </div>
+
+    <%- include("partials/footer"); %> 
+
+</body>
+</html>

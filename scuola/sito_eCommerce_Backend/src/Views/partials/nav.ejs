@@ -1,0 +1,78 @@
+<% if(data.login){ //loggato%>
+    <header>
+        <a href="/"><h1 class="title_nav" >Fisher Company</h1></a>
+        <hr class="linea" >
+        <div id="menu_nav">
+            <span id="arrow_nav">
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+        <ul class="voci_nav">
+            <li><a href="/">Home</a></li>
+            <li id="articoli">
+                <a href="/articoli">Articoli</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="/articoli">tutti</a></li>
+                        <li><a href="articoli/cannePesca.html">canne da pesca</a></li>
+                        <li><a href="articoli/equip.html">equipaggiamneto</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="gallery" >
+                <a href="gallery/gallery.html">Gallery</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="gallery/gallery.html">tutte</a></li>
+                        <li><a href="gallery/pesciPiccoli.html">pesci piccoli</a></li>
+                        <li><a href="gallery/pesciGrandi.html">pesci grandi</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="/notizie">Notizie</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contattaci">Contattaci</a></li>
+            <li><a href="/carrello">Carrello</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </header>
+<% } else { //non loggato %> 
+    <header>
+        <a href="/"><h1 class="title_nav" >Fisher Company</h1></a>
+        <hr class="linea" >
+        <div id="menu_nav">
+            <span id="arrow_nav">
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+        <ul class="voci_nav">
+            <li><a href="/">Home</a></li>
+            <li id="articoli">
+                <a href="/articoli">Articoli</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="/articoli">tutti</a></li>
+                        <li><a href="articoli/cannePesca.html">canne da pesca</a></li>
+                        <li><a href="articoli/equip.html">equipaggiamneto</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="gallery" >
+                <a href="gallery/gallery.html">Gallery</a>
+                <div class="dropdown_content">
+                    <ul>
+                        <li><a href="gallery/gallery.html">tutte</a></li>
+                        <li><a href="gallery/pesciPiccoli.html">pesci piccoli</a></li>
+                        <li><a href="gallery/pesciGrandi.html">pesci grandi</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="/notizie">Notizie</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contattaci">Contattaci</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </header>
+<% } %>

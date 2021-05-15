@@ -271,11 +271,6 @@ a > .title_nav
         display: block;
         height: 0;
     }
-    .dropdown_content:hover
-    {
-        transition-delay: 0.4s;
-        height: max-content;
-    }
     .dropdown_content > ul li
     {
        border: none;

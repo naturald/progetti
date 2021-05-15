@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="/assets/img/logo_sito.png">
+    <title>Fisher Company - Contattaci</title>
+
+</head>
+<body>
+    <%- include("partials/nav"); %>
+    
+    <div id="content" >
+        <h1 class="page_title">Contattaci</h1>
+        <hr class="linea" >
+        <p class="para_contactUs">
+            Possiamo agiutarti alla seguente mail: <span class="data">qualcosa@gmail.com</span>. Oppure 
+            al nostro numero di telefono: <span class="data">202 555 011</span>
+        </p>
+        
+        <p class="para_contactUs">se invece volete mandarci un messagio compilate il modulo qui sotto:</p> 
+        <form action="#" id="contactUs">
+            <input type="text" id="title_contactUs" placeholder="Titolo" autocomplete="off">
+            <textarea id="message_contactUs" cols="30" rows="10" placeholder="Messagio" autocomplete="off"></textarea>
+            <input type="submit" value="Invia" id="submit_contactUs">
+        </form>
+    </div>
+
+    <%- include("partials/footer"); %> 
+    
+</body>
+</html>
