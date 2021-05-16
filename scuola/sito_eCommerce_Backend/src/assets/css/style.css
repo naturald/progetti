@@ -560,7 +560,7 @@ a > .title_nav
 }
 #buy_pag_article > h5 
 {
-    display: none;
+    display: block;
     height: max-content;
     margin:0;
 }
@@ -694,10 +694,6 @@ a > .title_nav
     
 }
 /*-----------------carrello---------------*/
-#content > #cart .cart_ele:first-child
-{
-    display: none;
-}
 #cart
 {
     display: flex;
@@ -806,37 +802,44 @@ a > .title_nav
 }
 .auth_content
 {
-    width: 30%;
-    min-width: 400px;
+    width: 30vw;
+    min-width: 320px;
     background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    position: relative;
 }
-.auth_content .forms
+.auth_content_slider
 {
-    width: 100%;
+    width: max-content;
+    display: flex;
+    height: 100%;
+    left: 0;
+    transition: 0.4s ease;
+}
+.forms
+{
+    width: 30vw;
+    min-width: 320px;
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-.auth_content form
+    justify-content: center;
+} 
+.forms form
 {
+    width: 70%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 75%;
-    width: 65%;
-}
-.auth_content form img
+} 
+.forms img
 {
     width: 100px;
     height: 100px;
 }    
-.auth_content form input:not(input[type="submit"])
+.forms input:not(input[type="submit"])
 {
     padding: 10px;
     border: 3px solid black;
@@ -850,23 +853,17 @@ a > .title_nav
 {
     border: 3px solid rgb(182, 182, 182);
 } 
-.auth_content form > div > div
+.to_register
 {
-   display: flex;
-   flex-direction: column;
-   width: 100%;
-} 
-.auth_wallpaper
-{
-    width: 60%;
-}
-.auth_content_slider
-{
-    height: 100%;
-    width: max-content;
     position: absolute;
-    display: flex;
-    left: 0;
+    top: 50px;
+    transform: scale(1.6);
+    right: 50px;
+    transition: 0.3s ease;
+}
+.to_register:hover
+{
+    color: rgb(182, 182, 182);
 }
 /*-----------------footer---------------*/
 footer

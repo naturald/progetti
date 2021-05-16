@@ -15,31 +15,33 @@
         <h1 class="page_title">Carrello</h1>
         <hr class="linea" >
         <div id="cart">
-            <div class="cart_ele">
-                <img class="cart_ele_img" src="">
-                <h3 class="cart_ele_name"></h3>
-                <h3 class="cart_ele_prezzo"></h3>
-                <div class="cart_sele_quanti">
-                    <span><</span>
-                    <h3 class="cart_ele_quanti"></h3>
-                    <span>></span>
+            <% let tot = 0;%> 
+            <% if(elements) { %> 
+                <% elements.forEach( ele => { %> 
+                <div class="cart_ele">
+                    <img class="cart_ele_img" src="<%= ele.img  %>">
+                    <h3 class="cart_ele_name"><%= ele.nome  %></h3>
+                    <h3 class="cart_ele_prezzo"><%= ele.price  %>€</h3>
+                    <div class="cart_sele_quanti">
+                        <span onclick="sendReq('/addToCart/<%= ele.article_id  %>')"><</span>
+                        <h3 class="cart_ele_quanti"><%= ele.quant  %></h3>
+                        <span onclick="sendReq('/decToCart/<%= ele.article_id  %>')">></span>
+                    </div>
+                    <span onclick="sendReq('/delEleCart/<%= ele.article_id  %>')">✖</span>
                 </div>
-                <span>✖</span>
-            </div>
+                <% tot += ele.price * ele.quant%> 
+                <% }); 
+            } %>
         </div>
         
         <div id="buy_cart">
-            <h3>0 €</h3>
-            <h5>cancella</h5>
+            <h3><%= tot %> €</h3>
+            <h5 onclick="sendReq('/delCart')">cancella</h5>
             <button class="button">Compra</button>
         </div>
 
     </div>
    
     <%- include("partials/footer"); %> 
-
-    <script>
-        cart();
-    </script>
 </body>
 </html>

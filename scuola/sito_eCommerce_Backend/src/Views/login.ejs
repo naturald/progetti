@@ -11,32 +11,34 @@
     
     <div class="auth">
         <div class="auth_content">
+            <div class="to_register">
+                <i class="fas fa-chevron-right"></i>
+            </div>
             <div class="auth_content_slider">
                 <div class="forms">
                     <form action="/login" method="POST">
                         <img src="/assets/img/logo_sito.png">
                         <div>
-                            <input type="text" name="email" placeholder="email" autocomplete="off">
-                            <input type="password"  name="pwd" placeholder="password" autocomplete="off">
+                            <input type="text" name="email" placeholder="email" autocomplete="off" required>
+                            <input type="password"  name="pwd" placeholder="password" autocomplete="off" required>
                         </div>
                         <input type="submit" class="button" value="Login">
                     </form>
+                    
                 </div>
                 
                 <div class="forms">
-                    <form action="/login" method="POST">
+                    <form action="/signup" method="POST">
                         <img src="/assets/img/logo_sito.png">
                         <div>
-                            <input type="text" name="email" placeholder="email" autocomplete="off">
-                            <input type="password"  name="pwd" placeholder="password" autocomplete="off">
+                            <input type="text" name="name" placeholder="nome" autocomplete="off" required>
+                            <input type="email" name="email" placeholder="email" autocomplete="off" required>
+                            <input type="password"  name="pwd" placeholder="password" autocomplete="off" required>
                         </div>
-                        <input type="submit" class="button" value="Login">
+                        <input type="submit" class="button" value="Sign Up">
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="auth_wallpaper">
-
         </div>
     </div>
 
