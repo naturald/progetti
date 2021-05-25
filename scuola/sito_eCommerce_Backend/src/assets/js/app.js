@@ -44,6 +44,14 @@ function respoNav()
     }
 }
 
+function sendReq(path) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", path, true);
+    xhttp.send();
+    location.reload();
+}
+
+
 //---------------------------------
 
 if(location.href.indexOf("login") == -1)
@@ -69,10 +77,21 @@ if(location.href.indexOf("login") == -1)
     });
 }
 
-function sendReq(path) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", path, true);
-    xhttp.send();
-    location.reload();
+if(location.href.indexOf("login") != -1)
+{
+    document.querySelector(".to_register").onclick = () =>{
+        if(document.querySelector(".auth_content_slider").style.marginLeft != "-100%")
+        {
+            document.querySelector(".to_register").style.transform = "scale(1.6) rotate(180deg)";
+            document.querySelector(".auth_content_slider").style.marginLeft = "-100%";
+        }
+        else
+        {
+            document.querySelector(".to_register").style.transform = "scale(1.6)";
+            document.querySelector(".auth_content_slider").style.marginLeft = "0";
+        }
+    };
+
 }
+
 

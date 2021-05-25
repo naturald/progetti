@@ -1,6 +1,7 @@
 const UserModel = require("../Models/UserModel");
 const ArtModel = require("../Models/artModel");
-const CartModel = require("../Models/cartModel");
+
+const axios = require('axios');
 
 module.exports = {
     root: (req,res) =>{
@@ -51,6 +52,14 @@ module.exports = {
         req.session.login = false;
         res.redirect("/");
     },
+    carrello: async (req,res)=>{
+
+        const elements = await CartModel.getAllEle(req.session.login);
+
+        console.log(elements);
+
+        res.render("carrello",{elements: elements,data: req.session});
+    },
     articoli: async (req,res)=>{
         const articles = await ArtModel.getAllArt();
         
@@ -65,37 +74,4 @@ module.exports = {
         if(article != -1)
             res.render("articolo",{article: article[0], data: req.session, quant: quant});
     },
-    carrello: async (req,res)=>{
-
-        const elements = await CartModel.getAllEle(req.session.login);
-
-        console.log(elements);
-
-        res.render("carrello",{elements: elements,data: req.session});
-    },
-    addToCart: (req,res)=>{
-
-        CartModel.addToCart(req.params.artId,req.session.login);
-
-        res.redirect("/");
-    },
-    decToCart: async (req,res)=>{
-
-        CartModel.decToCart(req.params.artId,req.session.login);
-
-        res.redirect("/");
-    },
-    delCart: async (req,res)=>{
-
-        CartModel.delCart();
-
-        res.redirect("/");
-    },
-    delEleCart: async (req,res)=>{
-
-        CartModel.delEle(req.params.artId,req.session.login);
-
-        res.redirect("/");
-    },
-
 };

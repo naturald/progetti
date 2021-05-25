@@ -20,7 +20,7 @@
                 <% elements.forEach( ele => { %> 
                 <div class="cart_ele">
                     <img class="cart_ele_img" src="<%= ele.img  %>">
-                    <h3 class="cart_ele_name"><%= ele.nome  %></h3>
+                    <h3 class="cart_ele_name"><%= ele.name  %></h3>
                     <h3 class="cart_ele_prezzo"><%= ele.price  %>€</h3>
                     <div class="cart_sele_quanti">
                         <span onclick="sendReq('/addToCart/<%= ele.article_id  %>')"><</span>
