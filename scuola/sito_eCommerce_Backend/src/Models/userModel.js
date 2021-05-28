@@ -17,10 +17,10 @@ module.exports = {
         return new Promise(solved =>{
             
             const query = "SELECT user_id FROM users WHERE email = '"+email+"' && pwd = '"+pwd+"';";//TODO: sanificazione input
-
+            
             con.query(query, (err,res) =>{
 
-                if(res.length)
+                if(!err && res!=undefined && res.length)
                     solved(res[0].user_id);
                 else
                     solved(false);

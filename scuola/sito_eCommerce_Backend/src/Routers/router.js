@@ -18,12 +18,17 @@ module.exports = app =>{
     app.get('/logout',Controller.logout);
 
     //API
+    app.post('/api/auth/login',APIController.login);
+    app.post('/api/auth/signup',APIController.signup);
+
     app.get('/api/articles',APIController.getAllArticoli);
-    app.get('/api/articles/:artId',APIController.getArticolo);
-    //TODO: mettere endpoints per uttti elementi carrello e un solo elemento
-    app.post('/api/carts/:cartId/articles',APIController.addToCart);
-    app.put('/api/carts/:cartId/articles/:artId',APIController.decToCart);
-    app.delete('/api/carts/:cartId',APIController.delCart);
-    app.get('/api/carts/:cartId/articles/:artId',APIController.delEleCart);
+    app.get('/api/articles/:artId',APIController.authToken,APIController.getArticolo);
+
+    app.get('/api/carts/:cartId/articles',APIController.authToken,APIController.getAllArticoliFromCart);
+    app.get('/api/carts/:cartId/articles/:artId',APIController.authToken,APIController.getArticoloFromCart);
+    app.post('/api/carts/:cartId/articles',APIController.authToken,APIController.addToCart);
+    app.put('/api/carts/:cartId/articles/:artId',APIController.authToken,APIController.decToCart);
+    app.delete('/api/carts/:cartId/articles',APIController.authToken,APIController.delCart);
+    app.delete('/api/carts/:cartId/articles/:artId',APIController.authToken,APIController.delEleCart);
 
 }

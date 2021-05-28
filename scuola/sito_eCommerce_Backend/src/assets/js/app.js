@@ -51,7 +51,6 @@ function sendReq(path) {
     location.reload();
 }
 
-
 //---------------------------------
 
 if(location.href.indexOf("login") == -1)

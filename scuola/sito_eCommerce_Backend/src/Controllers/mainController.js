@@ -1,7 +1,7 @@
 const UserModel = require("../Models/UserModel");
 const ArtModel = require("../Models/artModel");
-
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     root: (req,res) =>{
@@ -23,16 +23,9 @@ module.exports = {
         res.render("login",{data: req.session});
     },
     loginPost: async (req,res) =>{
+    
 
-        const result = await UserModel.login(req.body.email,req.body.pwd);
-
-        if(result)
-        {
-            req.session.login = result;
-            res.redirect("/");   
-        }
-        else
-            res.redirect("/login");
+    
     },
     signup: async (req,res)=>{
         

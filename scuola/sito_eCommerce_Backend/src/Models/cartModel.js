@@ -13,6 +13,36 @@ con.connect(err =>{
 });
 
 module.exports = {
+    getArticleFromCart: (artId,cartId) =>{
+        return new Promise( solved =>{
+
+            const query = "SELECT * FROM cart_records WHERE  fk_article_id = "+artId+" && fk_cart_id = "+cartId+";";
+
+            con.query(query, (err,res) =>{
+
+                if(!err && (res != undefined && res.length))
+                    solved(res[0]);
+                else
+                    solved(false);
+
+            });
+        });
+    },
+    getAllArticlesFromCart: (cartId) =>{
+        return new Promise( solved =>{
+
+            const query = "SELECT * FROM cart_records WHERE fk_cart_id = "+cartId+";";
+
+            con.query(query, (err,res) =>{
+
+                if(!err && (res != undefined && res.length))
+                    solved(res);
+                else
+                    solved(false);
+
+            });
+        });
+    },
     addToCart: (artId,cartId) =>{
         return new Promise( solved =>{
 
@@ -30,7 +60,10 @@ module.exports = {
                         con.query(query,(err,res) =>{
 
                             if(!err)
+                            {
+                                result[0].quant += 1;
                                 solved(result[0]);
+                            }
                             else
                                 solved(false);
 
@@ -59,10 +92,10 @@ module.exports = {
             });
         });
     },
-    getQuant: (artId,userId) =>{
+    getQuant: (artId,cartId) =>{
         return new Promise( solved =>{
 
-            const query = "SELECT quant FROM cart WHERE fk_user_id = "+userId+" && fk_article_id = "+artId+";";
+            const query = "SELECT quant FROM cart_records WHERE fk_cart_id = "+cartId+" && fk_article_id = "+artId+";";
 
             con.query(query, (err,res) =>{
 
@@ -89,7 +122,7 @@ module.exports = {
             });
         });
     },
-    decToCart: (artId,userId) =>{
+    decToCart: (artId,cartId) =>{
         return new Promise( solved =>{
 
             const query = "select * from cart_records where fk_article_id = "+artId+" && fk_cart_id = "+cartId+";";
@@ -105,9 +138,9 @@ module.exports = {
                         const quant = res[0].quant;
                         const query = "update cart_records set quant = "+(quant-1)+" where record_id = "+res[0].record_id+";";
                         con.query(query,(err,res) =>{
-
+                            result[0].quant --;
                             if(!err)
-                                solved(result);
+                                solved(result[0]);
                             else
                                 solved(false);
 
@@ -125,11 +158,43 @@ module.exports = {
         con.query(query);
         
     },
-    delEle: (artId,userId) =>{
+    delEle: (artId,cartId) =>{
+        return new Promise( solved => {
+            const query = "delete from cart_records where fk_article_id = "+artId+" &&  fk_cart_id = "+cartId+";";
+            
+            con.query(query,(err,res) =>{
+                console.log(res.changedRows);
+                if(res.changedRows != 0)
+                    solved(true);
+                else
+                    solved(false);
+            });
+        });
+    },
+    getLastCartId: (userId) =>{
         
-        const query = "delete from cart_records where fk_article_id = "+artId+" &&  fk_cart_id = "+cartId+";";
+        return new Promise( solved =>{
+            const query = "select max(cart_id) from carts where fk_user_id = "+userId+";";
 
-        con.query(query);
+            con.query(query,(err,res) =>{
+                if(!err && res != undefined && res.length)
+                    solved(res[0]['max(cart_id)']);
+                else
+                    solved(false);
+            });
+        });
+    },
+    getAllCartsId: (userId) =>{
         
+        return new Promise( solved =>{
+            const query = "select cart_id from carts where fk_user_id = "+userId+";";
+
+            con.query(query,(err,res) =>{
+                if(!err && res != undefined && res.length)
+                    solved(res);
+                else
+                    solved(false);
+            });
+        });
     },
 };

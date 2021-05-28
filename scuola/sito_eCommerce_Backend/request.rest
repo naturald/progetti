@@ -1,0 +1,75 @@
+GET http://localhost:3000/api/auth/login
+
+###
+
+POST http://localhost:3000/api/auth/login 
+Content-Type: application/json
+
+{
+    "email": "g@g",
+    "pwd": "g"
+}
+
+###
+GET http://localhost:3000/api/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+
+###
+POST http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+Content-Type: application/json
+
+{
+    "artId":1
+}
+
+###
+POST http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+Content-Type: application/json
+
+{
+    "artId":2
+}
+###
+POST http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+Content-Type: application/json
+
+{
+    "artId":3
+}
+###
+PUT http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+Content-Type: application/json
+
+{
+    "artId":1
+}
+
+###
+DELETE http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+
+###
+DELETE http://localhost:3000/api/carts/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+
+###
+GET http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+
+###
+GET http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+
+###
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+    "name": "marco",
+    "email": "l@l",
+    "pwd": "l"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "l@l",
+    "pwd": "l"
+}
