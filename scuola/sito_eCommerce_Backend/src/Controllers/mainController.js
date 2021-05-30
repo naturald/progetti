@@ -1,7 +1,5 @@
-const ArtModel = require("../Models/artModel");
 const jwt = require('jsonwebtoken');
 const { default: axios } = require("axios");
-const apiController = require("./apiController");
 
 module.exports = {
     root: (req,res) =>{
