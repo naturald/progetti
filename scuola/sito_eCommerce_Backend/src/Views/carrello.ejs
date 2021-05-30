@@ -19,15 +19,16 @@
             <% if(elements) { %> 
                 <% elements.forEach( ele => { %> 
                 <div class="cart_ele">
+                    <i id="idArt" style="display: none;"><%= ele.article_id  %></i>
                     <img class="cart_ele_img" src="<%= ele.img  %>">
                     <h3 class="cart_ele_name"><%= ele.name  %></h3>
                     <h3 class="cart_ele_prezzo"><%= ele.price  %>€</h3>
                     <div class="cart_sele_quanti">
-                        <span onclick="sendReq('/addToCart/<%= ele.article_id  %>')"><</span>
+                        <span><</span>
                         <h3 class="cart_ele_quanti"><%= ele.quant  %></h3>
-                        <span onclick="sendReq('/decToCart/<%= ele.article_id  %>')">></span>
+                        <span>></span>
                     </div>
-                    <span onclick="sendReq('/delEleCart/<%= ele.article_id  %>')">✖</span>
+                    <span>✖</span>
                 </div>
                 <% tot += ele.price * ele.quant%> 
                 <% }); 
@@ -36,12 +37,44 @@
         
         <div id="buy_cart">
             <h3><%= tot %> €</h3>
-            <h5 onclick="sendReq('/delCart')">cancella</h5>
+            <h5>cancella</h5>
             <button class="button">Compra</button>
         </div>
 
     </div>
    
     <%- include("partials/footer"); %> 
+
+    <script>
+        document.querySelector("#buy_cart > h5").onclick = () =>{
+            axios.delete("/api/carts/"+ <%= data.cartId %> +"/articles?auth=<%= data.auth %>").catch(err => alert(err));
+            location.reload();
+        }
+        document.querySelectorAll(".cart_ele > span").forEach( ele => {
+            ele.onclick = () =>{
+                const artId = ele.parentElement.querySelector("i").innerHTML;
+                axios.delete("/api/carts/"+ <%= data.cartId %> +"/articles/"+artId+"?auth=<%= data.auth %>").catch(err => alert(err));
+                location.reload();
+            }
+        });
+        document.querySelectorAll(".cart_ele > div :first-child ").forEach( ele =>{ 
+            ele.onclick = () => {
+                const artId = ele.parentElement.parentElement.querySelector("i").innerHTML;
+                axios.post("/api/carts/"+ <%= data.cartId %> +"/articles?auth=<%= data.auth %>",{artId: artId}).then(res => {
+                    ele.nextElementSibling.innerHTML = res.data.quant;
+                    getTot();
+                },err => alert(err));
+            }
+        });
+        document.querySelectorAll(".cart_ele > div :last-child ").forEach( ele =>{ 
+            ele.onclick = () => {
+                const artId = ele.parentElement.parentElement.querySelector("i").innerHTML;
+                axios.put("/api/carts/"+ <%= data.cartId %> +"/articles/"+artId+"?auth=<%= data.auth %>").then(res => {
+                    ele.previousElementSibling.innerHTML = res.data.quant;
+                    getTot();
+                },err => alert(err));
+            }
+        });
+    </script>
 </body>
 </html>

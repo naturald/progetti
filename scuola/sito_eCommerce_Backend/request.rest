@@ -33,27 +33,23 @@ POST http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI
 Content-Type: application/json
 
 {
-    "artId":3
+    "artId":1
 }
 ###
 PUT http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
-Content-Type: application/json
 
-{
-    "artId":1
-}
 
 ###
 DELETE http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
 
 ###
-DELETE http://localhost:3000/api/carts/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+DELETE http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
 
 ###
 GET http://localhost:3000/api/carts/1/articles/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
 
 ###
-GET http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjE0MjUzNn0.PTh6SH-vlqCtEuLBAvFHWtomb_8TpxXwsRMbSWPE2h4
+GET http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjM5MjYzOX0.FOwHgSr1K8ziv3bTksl0oJOU0vH0ELl6Tj52d2_6nfc
 
 ###
 POST http://localhost:3000/api/auth/signup
@@ -72,4 +68,16 @@ Content-Type: application/json
 {
     "email": "l@l",
     "pwd": "l"
+}
+
+###
+GET http://localhost:3000/api/carts/last/users/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjM5MjYzOX0.FOwHgSr1K8ziv3bTksl0oJOU0vH0ELl6Tj52d2_6nfc
+
+###
+
+POST http://localhost:3000/api/carts/1/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjM5MjYzOX0.FOwHgSr1K8ziv3bTksl0oJOU0vH0ELl6Tj52d2_6nfc
+Content-Type: application/json
+
+{
+    "artId": 1
 }

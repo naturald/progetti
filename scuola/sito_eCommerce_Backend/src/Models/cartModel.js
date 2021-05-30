@@ -16,7 +16,7 @@ module.exports = {
     getArticleFromCart: (artId,cartId) =>{
         return new Promise( solved =>{
 
-            const query = "SELECT * FROM cart_records WHERE  fk_article_id = "+artId+" && fk_cart_id = "+cartId+";";
+            const query = "select article_id,img,articles.name,price,quant from cart_records inner join articles on fk_article_id = article_id where fk_cart_id = "+cartId+" && fk_article_id = "+artId+";";
 
             con.query(query, (err,res) =>{
 
@@ -31,7 +31,7 @@ module.exports = {
     getAllArticlesFromCart: (cartId) =>{
         return new Promise( solved =>{
 
-            const query = "SELECT * FROM cart_records WHERE fk_cart_id = "+cartId+";";
+            const query = "select article_id,img,articles.name,price,quant from cart_records inner join articles on fk_article_id = article_id where fk_cart_id = "+cartId+";";
 
             con.query(query, (err,res) =>{
 
@@ -52,7 +52,7 @@ module.exports = {
                 {
                     const result = res;
                     if(res[0].quant > 9)
-                        solved(false);
+                        solved({quant: 10});
                     else
                     {
                         const quant = res[0].quant;
@@ -107,21 +107,6 @@ module.exports = {
             });
         });
     },
-    getAllEle: (cartId) =>{
-        return new Promise( solved =>{
-
-            const query = "select article_id,img,articles.name,price,quant from cart_records inner join articles on fk_article_id = article_id where fk_cart_id = "+cartId+";";
-
-
-            con.query(query, (err,res) =>{
-                if(!err && (res != undefined && res.length))
-                    solved(res);
-                else
-                    solved(false);
-
-            });
-        });
-    },
     decToCart: (artId,cartId) =>{
         return new Promise( solved =>{
 
@@ -132,7 +117,7 @@ module.exports = {
                 {
                     const result = res;
                     if(res[0].quant < 2)
-                        solved(false);
+                        solved({quant: 1});
                     else
                     {
                         const quant = res[0].quant;
@@ -163,7 +148,6 @@ module.exports = {
             const query = "delete from cart_records where fk_article_id = "+artId+" &&  fk_cart_id = "+cartId+";";
             
             con.query(query,(err,res) =>{
-                console.log(res.changedRows);
                 if(res.changedRows != 0)
                     solved(true);
                 else

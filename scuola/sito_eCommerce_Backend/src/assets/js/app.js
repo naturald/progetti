@@ -44,6 +44,17 @@ function respoNav()
     }
 }
 
+function getTot()
+{
+    let tot = 0;
+    document.querySelectorAll(".cart_ele").forEach(ele =>{
+        let prezzo = ele.querySelector(".cart_ele_prezzo").innerHTML;
+        prezzo = Number(prezzo.substr(0,prezzo.length-1));
+        tot += (prezzo * Number(ele.querySelector(".cart_ele_quanti").innerHTML));
+    });
+    document.querySelector("#buy_cart > h3").innerHTML = tot+"€";
+}
+
 function sendReq(path) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", path, true);
@@ -74,23 +85,11 @@ if(location.href.indexOf("login") == -1)
         respoNav();
     
     });
+    
+    if(document.querySelector('#logout'))
+        document.querySelector('#logout').onclick = () =>{
+            axios.get('/logout').then(()=>{location.reload()});
+            localStorage.removeItem('token');
+        };
 }
-
-if(location.href.indexOf("login") != -1)
-{
-    document.querySelector(".to_register").onclick = () =>{
-        if(document.querySelector(".auth_content_slider").style.marginLeft != "-100%")
-        {
-            document.querySelector(".to_register").style.transform = "scale(1.6) rotate(180deg)";
-            document.querySelector(".auth_content_slider").style.marginLeft = "-100%";
-        }
-        else
-        {
-            document.querySelector(".to_register").style.transform = "scale(1.6)";
-            document.querySelector(".auth_content_slider").style.marginLeft = "0";
-        }
-    };
-
-}
-
 

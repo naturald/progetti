@@ -731,6 +731,7 @@ a > .title_nav
 .cart_ele_img
 {
     height: 100%;
+    width: 100px;
 }
 .cart_ele_name
 {

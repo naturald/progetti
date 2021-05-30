@@ -16,7 +16,7 @@
             </div>
             <div class="auth_content_slider">
                 <div class="forms">
-                    <form action="/api/auth/login" method="POST">
+                    <form id="login_form">
                         <img src="/assets/img/logo_sito.png">
                         <div>
                             <input type="text" name="email" placeholder="email" autocomplete="off" required>
@@ -28,7 +28,7 @@
                 </div>
                 
                 <div class="forms">
-                    <form action="/api/auth/signup" method="POST">
+                    <form id="signup_form">
                         <img src="/assets/img/logo_sito.png">
                         <div>
                             <input type="text" name="name" placeholder="nome" autocomplete="off" required>
@@ -43,6 +43,58 @@
     </div>
 
     <%- include("partials/footer"); %> 
+
+    <script>
+
+        document.querySelector(".to_register").onclick = () =>{
+            if(document.querySelector(".auth_content_slider").style.marginLeft != "-100%")
+            {
+                document.querySelector(".to_register").style.transform = "scale(1.6) rotate(180deg)";
+                document.querySelector(".auth_content_slider").style.marginLeft = "-100%";
+            }
+            else
+            {
+                document.querySelector(".to_register").style.transform = "scale(1.6)";
+                document.querySelector(".auth_content_slider").style.marginLeft = "0";
+            }
+        };
+
+        document.querySelector("#login_form").addEventListener('submit',() => {
+            event.preventDefault();  
+            const email = document.querySelector("#login_form input[name='email']").value;
+            const pwd = document.querySelector("#login_form input[name='pwd']").value;
+
+            const response = axios.post('/api/auth/login',{
+                email: email,
+                pwd: pwd
+            }).then(res => {
+                location.replace("/");
+            },
+            err =>{
+                alert("sbagliato");
+                //TODO: messaggio di errore front-end
+            });
+        });
+
+        document.querySelector("#signup_form").addEventListener('submit',() => {
+            event.preventDefault();  
+            const email = document.querySelector("#signup_form input[name='email']").value;
+            const pwd = document.querySelector("#signup_form input[name='pwd']").value;
+            const name = document.querySelector("#signup_form input[name='name']").value;
+            console.log(email,pwd);
+            const response = axios.post('/api/auth/signup',{
+                name: name,
+                email: email,
+                pwd: pwd
+            }).then(res => {
+                location.replace("/");
+            },
+            err =>{
+                alert("sbagliato");
+                //TODO: messaggio di errore front-end
+            });
+        });
+    </script>
 
 </body>
 </html>

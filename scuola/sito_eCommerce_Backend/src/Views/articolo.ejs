@@ -24,19 +24,38 @@
                 </div>
                 <div id="buy_pag_article">
                     <h3>Prezzo: <%= article.price %> €</h3>
-                    <% if(data.login) {%> 
-                        <% if(quant) {%>
-                            <h5>Nel Carrello: <%= quant %></h5>
-                        <% } %> 
-                        <button class="button" onclick="sendReq('/addToCart/<%= article.article_id %>')">Aquista</button> 
-                    <% }else{ %>
-                        <button class="button" id="buy_art" onclick="location.href = '/login'">Aquista</button> 
-                    <% } %>  
+                    
+                    <h5>Nel Carrello: <%= data.quant %></h5>
+                    
+                    <button class="button" id="buy_art">Aquista</button> 
                 </div>
             </div>
         </div>
     </div>
-
+    
     <%- include("partials/footer"); %> 
+    <script>
+        if(!Number(document.querySelector("#buy_pag_article > h5").innerHTML.split(" ")[2]))
+            document.querySelector("#buy_pag_article > h5").style.display = "none";
+
+        document.querySelector("#buy_pag_article > button").onclick = () =>{
+            <% if(data.login) { %>
+            
+                axios.post("/api/carts/"+ <%= data.cartId %>+"/articles?auth=<%= data.auth %>",{
+
+                        artId: <%= article.article_id %>
+                    }
+                ).catch(err => alert(err));
+                const quant = Number(document.querySelector("#buy_pag_article > h5").innerHTML.split(" ")[2]);
+                if(quant < 10)
+                {
+                    document.querySelector("#buy_pag_article > h5").style.display = "block";
+                    document.querySelector("#buy_pag_article > h5").innerHTML = "Nel Carrello: "+(quant+1);
+                }
+            <% } else { %>
+                location.replace("/login");
+            <% } %>
+        }
+    </script>
 </body>
 </html>

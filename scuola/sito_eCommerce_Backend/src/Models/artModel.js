@@ -27,10 +27,10 @@ module.exports = {
             });
         });
     },
-    getArtById: (id) =>
+    getArtById: (artId) =>
     {
         return new Promise(resolved =>{
-            const query = "SELECT * FROM articles WHERE article_id = "+id+";";
+            const query = "SELECT * FROM articles WHERE article_id = "+artId+";";
 
             con.query(query,(err,res) =>{
                 

@@ -12,6 +12,7 @@ module.exports = {
             {
                 const user = {userId: result};
                 const accessToken = jwt.sign(user,process.env.ACCESS_SECRET_JWT);
+                res.setHeader('Set-Cookie', 'token='+accessToken+'; HttpOnly; Path=/');
                 res.json(accessToken);   
             }
             else
@@ -32,6 +33,7 @@ module.exports = {
             {
                 const user = {userId: result};
                 const accessToken = jwt.sign(user,process.env.ACCESS_SECRET_JWT);
+                res.setHeader('Set-Cookie', 'token='+accessToken+'; HttpOnly; Path=/');
                 res.json(accessToken);   
             }
             else
@@ -57,13 +59,9 @@ module.exports = {
         try
         {
             const article = await ArtModel.getArtById(req.params.artId);
-            const lastCart = await CartModel.getLastCartId(req.user.userId);
 
             if(article != -1)
             {
-                article[0].links = {
-                    addToCart: '/api/carts/'+lastCart+'/articles/'+article[0].article_id
-                };
                 res.json(article[0]);
             }
             else
@@ -106,7 +104,7 @@ module.exports = {
 
             if(lastCart == req.params.cartId)
             {
-                const cartRecord = await CartModel.decToCart(req.body.artId,req.params.cartId);
+                const cartRecord = await CartModel.decToCart(req.params.artId,req.params.cartId);
                 if(cartRecord)
                     res.json(cartRecord);
                 else
@@ -173,7 +171,7 @@ module.exports = {
                 if(cartRecord)
                     res.json(cartRecord);
                 else
-                    res.send("non ci sono articoli");
+                    res.send([]);
             }
             else
                 res.sendStatus(403);
@@ -191,6 +189,7 @@ module.exports = {
 
             if(lastCart == req.params.cartId)
             {
+                
                 const cartRecord = await CartModel.getArticleFromCart(req.params.artId,req.params.cartId);
                 if(cartRecord)
                     res.json(cartRecord);
@@ -205,6 +204,18 @@ module.exports = {
             res.sendStatus(500);
         }
         
+    },
+    getLastCart: async (req,res)=>{
+        let cartId = null;
+        if(req.params.userId == req.user.userId)
+            cartId = await CartModel.getLastCartId(req.params.userId);
+        else
+            return res.sendStatus(403);
+            
+        if(cartId)
+            res.json(cartId);
+        else 
+            res.send("No articles");
     },
     authToken: (req,res,next) =>{ //midleware
         const token =  req.query.auth;
