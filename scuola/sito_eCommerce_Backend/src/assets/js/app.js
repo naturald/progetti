@@ -44,6 +44,24 @@ function respoNav()
     }
 }
 
+function getTot()
+{
+    let tot = 0;
+    document.querySelectorAll(".cart_ele").forEach(ele =>{
+        let prezzo = ele.querySelector(".cart_ele_prezzo").innerHTML;
+        prezzo = Number(prezzo.substr(0,prezzo.length-1));
+        tot += (prezzo * Number(ele.querySelector(".cart_ele_quanti").innerHTML));
+    });
+    document.querySelector("#buy_cart > h3").innerHTML = tot+"€";
+}
+
+function sendReq(path) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", path, true);
+    xhttp.send();
+    location.reload();
+}
+
 //---------------------------------
 
 if(location.href.indexOf("login") == -1)
@@ -67,12 +85,11 @@ if(location.href.indexOf("login") == -1)
         respoNav();
     
     });
-}
-
-function sendReq(path) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", path, true);
-    xhttp.send();
-    location.reload();
+    
+    if(document.querySelector('#logout'))
+        document.querySelector('#logout').onclick = () =>{
+            axios.get('/logout').then(()=>{location.reload()});
+            localStorage.removeItem('token');
+        };
 }
 

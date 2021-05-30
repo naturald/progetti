@@ -7,13 +7,17 @@
     visualizzare il codice calcolato.
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
 
-#define LUOGO_LEN 4
+#define LUOGO_LEN 30
 #define COD_lEN 17
 #define NOME_COGN_LEN 30
+#define MAX_STR_LEN 60
+#define OK 1
+#define ERR 0
 const char vocali[5] = {'A','E','I','O','U'};
 const unsigned char accentate[10] = {133,138,161,149,151,183,212,222,227,235};// à è ì ò ù ...
 
@@ -524,6 +528,8 @@ void insertData(int data[],char codice[], bool femmina)
 
     codice[9] = data[0] / 10 + '0';
     codice[10] = data[0] % 10 + '0';
+
+    codice[11] = 0;
 }
 
 /*
@@ -542,6 +548,68 @@ void getluogoNasci(char luogoNasci[])
 }
 
 /*
+    prende un nome di un comune e lo cerca in una lista comune/codice
+    dando coem risultato il codice associato al nome incollandolo
+    all'array del codice fiscale
+    Parametri:
+        - char * nome: input: nome del comune
+        - char * codice: output: array codice fiscale
+        - return: output: stato uscita funzione
+*/
+int getCodiceByNome(char * nome, char * codice)
+{
+    toUpStr(nome);
+
+    system("clear");
+    FILE * f;
+    char str[MAX_STR_LEN], str1[MAX_STR_LEN];
+    int virg = MAX_STR_LEN, posvir = MAX_STR_LEN;
+    bool exit = false, start = false;
+
+    f = fopen("province.csv","r");
+
+    if(f == NULL)
+        return ERR;
+
+    while(!feof(f) && !exit)
+    {
+        int i,j;
+        fgets(str,MAX_STR_LEN,f);
+        if(toupper(str[0]) == nome[0])
+        {
+            for(i=0;str[i]!=',';i++)
+            {
+                str[i] = toupper(str[i]);
+                str1[i]=str[i];
+            }
+
+            str1[i]=0;
+
+            if(strcmp(str1,nome) == 0)
+            {
+
+                for(int j=0;j<4;j++)
+                {
+                    i++;
+                    str1[j]=str[i];
+
+                }
+                str1[4]=0;
+                strcat(codice,str1);
+                exit = true;
+            }
+            start = true;
+        }
+        else if(start == true)
+            exit = true;
+    }
+
+    fclose (f);
+
+    return OK;
+}
+
+/*
     inserisce dentro l'array del codice fiscale
     la stringha che contiene il codice del comuno o
     nazzione di provenienza
@@ -551,10 +619,7 @@ void getluogoNasci(char luogoNasci[])
 */
 void insertLuogoNasci(char luogoNascita[],char codice[])
 {
-    for(int i = 0; i < LUOGO_LEN ; i++)
-    {
-      codice[11 + i] = luogoNascita[i];
-    }
+    getCodiceByNome(luogoNascita,codice);
 }
 
 /*

@@ -17,10 +17,10 @@ module.exports = {
         return new Promise(solved =>{
             
             const query = "SELECT user_id FROM users WHERE email = '"+email+"' && pwd = '"+pwd+"';";//TODO: sanificazione input
-
+            
             con.query(query, (err,res) =>{
 
-                if(res.length)
+                if(!err && res!=undefined && res.length)
                     solved(res[0].user_id);
                 else
                     solved(false);
@@ -37,7 +37,15 @@ module.exports = {
             con.query(query, (err,res) =>{
 
                 if(!err)
-                    solved(true);
+                {
+                    const query = "SELECT max(user_id) FROM users";
+                    con.query(query, (err,res) =>{
+                        const query = "insert into carts values (null,"+res[0]['max(user_id)']+");";
+                        con.query(query);
+                        solved(res[0]['max(user_id)']);
+                    });
+                    
+                }
                 else
                     solved(false);
 
@@ -48,12 +56,11 @@ module.exports = {
     getLastId: (email,pwd) =>{
         return new Promise(solved =>{
             
-            const query = "SELECT * FROM users;";
+            const query = "SELECT max(user_id) FROM users;";
 
             con.query(query, (err,res) =>{
-
                 if(!err)
-                    solved(res[res.length-1].user_id);
+                    solved(res[0]['max(user_id)']);
                 else
                     console.log("nessun utente");
 
