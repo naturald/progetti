@@ -1,4 +1,4 @@
-const UserModel = require("../Models/UserModel");
+const UserModel = require("../Models/userModel");
 const ArtModel = require("../Models/artModel");
 const CartModel = require("../Models/cartModel");
 
