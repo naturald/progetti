@@ -2,6 +2,6 @@ public class main {
 
     public static void main(String[] args)
     {
-        MegaBytesConverter.printMegaBytesAndKiloBytes(2500);
+        System.out.println(NumberPalindrome.isPalindrome(123));
     }
 }
