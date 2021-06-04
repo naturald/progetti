@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Titillium+Web:wght@200&display=swap');
+html,body
+{
+    width: 100%;
+    margin: 0;
+}
+/*_____________header__________*/
+header
+{
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    border: 1px solid red;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+}
+header > h1 
+{
+    width: max-content;
+}
+header > h1:first-child
+{
+    font-size: 40px;
+    font-family: 'Fjalla One', sans-serif;
+    margin-right: 10px;
+}
+header > h1:last-child
+{
+    font-family: 'Titillium Web', sans-serif;
+}

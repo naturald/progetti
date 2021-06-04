@@ -71,7 +71,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/carts/last/users/1?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjM5MjYzOX0.FOwHgSr1K8ziv3bTksl0oJOU0vH0ELl6Tj52d2_6nfc
+GET http://localhost:3000/api/carts/last/users/4?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYyMjQ0NzgyMX0.wVTAULyG4rZfuzEuGeJQH16rIJjdm6R8cruLGrDx9Y0
 
 ###
 
@@ -81,3 +81,6 @@ Content-Type: application/json
 {
     "artId": 1
 }
+
+### 
+GET http://localhost:3000/api/carts/4/articles?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYyMjQ0NzgyMX0.wVTAULyG4rZfuzEuGeJQH16rIJjdm6R8cruLGrDx9Y0
