@@ -31,7 +31,30 @@
 <?php
     if(isset($_POST['login_submit']))
     {
-        include("connect.php");
+        require_once "connect.php";
+        $name = mysqli_real_escape_string($conn,$_POST['name']);
+        $password = mysqli_real_escape_string($conn,$_POST['password']);
+        $query = mysqli_query($conn,"SELECT name,privilege,salt FROM users WHERE name = '".$name."';");
+        $rows = mysqli_num_rows($query);
+        if($rows == 1)
+        {
+            $user = mysqli_fetch_assoc($query);
+            $password += $user["salt"];
+            if(password_verify($password, $user["password"]))
+            {
+                session_start();
+                $_SESSION['username'] = $user["name"];
+                $_SESSION['privilege'] = $user["privilege"];
+                header("Location: upload_data.php");
+                exit();
+            }
+            else
+            {
+                header("Location: login.php");
+                exit();
+            }
+            
+        }
     }
-    $pdo = null;
+    
 ?>

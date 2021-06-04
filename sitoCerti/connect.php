@@ -1,3 +1,3 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=certifications","webVisitor","TxUNS68CDKY71V1C");
+    $conn = mysqli_connect("localhost","webVisitor","TxUNS68CDKY71V1C","certifications");
 ?>
