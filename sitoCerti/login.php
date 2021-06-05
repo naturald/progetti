@@ -15,14 +15,14 @@
         <form action="/certificazioni/login.php" method="POST" class="login-form">
             <img src="/certificazioni/assets/img/logo-certificavo.png" class="login-form-img">
             <div class="input-container">
-                <input type="text" class="input-text" name="name" autocomplete="off" required>
+                <input type="text" name="username" class="input-text" autocomplete="off" required> 
                 <label for="name">Nome</label>
             </div>
             <div class="input-container">
-                <input type="password" class="input-text" name="password" autocomplete="off" required>
+                <input type="password" name="password" class="input-text" autocomplete="off" required> 
                 <label for="password">Password</label>
             </div>
-            <input type="submit" value="LOGIN" class="button" name="login_submit">
+            <input type="submit" value="LOGIN" class="button" name="login_submit" value="AGGIUNGI">
         </form>
     </div>
 </body>
@@ -32,9 +32,9 @@
     if(isset($_POST['login_submit']))
     {
         require_once "connect.php";
-        $name = mysqli_real_escape_string($conn,$_POST['name']);
+        $username = mysqli_real_escape_string($conn,$_POST['username']);
         $password = mysqli_real_escape_string($conn,$_POST['password']);
-        $query = mysqli_query($conn,"SELECT name,privilege,salt FROM users WHERE name = '".$name."';");
+        $query = mysqli_query($conn,"SELECT username,privilege,salt FROM users WHERE username = '".$username."';");
         $rows = mysqli_num_rows($query);
         if($rows == 1)
         {
@@ -43,9 +43,9 @@
             if(password_verify($password, $user["password"]))
             {
                 session_start();
-                $_SESSION['username'] = $user["name"];
+                $_SESSION['username'] = $user["username"];
                 $_SESSION['privilege'] = $user["privilege"];
-                header("Location: upload_data.php");
+                header("Location: uploadData.php");
                 exit();
             }
             else

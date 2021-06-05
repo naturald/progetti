@@ -45,7 +45,7 @@ body
     height: 0;
     line-height: 0;
 }
-.input-text:valid + label, .input-text:focus + label
+.input-text:valid + label, .input-text:focus + label,.input-text:-webkit-autofill + label
 {
     font-size: 14px;
     top: -40px;
@@ -132,8 +132,9 @@ header > img:last-child
     width: 80%;
 }
 /*_____________upload-data_________*/
-.upload-data-content
+.content-container
 {
+    font-family: 'Source Sans Pro', sans-serif;
     height: calc(100% - 100px);
     width: 100%;
     position: relative;
@@ -184,4 +185,17 @@ header > img:last-child
 {
     font-family: 'Source Sans Pro', sans-serif; 
     display: flex;
+}
+/*_____________add-users________*/
+.add-user-form
+{
+    background-color: white;
+    width: 40%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 55px 5px rgb(137 173 255 / 35%);
 }

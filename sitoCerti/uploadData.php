@@ -16,7 +16,7 @@
         <img src="/certificazioni/assets/img/scritta-logo.png">
     </header>
     
-    <div class="upload-data-content">
+    <div class="content-container">
         <form action="" method="POST" enctype="multipart/form-data" class="upload-data-form">
             <h1>Scegli tameplate certificato</h1>
             <div class="certificate-container">
